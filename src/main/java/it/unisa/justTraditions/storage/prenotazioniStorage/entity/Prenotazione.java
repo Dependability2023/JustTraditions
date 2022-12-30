@@ -1,4 +1,4 @@
-package it.unisa.justTraditions.storage.gestionePrenotazioni.entity;
+package it.unisa.justTraditions.storage.prenotazioniStorage.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
