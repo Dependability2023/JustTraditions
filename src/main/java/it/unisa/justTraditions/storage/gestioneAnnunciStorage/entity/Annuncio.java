@@ -1,6 +1,11 @@
 package it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity;
 
+import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Amministratore;
+import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Artigiano;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -10,6 +15,7 @@ import jakarta.persistence.OneToMany;
 import java.math.BigDecimal;
 import java.util.Set;
 
+@Entity
 public class Annuncio {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,23 +34,28 @@ public class Annuncio {
   private Integer numMaxPersonaPerVisita;
   @Column(nullable = false, precision = 5, scale = 2)
   private BigDecimal prezzoVisita;
+  @Enumerated(EnumType.STRING)
   @Column(nullable = false, length = 12)
-  private String stato;
-  @Column(nullable = false)
+  private Stato stato;
   private String motivoDelRifiuto;
   @ManyToOne
+  @JoinColumn(name = "amministratore")
   private Amministratore amministratore;
   @ManyToOne
-  @JoinColumn(nullable = false)
+  @JoinColumn(name = "artigiano", nullable = false)
   private Artigiano artigiano;
-  @OneToMany(mappedBy = "visite")
+  @OneToMany(mappedBy = "annuncio")
   private Set<Visita> visite;
-  @OneToMany(mappedBy = "foto")
+  @OneToMany(mappedBy = "annuncio")
   private Set<Foto> foto;
-
 
   public Annuncio() {
   }
 
-
+  public enum Stato {
+    PROPOSTO,
+    IN_REVISIONE,
+    RIFIUTATO,
+    APPROVATO
+  }
 }
