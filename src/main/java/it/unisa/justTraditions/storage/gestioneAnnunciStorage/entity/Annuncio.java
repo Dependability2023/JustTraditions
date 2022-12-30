@@ -39,6 +39,8 @@ public class Annuncio {
   private Artigiano artigiano;
   @OneToMany(mappedBy = "visite")
   private Set<Visita> visite;
+  @OneToMany(mappedBy = "visite")
+  private Set<Foto> foto;
 
 
   public Annuncio() {
