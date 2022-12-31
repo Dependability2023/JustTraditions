@@ -8,9 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -19,8 +19,8 @@ public class Cliente
     extends Utente {
   @Column(nullable = false, unique = true, columnDefinition = "CHAR(16)")
   private String codiceFiscale;
-  @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
-  private Set<Prenotazione> prenotazioni = new HashSet<>();
+  @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+  private List<Prenotazione> prenotazioni = new ArrayList<>();
 
   public Cliente() {
   }
@@ -38,18 +38,13 @@ public class Cliente
     this.codiceFiscale = codiceFiscale;
   }
 
-  public Set<Prenotazione> getPrenotazioni() {
-    return Collections.unmodifiableSet(prenotazioni);
+  public List<Prenotazione> getPrenotazioni() {
+    return Collections.unmodifiableList(prenotazioni);
   }
 
   public void addPrenotazione(Prenotazione prenotazione) {
     prenotazioni.add(prenotazione);
     prenotazione.setCliente(this);
-  }
-
-  public void removePrenotazione(Prenotazione prenotazione) {
-    prenotazioni.remove(prenotazione);
-    prenotazione.setCliente(null);
   }
 
   @Override

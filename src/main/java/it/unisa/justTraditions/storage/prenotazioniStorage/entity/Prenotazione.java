@@ -2,6 +2,7 @@ package it.unisa.justTraditions.storage.prenotazioniStorage.entity;
 
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Visita;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Cliente;
+import it.unisa.justTraditions.storage.util.OnlyStorageCall;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -73,6 +74,7 @@ public class Prenotazione {
   }
 
   public void setCliente(Cliente cliente) {
+    OnlyStorageCall.validateCall();
     this.cliente = cliente;
   }
 
@@ -81,6 +83,7 @@ public class Prenotazione {
   }
 
   public void setVisita(Visita visita) {
+    OnlyStorageCall.validateCall();
     this.visita = visita;
   }
 
