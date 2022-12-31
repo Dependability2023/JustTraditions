@@ -4,6 +4,7 @@ import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Visita;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Cliente;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,10 +24,79 @@ public class Prenotazione {
   private LocalDate dataVisita;
   @Column(nullable = false)
   private Integer numPersonePrenotate;
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "cliente", nullable = false)
   private Cliente cliente;
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "visita", nullable = false)
   private Visita visita;
+
+  public Prenotazione() {
+  }
+
+  public Prenotazione(BigDecimal prezzoVisita, LocalDate dataVisita, Integer numPersonePrenotate,
+                      Cliente cliente, Visita visita) {
+    this.prezzoVisita = prezzoVisita;
+    this.dataVisita = dataVisita;
+    this.numPersonePrenotate = numPersonePrenotate;
+    this.cliente = cliente;
+    this.visita = visita;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public BigDecimal getPrezzoVisita() {
+    return prezzoVisita;
+  }
+
+  public void setPrezzoVisita(BigDecimal prezzoVisita) {
+    this.prezzoVisita = prezzoVisita;
+  }
+
+  public LocalDate getDataVisita() {
+    return dataVisita;
+  }
+
+  public void setDataVisita(LocalDate dataVisita) {
+    this.dataVisita = dataVisita;
+  }
+
+  public Integer getNumPersonePrenotate() {
+    return numPersonePrenotate;
+  }
+
+  public void setNumPersonePrenotate(Integer numPersonePrenotate) {
+    this.numPersonePrenotate = numPersonePrenotate;
+  }
+
+  public Cliente getCliente() {
+    return cliente;
+  }
+
+  public void setCliente(Cliente cliente) {
+    this.cliente = cliente;
+  }
+
+  public Visita getVisita() {
+    return visita;
+  }
+
+  public void setVisita(Visita visita) {
+    this.visita = visita;
+  }
+
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("Prenotazione{");
+    sb.append("id=").append(id);
+    sb.append(", prezzoVisita=").append(prezzoVisita);
+    sb.append(", dataVisita=").append(dataVisita);
+    sb.append(", numPersonePrenotate=").append(numPersonePrenotate);
+    sb.append(", cliente=").append(cliente.getId());
+    sb.append(", visita=").append(visita.getId());
+    sb.append('}');
+    return sb.toString();
+  }
 }
