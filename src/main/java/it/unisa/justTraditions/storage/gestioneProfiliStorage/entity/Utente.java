@@ -67,6 +67,25 @@ public abstract class Utente {
   }
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    Utente utente = (Utente) o;
+
+    return id.equals(utente.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return id.hashCode();
+  }
+
+  @Override
   public String toString() {
     final StringBuilder sb = new StringBuilder("Utente{");
     sb.append("id=").append(id);

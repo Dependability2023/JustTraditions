@@ -20,7 +20,7 @@ public class Foto {
   @Basic(fetch = FetchType.LAZY)
   @Column(nullable = false, length = 16777215)
   private byte[] dati;
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "annuncio", nullable = false)
   private Annuncio annuncio;
 

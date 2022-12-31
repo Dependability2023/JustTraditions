@@ -5,9 +5,9 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Artigiano
@@ -15,7 +15,7 @@ public class Artigiano
   @Column(columnDefinition = "CHAR(27)")
   private String iban;
   @OneToMany(mappedBy = "artigiano", cascade = CascadeType.ALL, orphanRemoval = true)
-  private Set<Annuncio> annunci = new HashSet<>();
+  private List<Annuncio> annunci = new ArrayList<>();
 
   public Artigiano() {
   }
@@ -34,8 +34,8 @@ public class Artigiano
     this.iban = iban;
   }
 
-  public Set<Annuncio> getAnnunci() {
-    return Collections.unmodifiableSet(annunci);
+  public List<Annuncio> getAnnunci() {
+    return Collections.unmodifiableList(annunci);
   }
 
   public void addAnnuncio(Annuncio annuncio) {
