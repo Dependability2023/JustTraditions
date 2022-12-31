@@ -20,7 +20,9 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Table(uniqueConstraints = {
@@ -43,8 +45,74 @@ public class Visita {
   @JoinColumn(name = "annuncio", nullable = false)
   private Annuncio annuncio;
   @OneToMany(mappedBy = "visita", cascade = {MERGE, PERSIST, REFRESH})
-  private Set<Prenotazione> prenotazioni;
+  private List<Prenotazione> prenotazioni = new ArrayList<>();
 
   public Visita() {
+  }
+
+  public Visita(DayOfWeek giorno, LocalTime orarioInizio, LocalTime orarioFine, Boolean validita) {
+    this.giorno = giorno;
+    this.orarioInizio = orarioInizio;
+    this.orarioFine = orarioFine;
+    this.validita = validita;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public DayOfWeek getGiorno() {
+    return giorno;
+  }
+
+  public void setGiorno(DayOfWeek giorno) {
+    this.giorno = giorno;
+  }
+
+  public LocalTime getOrarioInizio() {
+    return orarioInizio;
+  }
+
+  public void setOrarioInizio(LocalTime orarioInizio) {
+    this.orarioInizio = orarioInizio;
+  }
+
+  public LocalTime getOrarioFine() {
+    return orarioFine;
+  }
+
+  public void setOrarioFine(LocalTime orarioFine) {
+    this.orarioFine = orarioFine;
+  }
+
+  public Boolean getValidita() {
+    return validita;
+  }
+
+  public void setValidita(Boolean validita) {
+    this.validita = validita;
+  }
+
+  public Annuncio getAnnuncio() {
+    return annuncio;
+  }
+
+  public void setAnnuncio(Annuncio annuncio) {
+    this.annuncio = annuncio;
+  }
+
+
+  public List<Prenotazione> getPrenotazioni() {
+    return Collections.unmodifiableList(prenotazioni);
+  }
+
+  public void addPrenotazione(Prenotazione prenotazione) {
+    prenotazioni.add(prenotazione);
+    prenotazione.setVisita(this);
+  }
+
+  public void removePrenotazione(Prenotazione prenotazione) {
+    prenotazioni.remove(prenotazione);
+    prenotazione.setVisita(null);
   }
 }
