@@ -5,6 +5,7 @@ import static jakarta.persistence.CascadeType.PERSIST;
 import static jakarta.persistence.CascadeType.REFRESH;
 
 import it.unisa.justTraditions.storage.prenotazioniStorage.entity.Prenotazione;
+import it.unisa.justTraditions.storage.util.OnlyStorageCall;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -98,6 +99,7 @@ public class Visita {
   }
 
   public void setAnnuncio(Annuncio annuncio) {
+    OnlyStorageCall.validateCall();
     this.annuncio = annuncio;
   }
 

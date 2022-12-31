@@ -1,5 +1,6 @@
 package it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity;
 
+import it.unisa.justTraditions.storage.util.OnlyStorageCall;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -49,6 +50,7 @@ public class Foto {
   }
 
   public void setAnnuncio(Annuncio annuncio) {
+    OnlyStorageCall.validateCall();
     this.annuncio = annuncio;
   }
 

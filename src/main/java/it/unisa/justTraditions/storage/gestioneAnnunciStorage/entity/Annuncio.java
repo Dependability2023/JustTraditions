@@ -2,6 +2,7 @@ package it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity;
 
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Amministratore;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Artigiano;
+import it.unisa.justTraditions.storage.util.OnlyStorageCall;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -158,6 +159,7 @@ public class Annuncio {
 
   public void setAmministratore(
       Amministratore amministratore) {
+    OnlyStorageCall.validateCall();
     this.amministratore = amministratore;
   }
 
@@ -167,6 +169,7 @@ public class Annuncio {
 
   public void setArtigiano(
       Artigiano artigiano) {
+    OnlyStorageCall.validateCall();
     this.artigiano = artigiano;
   }
 
