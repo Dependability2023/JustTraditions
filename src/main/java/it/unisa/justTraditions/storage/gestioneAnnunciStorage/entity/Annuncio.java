@@ -19,7 +19,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 public class Annuncio {
@@ -41,8 +40,8 @@ public class Annuncio {
   @Column(nullable = false, precision = 5, scale = 2)
   private BigDecimal prezzoVisita;
   @Enumerated(EnumType.STRING)
-  @Column(nullable = false, length = 12)
-  private Stato stato = Stato.PROPOSTO;
+  @Column(nullable = false, columnDefinition = "VARCHAR(12) default 'PROPOSTO'")
+  private Stato stato;
   private String motivoDelRifiuto;
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "amministratore")
@@ -68,13 +67,6 @@ public class Annuncio {
     this.serviziOfferti = serviziOfferti;
     this.numMaxPersonaPerVisita = numMaxPersonaPerVisita;
     this.prezzoVisita = prezzoVisita;
-  }
-
-  public enum Stato {
-    PROPOSTO,
-    IN_REVISIONE,
-    RIFIUTATO,
-    APPROVATO
   }
 
   public Long getId() {
@@ -157,8 +149,7 @@ public class Annuncio {
     return amministratore;
   }
 
-  public void setAmministratore(
-      Amministratore amministratore) {
+  public void setAmministratore(Amministratore amministratore) {
     OnlyStorageCall.validateCall();
     this.amministratore = amministratore;
   }
@@ -167,13 +158,12 @@ public class Annuncio {
     return artigiano;
   }
 
-  public void setArtigiano(
-      Artigiano artigiano) {
+  public void setArtigiano(Artigiano artigiano) {
     OnlyStorageCall.validateCall();
     this.artigiano = artigiano;
   }
 
-  public List<Visita> getVisite(){
+  public List<Visita> getVisite() {
     return Collections.unmodifiableList(visite);
   }
 
@@ -182,11 +172,7 @@ public class Annuncio {
     visita.setAnnuncio(this);
   }
 
-  public void removeVisita(Visita visita) {
-    visite.remove(visita);
-    visita.setAnnuncio(null);
-  }
-  public List<Foto> getFoto(){
+  public List<Foto> getFoto() {
     return Collections.unmodifiableList(foto);
   }
 
@@ -208,13 +194,15 @@ public class Annuncio {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
+
     Annuncio annuncio = (Annuncio) o;
+
     return id.equals(annuncio.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return id.hashCode();
   }
 
   @Override
@@ -234,5 +222,12 @@ public class Annuncio {
     sb.append(", artigiano=").append(artigiano.getId());
     sb.append('}');
     return sb.toString();
+  }
+
+  public enum Stato {
+    PROPOSTO,
+    IN_REVISIONE,
+    RIFIUTATO,
+    APPROVATO
   }
 }

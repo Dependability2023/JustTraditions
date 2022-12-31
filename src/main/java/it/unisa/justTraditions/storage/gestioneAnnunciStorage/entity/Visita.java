@@ -40,7 +40,7 @@ public class Visita {
   private LocalTime orarioInizio;
   @Column(nullable = false)
   private LocalTime orarioFine;
-  @Column(nullable = false)
+  @Column(nullable = false, columnDefinition = "BOOLEAN default true")
   private Boolean validita;
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "annuncio", nullable = false)
@@ -51,11 +51,10 @@ public class Visita {
   public Visita() {
   }
 
-  public Visita(DayOfWeek giorno, LocalTime orarioInizio, LocalTime orarioFine, Boolean validita) {
+  public Visita(DayOfWeek giorno, LocalTime orarioInizio, LocalTime orarioFine) {
     this.giorno = giorno;
     this.orarioInizio = orarioInizio;
     this.orarioFine = orarioFine;
-    this.validita = validita;
   }
 
   public Long getId() {
@@ -103,7 +102,6 @@ public class Visita {
     this.annuncio = annuncio;
   }
 
-
   public List<Prenotazione> getPrenotazioni() {
     return Collections.unmodifiableList(prenotazioni);
   }
@@ -113,8 +111,35 @@ public class Visita {
     prenotazione.setVisita(this);
   }
 
-  public void removePrenotazione(Prenotazione prenotazione) {
-    prenotazioni.remove(prenotazione);
-    prenotazione.setVisita(null);
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    Visita visita = (Visita) o;
+
+    return id.equals(visita.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return id.hashCode();
+  }
+
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("Visita{");
+    sb.append("id=").append(id);
+    sb.append(", giorno=").append(giorno);
+    sb.append(", orarioInizio=").append(orarioInizio);
+    sb.append(", orarioFine=").append(orarioFine);
+    sb.append(", validita=").append(validita);
+    sb.append(", annuncio=").append(annuncio.getId());
+    sb.append('}');
+    return sb.toString();
   }
 }

@@ -5,7 +5,8 @@ public abstract class OnlyStorageCall {
     Class<?> callerClass = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE)
         .walk(s -> s.map(StackWalker.StackFrame::getDeclaringClass)
             .skip(3)
-            .findFirst()).orElseThrow();
+            .findFirst()
+        ).orElseThrow();
 
     if (!callerClass.getName().startsWith("it.unisa.justTraditions.storage")) {
       throw new IllegalCallerException();

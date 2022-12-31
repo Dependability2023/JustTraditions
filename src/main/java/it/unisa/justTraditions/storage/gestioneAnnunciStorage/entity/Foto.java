@@ -11,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
-import java.util.Objects;
 
 @Entity
 public class Foto {
@@ -62,12 +61,23 @@ public class Foto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
+
     Foto foto = (Foto) o;
+
     return id.equals(foto.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return id.hashCode();
+  }
+
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("Foto{");
+    sb.append("id=").append(id);
+    sb.append(", annuncio=").append(annuncio.getId());
+    sb.append('}');
+    return sb.toString();
   }
 }
