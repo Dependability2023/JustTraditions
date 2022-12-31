@@ -2,6 +2,7 @@ package it.unisa.justTraditions.storage.prenotazioniStorage.entity;
 
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Visita;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Cliente;
+import it.unisa.justTraditions.storage.util.OnlyStorageCall;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -28,19 +29,16 @@ public class Prenotazione {
   @JoinColumn(name = "cliente", nullable = false)
   private Cliente cliente;
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "visita", nullable = false)
+  @JoinColumn(name = "visita")
   private Visita visita;
 
   public Prenotazione() {
   }
 
-  public Prenotazione(BigDecimal prezzoVisita, LocalDate dataVisita, Integer numPersonePrenotate,
-                      Cliente cliente, Visita visita) {
+  public Prenotazione(BigDecimal prezzoVisita, LocalDate dataVisita, Integer numPersonePrenotate) {
     this.prezzoVisita = prezzoVisita;
     this.dataVisita = dataVisita;
     this.numPersonePrenotate = numPersonePrenotate;
-    this.cliente = cliente;
-    this.visita = visita;
   }
 
   public Long getId() {
@@ -76,6 +74,7 @@ public class Prenotazione {
   }
 
   public void setCliente(Cliente cliente) {
+    OnlyStorageCall.validateCall();
     this.cliente = cliente;
   }
 
@@ -84,7 +83,27 @@ public class Prenotazione {
   }
 
   public void setVisita(Visita visita) {
+    OnlyStorageCall.validateCall();
     this.visita = visita;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    Prenotazione that = (Prenotazione) o;
+
+    return id.equals(that.id);
+  }
+
+  @Override
+  public int hashCode() {
+    return id.hashCode();
   }
 
   @Override
