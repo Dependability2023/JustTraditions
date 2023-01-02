@@ -52,6 +52,7 @@ public class Artigiano
   public String toString() {
     final StringBuilder sb = new StringBuilder("Artigiano{");
     sb.append("iban='").append(iban).append('\'');
+    sb.append(", annunci=").append(annunci);
     sb.append('}').append(" is a ").append(super.toString());
     return sb.toString();
   }

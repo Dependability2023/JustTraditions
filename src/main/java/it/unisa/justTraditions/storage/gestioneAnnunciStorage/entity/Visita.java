@@ -139,6 +139,7 @@ public class Visita {
     sb.append(", orarioFine=").append(orarioFine);
     sb.append(", validita=").append(validita);
     sb.append(", annuncio=").append(annuncio);
+    sb.append(", prenotazioni=").append(prenotazioni);
     sb.append('}');
     return sb.toString();
   }

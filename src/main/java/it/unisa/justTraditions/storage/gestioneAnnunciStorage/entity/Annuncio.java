@@ -220,6 +220,8 @@ public class Annuncio {
     sb.append(", motivoDelRifiuto='").append(motivoDelRifiuto).append('\'');
     sb.append(", amministratore=").append(amministratore);
     sb.append(", artigiano=").append(artigiano);
+    sb.append(", visite=").append(visite);
+    sb.append(", foto=").append(foto);
     sb.append('}');
     return sb.toString();
   }
