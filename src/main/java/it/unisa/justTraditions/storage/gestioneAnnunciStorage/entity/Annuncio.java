@@ -36,7 +36,7 @@ public class Annuncio {
   @Column(nullable = false)
   private String serviziOfferti;
   @Column(nullable = false)
-  private Integer numMaxPersonaPerVisita;
+  private Integer numMaxPersonePerVisita;
   @Column(nullable = false, precision = 5, scale = 2)
   private BigDecimal prezzoVisita;
   @Enumerated(EnumType.STRING)
@@ -58,14 +58,14 @@ public class Annuncio {
   }
 
   public Annuncio(String nomeAttivita, String provinciaAttivita, String indirizzoAttivita,
-                  String descrizione, String serviziOfferti, Integer numMaxPersonaPerVisita,
+                  String descrizione, String serviziOfferti, Integer numMaxPersonePerVisita,
                   BigDecimal prezzoVisita) {
     this.nomeAttivita = nomeAttivita;
     this.provinciaAttivita = provinciaAttivita;
     this.indirizzoAttivita = indirizzoAttivita;
     this.descrizione = descrizione;
     this.serviziOfferti = serviziOfferti;
-    this.numMaxPersonaPerVisita = numMaxPersonaPerVisita;
+    this.numMaxPersonePerVisita = numMaxPersonePerVisita;
     this.prezzoVisita = prezzoVisita;
   }
 
@@ -113,12 +113,12 @@ public class Annuncio {
     this.serviziOfferti = serviziOfferti;
   }
 
-  public Integer getNumMaxPersonaPerVisita() {
-    return numMaxPersonaPerVisita;
+  public Integer getNumMaxPersonePerVisita() {
+    return numMaxPersonePerVisita;
   }
 
-  public void setNumMaxPersonaPerVisita(Integer numMaxPersonaPerVisita) {
-    this.numMaxPersonaPerVisita = numMaxPersonaPerVisita;
+  public void setNumMaxPersonePerVisita(Integer numMaxPersonaPerVisita) {
+    this.numMaxPersonePerVisita = numMaxPersonaPerVisita;
   }
 
   public BigDecimal getPrezzoVisita() {
@@ -214,7 +214,7 @@ public class Annuncio {
     sb.append(", indirizzoAttivita='").append(indirizzoAttivita).append('\'');
     sb.append(", descrizione='").append(descrizione).append('\'');
     sb.append(", serviziOfferti='").append(serviziOfferti).append('\'');
-    sb.append(", numMaxPersonaPerVisita=").append(numMaxPersonaPerVisita);
+    sb.append(", numMaxPersonePerVisita=").append(numMaxPersonePerVisita);
     sb.append(", prezzoVisita=").append(prezzoVisita);
     sb.append(", stato=").append(stato);
     sb.append(", motivoDelRifiuto='").append(motivoDelRifiuto).append('\'');
