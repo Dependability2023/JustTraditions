@@ -138,7 +138,7 @@ public class Visita {
     sb.append(", orarioInizio=").append(orarioInizio);
     sb.append(", orarioFine=").append(orarioFine);
     sb.append(", validita=").append(validita);
-    sb.append(", annuncio=").append(annuncio.getId());
+    sb.append(", annuncio=").append(annuncio);
     sb.append('}');
     return sb.toString();
   }

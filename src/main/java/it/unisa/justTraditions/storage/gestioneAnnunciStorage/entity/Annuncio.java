@@ -218,8 +218,8 @@ public class Annuncio {
     sb.append(", prezzoVisita=").append(prezzoVisita);
     sb.append(", stato=").append(stato);
     sb.append(", motivoDelRifiuto='").append(motivoDelRifiuto).append('\'');
-    sb.append(", amministratore=").append(amministratore.getId());
-    sb.append(", artigiano=").append(artigiano.getId());
+    sb.append(", amministratore=").append(amministratore);
+    sb.append(", artigiano=").append(artigiano);
     sb.append('}');
     return sb.toString();
   }

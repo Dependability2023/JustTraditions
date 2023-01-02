@@ -76,7 +76,7 @@ public class Foto {
   public String toString() {
     final StringBuilder sb = new StringBuilder("Foto{");
     sb.append("id=").append(id);
-    sb.append(", annuncio=").append(annuncio.getId());
+    sb.append(", annuncio=").append(annuncio);
     sb.append('}');
     return sb.toString();
   }
