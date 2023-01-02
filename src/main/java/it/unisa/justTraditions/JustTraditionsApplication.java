@@ -9,5 +9,6 @@ public class JustTraditionsApplication {
   public static void main(String[] args) {
     SpringApplication.run(JustTraditionsApplication.class, args);
   }
+//frat,m
 
 }
