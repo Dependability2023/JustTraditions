@@ -110,7 +110,8 @@ public abstract class Province {
       "Vibo valentia",
       "Vicenza",
       "Verona",
-      "Viterbo");
+      "Viterbo"
+  );
 
   public static List<String> getProvince() {
     return province;

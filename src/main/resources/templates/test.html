@@ -11,6 +11,15 @@
 
 <p>Risposta controller = <span th:text="${response}"/></p>
 
+<h1>Province:</h1>
+
+<table>
+    <tbody>
+    <tr th:each="provincia : ${province}">
+        <td th:text="${provincia}"/>
+    </tr>
+    </tbody>
+</table>
 </body>
 
 </html>
