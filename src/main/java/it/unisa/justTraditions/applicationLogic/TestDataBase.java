@@ -1,5 +1,6 @@
 package it.unisa.justTraditions.applicationLogic;
 
+import it.unisa.justTraditions.applicationLogic.util.Province;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.dao.AnnuncioDao;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.ArtigianoDao;
@@ -51,10 +52,8 @@ public class TestDataBase {
     arturo.addAnnuncio(vinoBuono);
     artigianoDao.save(arturo);
 
-    /*TODO test se modificando un attributo all'artigiano e chiamando il save su un'altra entità
-    fa il flush pure dell'artigiano*/
-
     return new ModelAndView("test")
-        .addObject("response", annuncioDao.findById(vinoBuono.getId()).orElseThrow());
+        .addObject("response", annuncioDao.findById(vinoBuono.getId()).orElseThrow())
+        .addObject("province", Province.getProvince());
   }
 }
