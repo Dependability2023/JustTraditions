@@ -40,7 +40,7 @@ public class Annuncio {
   @Column(nullable = false, precision = 5, scale = 2)
   private BigDecimal prezzoVisita;
   @Enumerated(EnumType.STRING)
-  @Column(nullable = false, columnDefinition = "VARCHAR(12) default 'PROPOSTO'")
+  @Column(nullable = false, length = 12)
   private Stato stato;
   private String motivoDelRifiuto;
   @ManyToOne(fetch = FetchType.LAZY)
@@ -59,7 +59,7 @@ public class Annuncio {
 
   public Annuncio(String nomeAttivita, String provinciaAttivita, String indirizzoAttivita,
                   String descrizione, String serviziOfferti, Integer numMaxPersonePerVisita,
-                  BigDecimal prezzoVisita) {
+                  BigDecimal prezzoVisita, Stato stato) {
     this.nomeAttivita = nomeAttivita;
     this.provinciaAttivita = provinciaAttivita;
     this.indirizzoAttivita = indirizzoAttivita;
@@ -67,6 +67,7 @@ public class Annuncio {
     this.serviziOfferti = serviziOfferti;
     this.numMaxPersonePerVisita = numMaxPersonePerVisita;
     this.prezzoVisita = prezzoVisita;
+    this.stato = stato;
   }
 
   public Long getId() {
@@ -218,8 +219,8 @@ public class Annuncio {
     sb.append(", prezzoVisita=").append(prezzoVisita);
     sb.append(", stato=").append(stato);
     sb.append(", motivoDelRifiuto='").append(motivoDelRifiuto).append('\'');
-    sb.append(", amministratore=").append(amministratore.getId());
-    sb.append(", artigiano=").append(artigiano.getId());
+    sb.append(", amministratore=").append(amministratore);
+    sb.append(", artigiano=").append(artigiano);
     sb.append('}');
     return sb.toString();
   }
