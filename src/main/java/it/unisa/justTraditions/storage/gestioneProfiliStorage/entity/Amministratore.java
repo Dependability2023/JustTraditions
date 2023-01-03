@@ -41,7 +41,6 @@ public class Amministratore
   @Override
   public String toString() {
     final StringBuilder sb = new StringBuilder("Amministratore{");
-    sb.append("annunciApprovati=").append(annunciApprovati);
     sb.append('}').append(" is a ").append(super.toString());
     return sb.toString();
   }

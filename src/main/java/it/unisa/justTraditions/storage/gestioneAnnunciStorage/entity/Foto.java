@@ -11,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
-import java.util.Arrays;
 
 @Entity
 public class Foto {
@@ -77,7 +76,7 @@ public class Foto {
   public String toString() {
     final StringBuilder sb = new StringBuilder("Foto{");
     sb.append("id=").append(id);
-    sb.append(", dati=").append(Arrays.toString(dati));
+    sb.append(", dati=").append(dati == null ? "null" : dati.length + "bytes");
     sb.append(", annuncio=").append(annuncio);
     sb.append('}');
     return sb.toString();

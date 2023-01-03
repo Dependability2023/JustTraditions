@@ -40,7 +40,7 @@ public class Visita {
   private LocalTime orarioInizio;
   @Column(nullable = false)
   private LocalTime orarioFine;
-  @Column(nullable = false, columnDefinition = "BOOLEAN default true")
+  @Column(nullable = false)
   private Boolean validita;
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "annuncio", nullable = false)
@@ -51,10 +51,11 @@ public class Visita {
   public Visita() {
   }
 
-  public Visita(DayOfWeek giorno, LocalTime orarioInizio, LocalTime orarioFine) {
+  public Visita(DayOfWeek giorno, LocalTime orarioInizio, LocalTime orarioFine, Boolean validita) {
     this.giorno = giorno;
     this.orarioInizio = orarioInizio;
     this.orarioFine = orarioFine;
+    this.validita = validita;
   }
 
   public Long getId() {
@@ -139,7 +140,6 @@ public class Visita {
     sb.append(", orarioFine=").append(orarioFine);
     sb.append(", validita=").append(validita);
     sb.append(", annuncio=").append(annuncio);
-    sb.append(", prenotazioni=").append(prenotazioni);
     sb.append('}');
     return sb.toString();
   }

@@ -51,7 +51,6 @@ public class Cliente
   public String toString() {
     final StringBuilder sb = new StringBuilder("Cliente{");
     sb.append("codiceFiscale='").append(codiceFiscale).append('\'');
-    sb.append(", prenotazioni=").append(prenotazioni);
     sb.append('}').append(" is a ").append(super.toString());
     return sb.toString();
   }

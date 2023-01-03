@@ -1,15 +1,21 @@
 package it.unisa.justTraditions.storage.util;
 
+import java.util.List;
+
 public abstract class OnlyStorageCall {
+  private static final StackWalker stackWalker = StackWalker.getInstance();
+
   public static void validateCall() {
-    Class<?> callerClass = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE)
-        .walk(s -> s.map(StackWalker.StackFrame::getDeclaringClass)
-            .skip(2)
-            .findFirst()
-        ).orElseThrow();
-    
-    if (!callerClass.getName().startsWith("it.unisa.justTraditions.storage")) {
-      throw new IllegalCallerException();
+    List<StackWalker.StackFrame> stackFrames = stackWalker.walk(s ->
+        s.skip(1)
+            .limit(2)
+            .toList()
+    );
+
+    String callerClassName = stackFrames.get(1).getClassName();
+    if (!callerClassName.startsWith("it.unisa.justTraditions.storage")) {
+      String methodName = stackFrames.get(0).getMethodName();
+      throw new IllegalCallerException(methodName + " called from " + callerClassName);
     }
   }
 }
