@@ -46,10 +46,54 @@ public class TestDataBase {
         new BigDecimal(3),
         Annuncio.Stato.PROPOSTO
     );
+    Annuncio vinoBrutto = new Annuncio(
+        "VinoBuono",
+        "Napoli",
+        "IndirizzoCasa",
+        "Faccio il vino buono",
+        "Faccio il vino buono",
+        8,
+        new BigDecimal(3),
+        Annuncio.Stato.PROPOSTO
+    );
+    Annuncio Buono = new Annuncio(
+        "VinoBuono",
+        "Benevento",
+        "IndirizzoCasa",
+        "Faccio il vino buono",
+        "Faccio il vino buono",
+        8,
+        new BigDecimal(3),
+        Annuncio.Stato.PROPOSTO
+    );
+    Annuncio BuonoBuone = new Annuncio(
+        "VinoBuono",
+        "Matera",
+        "IndirizzoCasa",
+        "Faccio il vino buono",
+        "Faccio il vino buono",
+        8,
+        new BigDecimal(3),
+        Annuncio.Stato.PROPOSTO
+    );
+    Annuncio MedioBuono = new Annuncio(
+        "VinoBuono",
+        "Monza",
+        "IndirizzoCasa",
+        "Faccio il vino buono",
+        "Faccio il vino buono",
+        8,
+        new BigDecimal(3),
+        Annuncio.Stato.PROPOSTO
+    );
 
     //vinoBuono.setArtigiano(arturo);
 
     arturo.addAnnuncio(vinoBuono);
+    arturo.addAnnuncio(Buono);
+    arturo.addAnnuncio(vinoBrutto);
+    arturo.addAnnuncio(BuonoBuone);
+    arturo.addAnnuncio(MedioBuono);
     artigianoDao.save(arturo);
 
     return new ModelAndView("test")
