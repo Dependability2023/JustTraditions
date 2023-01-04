@@ -23,7 +23,7 @@ public class HomeControl {
     List<Annuncio> annuncioListHome = annuncioPage.getContent();
 
     return new ModelAndView("homepage")
-        .addObject(annuncioListHome);
+        .addObject("Annunci", annuncioListHome);
   }
 }
 
