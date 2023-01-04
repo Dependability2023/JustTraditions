@@ -113,8 +113,8 @@ public class Prenotazione {
     sb.append(", prezzoVisita=").append(prezzoVisita);
     sb.append(", dataVisita=").append(dataVisita);
     sb.append(", numPersonePrenotate=").append(numPersonePrenotate);
-    sb.append(", cliente=").append(cliente.getId());
-    sb.append(", visita=").append(visita.getId());
+    sb.append(", cliente=").append(cliente);
+    sb.append(", visita=").append(visita);
     sb.append('}');
     return sb.toString();
   }
