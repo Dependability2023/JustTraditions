@@ -1,0 +1,53 @@
+<html>
+<head>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js'>
+
+</head>
+<body>
+
+<!--  Navbar  -->
+<%@ include file="navbar.jsp" %>
+<br> <br>
+
+<center><h1>Login</h1></center>
+
+<br> <br>
+<div class="container-fluid as-full">
+    <div class="row as-full d-flex justify-content-center">
+        <div class="col-5 align-self-center">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="iconinput fa fa-user"></i>E-mail</h5>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                   aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <h5 class="card-title"><i class="iconinput fa fa-keyboard"></i>Password</h5>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="exampleInputPassword1"
+                                   placeholder="Password">
+                        </div>
+                        <button type="submit" class="col-md-12 btn btn-primary">Login</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mt-1">
+                <div class="card-body">
+                    <small>Nuovo utente? Registrati <a href="registrazione.jsp">qui</a></small>.
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<!--  Footbar  -->
+<%@ include file="footbar.jsp" %>
+</body>
+</html>
