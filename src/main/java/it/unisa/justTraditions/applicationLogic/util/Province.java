@@ -1,7 +1,11 @@
 package it.unisa.justTraditions.applicationLogic.util;
 
 import java.util.List;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
+@ControllerAdvice(annotations = Controller.class)
 public abstract class Province {
 
   private static final List<String> province = List.of(
@@ -114,6 +118,7 @@ public abstract class Province {
       "Viterbo"
   );
 
+  @ModelAttribute("province")
   public static List<String> getProvince() {
     return province;
   }

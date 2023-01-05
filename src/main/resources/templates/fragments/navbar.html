@@ -1,57 +1,62 @@
-<nav class="navbar navbar-expand-lg top navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">
             <img src="https://i.imgur.com/piIQmkv.png" style="width:125px;height:125px;" alt="logo">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form class="d-flex" id="formRicerca">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            </form>
-
-
-            <div class="dropdown" aria-expanded="false">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"><img
-                        src="https://i.imgur.com/UkDgEMg.png" style="width:20px;height:20px;"></button>
-                <div class="dropdown-menu" style="width : 200px; max-height : 200px; overflow-y: scroll;">
-                    <input class="form-control" id="myInput" type="text" placeholder="Cerca provincia..">
-                    <div class="form-li">
-                        <input type="radio" name="provincia" value="Inserisci provincia">
-                        <label>Inserisci provincia</label>
-                    </div>
-                    <div th:each="provincia : ${@province}">
-                        <div class="form-li">
-                            <input th:id="${provincia}" type="radio" name="provincia"
-                                   th:value="${provincia}">
-                            <label th:for="${provincia}" th:text="${provincia}"></label>
-                        </div>
-                    </div>
-                </div>
+        <div class="offcanvas offcanvas-end bg-dark" tabindex="-1" id="offcanvasNavbar"
+             aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Just Traditions</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
             </div>
-
-            <a class="navbar-brand"> ..............................</a>
-            <ul class="navbar-nav collapse navbar-collapse">
-                <li class="nav-item" style="width: 6rem;">
-                    <a class="nav-link" aria-current="page" href="homepage.jsp">Home</a>
-                </li>
-
-                <li class="nav-item" style="width: 6rem;">
-                    <a class="nav-link" href="listaannunci.jsp">Annunci</a>
-                </li>
-
-                <li class="nav-item" style="width: 6rem;">
-                    <a class="nav-link" href="#ChiSiamo">Chi siamo?</a>
-                </li>
-
-            </ul>
-
-
-            <a href="login.jsp" class="btn btn-outline-success">Login</a>
-
-
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-start flex-grow-1 pe-3 mb-2 mb-lg-0">
+                    <li class="nav-item my-auto">
+                        <form class="d-flex" id="formRicerca">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        </form>
+                    </li>
+                    <li class="nav-item my-auto">
+                        <div class="dropdown" aria-expanded="false">
+                            <button class="btn btn-success dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown">
+                                <img src="https://i.imgur.com/UkDgEMg.png" style="width:20px;height:20px;">
+                            </button>
+                            <div class="dropdown-menu" style="width : 200px; max-height : 200px; overflow-y: scroll;">
+                                <input class="form-control" id="myInput" type="text" placeholder="Cerca provincia..">
+                                <div class="form-li">
+                                    <input type="radio" name="provincia" id="provincia0" value="">
+                                    <label for="provincia0">Inserisci provincia</label>
+                                </div>
+                                <div class="form-li" th:each="provincia, iStat : ${province}">
+                                    <input th:id="'provincia'${iStat.count}" type="radio" name="provincia"
+                                           th:value="${provincia}">
+                                    <label th:for="'provincia'${iStat.count}" th:text="${provincia}"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 mb-2 mb-lg-0">
+                    <li class="nav-item my-auto" style="width: 6rem;">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item my-auto" style="width: 6rem;">
+                        <a class="nav-link" href="/ricercaAnnunci">Annunci</a>
+                    </li>
+                    <li class="nav-item my-auto" style="width: 6rem;">
+                        <a class="nav-link" href="#ChiSiamo">Chi siamo?</a>
+                    </li>
+                    <li class="nav-item my-auto" style="width: 6rem;">
+                        <a href="/login" class="btn btn-outline-success">Login</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>
