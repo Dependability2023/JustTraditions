@@ -1,8 +1,12 @@
 package it.unisa.justTraditions.applicationLogic.util;
 
 import java.util.List;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public abstract class Province {
+
   private static final List<String> province = List.of(
       "Agrigento",
       "Alessandria",
@@ -113,6 +117,7 @@ public abstract class Province {
       "Viterbo"
   );
 
+  @Bean(name = "province")
   public static List<String> getProvince() {
     return province;
   }

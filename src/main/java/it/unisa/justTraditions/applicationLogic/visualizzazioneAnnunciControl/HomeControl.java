@@ -25,5 +25,7 @@ public class HomeControl {
     return new ModelAndView("homepage")
         .addObject("Annunci", annuncioListHome);
   }
+
+
 }
 
