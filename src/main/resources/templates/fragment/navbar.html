@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-
-
 <html>
-
 <head>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css'>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 
 <body>
@@ -32,12 +27,17 @@
             <div class="dropdown" aria-expanded="false">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"><img
                         src="https://i.imgur.com/UkDgEMg.png" style="width:20px;height:20px;"></button>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu" style="width : 200px; max-height : 200px; overflow-y: scroll;">
                     <input class="form-control" id="myInput" type="text" placeholder="Cerca provincia..">
-                    <div id="selectProvincia" style="width : 200px; max-height : 200px; overflow-y: scroll;">
+                    <div class="form-li">
+                        <input type="radio" name="provincia" value="Inserisci provincia">
+                        <label>Inserisci provincia</label>
+                    </div>
+                    <div th:each="provincia : ${province}">
                         <div class="form-li">
-                            <input type="radio" id="provincia0" name="provincia" value="Inserisci provincia">
-                            <label for="provincia0">Inserisci provincia</label>
+                            <input th:id="${provincia}" type="radio" name="provincia"
+                                   th:value="${provincia}">
+                            <label th:for="${provincia}" th:text="${provincia}"></label>
                         </div>
                     </div>
                 </div>
@@ -59,44 +59,28 @@
 
             </ul>
 
-            <%
-            //utente non loggato
-            if ((UtenteBean) request.getSession().getAttribute("utenteLoggato") == null) {
-            %>
+
             <a href="login.jsp" class="btn btn-outline-success">Login</a>
-            <% //admin
-            } else if ((UtenteBean) request.getSession().getAttribute("utenteLoggato") != null && ((UtenteBean)
-            request.getSession().getAttribute("utenteLoggato")).getRuolo() == true) {
-            %>
-            <a href="areaAdmin.jsp" class="btn btn-outline-success">Il mio account</a>
-            <% //utente loggato e artigiano
-            } else if ((UtenteBean) request.getSession().getAttribute("utenteLoggato") != null && ((UtenteBean)
-            request.getSession().getAttribute("utenteLoggato")).getRuolo() == false) {
-            %>
-            <a href="areaArtigiano.jsp" class="btn btn-outline-success">Il mio account</a>
-            <% //utente loggato e visitatore
-            } else if ((UtenteBean) request.getSession().getAttribute("utenteLoggato") != null && ((UtenteBean)
-            request.getSession().getAttribute("utenteLoggato")).getRuolo() == false) {
-            %>
-            <a href="areaVisitatore.jsp" class="btn btn-outline-success">Il mio account</a>
-            <% } %>
 
 
         </div>
     </div>
 </nav>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
         $("#myInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
-            $("#selectProvincia > div").each(function () {
+            $(".form-li").each(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
     });
 </script>
-<script src="scriptprovince.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
 </html>
