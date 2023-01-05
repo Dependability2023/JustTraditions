@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(path = "/TestDataBase")
-public class TestDataBase {
+@RequestMapping("/testDataBase")
+public class TestDataBaseController {
   @Autowired
   private AnnuncioDao annuncioDao;
 
@@ -23,7 +23,7 @@ public class TestDataBase {
   private ArtigianoDao artigianoDao;
 
   @GetMapping
-  public ModelAndView test1() {
+  public ModelAndView get() {
     Artigiano artigiano = new Artigiano();
     artigiano.setCodiceFiscale("12345678910");
     artigianoDao.findOne(Example.of(artigiano)).ifPresent(artigianoDao::delete);
@@ -56,7 +56,7 @@ public class TestDataBase {
         new BigDecimal(3),
         Annuncio.Stato.PROPOSTO
     );
-    Annuncio Buono = new Annuncio(
+    Annuncio buono = new Annuncio(
         "VinoBuono",
         "Benevento",
         "IndirizzoCasa",
@@ -66,7 +66,7 @@ public class TestDataBase {
         new BigDecimal(3),
         Annuncio.Stato.PROPOSTO
     );
-    Annuncio BuonoBuone = new Annuncio(
+    Annuncio buonoBuone = new Annuncio(
         "VinoBuono",
         "Matera",
         "IndirizzoCasa",
@@ -76,7 +76,7 @@ public class TestDataBase {
         new BigDecimal(3),
         Annuncio.Stato.PROPOSTO
     );
-    Annuncio MedioBuono = new Annuncio(
+    Annuncio medioBuono = new Annuncio(
         "VinoBuono",
         "Monza",
         "IndirizzoCasa",
@@ -90,10 +90,10 @@ public class TestDataBase {
     //vinoBuono.setArtigiano(arturo);
 
     arturo.addAnnuncio(vinoBuono);
-    arturo.addAnnuncio(Buono);
+    arturo.addAnnuncio(buono);
     arturo.addAnnuncio(vinoBrutto);
-    arturo.addAnnuncio(BuonoBuone);
-    arturo.addAnnuncio(MedioBuono);
+    arturo.addAnnuncio(buonoBuone);
+    arturo.addAnnuncio(medioBuono);
     artigianoDao.save(arturo);
 
     return new ModelAndView("test")
