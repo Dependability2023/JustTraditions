@@ -11,19 +11,23 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/testDataBase")
+@RequestMapping("/TestDataBase")
 public class TestDataBaseController {
+
   @Autowired
   private AnnuncioDao annuncioDao;
 
   @Autowired
   private ArtigianoDao artigianoDao;
 
+  @Autowired
+  private Province province;
+
   @GetMapping
-  public ModelAndView get() {
+  public @ResponseBody String get() {
     Artigiano artigiano = new Artigiano();
     artigiano.setCodiceFiscale("12345678910");
     artigianoDao.findOne(Example.of(artigiano)).ifPresent(artigianoDao::delete);
@@ -96,8 +100,7 @@ public class TestDataBaseController {
     arturo.addAnnuncio(medioBuono);
     artigianoDao.save(arturo);
 
-    return new ModelAndView("test")
-        .addObject("response", annuncioDao.findById(vinoBuono.getId()).orElseThrow())
-        .addObject("province", Province.getProvince());
+    return annuncioDao.findById(vinoBuono.getId()).orElseThrow().toString()
+        + province.getProvince().toString();
   }
 }

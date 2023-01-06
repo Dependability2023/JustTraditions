@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/")
 public class HomeController {
+
   @Autowired
   private AnnuncioDao annuncioDao;
 
