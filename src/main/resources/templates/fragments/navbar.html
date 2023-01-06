@@ -27,8 +27,10 @@
                                     data-bs-toggle="dropdown">
                                 <img src="https://i.imgur.com/UkDgEMg.png" style="width:20px;height:20px;">
                             </button>
-                            <div class="dropdown-menu" style="width : 200px; max-height : 200px; overflow-y: scroll;">
-                                <input class="form-control" id="myInput" type="text" placeholder="Cerca provincia..">
+                            <div id="dropdownProvince" class="dropdown-menu"
+                                 style="width : 200px; max-height : 200px; overflow-y: scroll;">
+                                <input class="form-control" id="cercaProvincia" type="text"
+                                       placeholder="Cerca provincia..">
                                 <div class="form-li">
                                     <input type="radio" name="provincia" id="provincia0" value="">
                                     <label for="provincia0">Inserisci provincia</label>
@@ -60,14 +62,3 @@
         </div>
     </div>
 </nav>
-<script>
-    $(document).ready(function () {
-        let province = $(".form-li");
-        $("#myInput").on("keyup", function () {
-            let value = $(this).val().toLowerCase();
-            $(".form-li").each(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-            });
-        });
-    });
-</script>

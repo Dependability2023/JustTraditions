@@ -1,22 +1,18 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
 <head>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css'>
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js'>
-
+    <th:block th:include="fragments/head"></th:block>
+    <title>Just Traditions - Registrazione</title>
 </head>
 <body>
 
-<!--  Navbar  -->
-<%@ include file="navbar.jsp" %>
+<th:block th:include="fragments/navbar"></th:block>
 <br> <br>
 
 <center><h1>Registrazione</h1></center>
 
 <br> <br>
-<div class="container-fluid as-full">
+<div class="container-fluid">
     <div class="row as-full d-flex justify-content-center">
         <div class="col-5 align-self-center">
             <div class="card">
@@ -79,14 +75,15 @@
 
     </div>
 </div>
-
-<!--  Footbar  -->
-<%@ include file="footbar.jsp" %>
-</body>
+<br><br>
+<th:block th:include="fragments/footbar"></th:block>
+<th:block th:include="fragments/scripts"></th:block>
+<script src="/js/navbar.js"></script>
 <script type="text/javascript">
     function CheckCheckBox(frm) {
         if (!frm.CheckThis.checked)
             frm.iban.toggle()
     }
 </script>
+</body>
 </html>
