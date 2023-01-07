@@ -17,7 +17,7 @@ on:
 env:
   DB_DATABASE: justtraditionsdb
   DB_USER: root
-  DB_PASSWORD: 
+  DB_PASSWORD:
 
 jobs:
 
