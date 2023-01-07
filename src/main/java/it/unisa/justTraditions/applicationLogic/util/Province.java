@@ -1,9 +1,12 @@
 package it.unisa.justTraditions.applicationLogic.util;
 
 import java.util.List;
+import org.springframework.stereotype.Component;
 
-public abstract class Province {
-  private static final List<String> province = List.of(
+@Component
+public class Province {
+
+  private final List<String> province = List.of(
       "Agrigento",
       "Alessandria",
       "Ancona",
@@ -113,7 +116,7 @@ public abstract class Province {
       "Viterbo"
   );
 
-  public static List<String> getProvince() {
+  public List<String> getProvince() {
     return province;
   }
 }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <th:block th:include="fragments/head"></th:block>
+    <title>Just Traditions - Login</title>
+</head>
+<body>
+
+<th:block th:include="fragments/navbar"></th:block>
+
+<br> <br>
+
+<center><h1>Login</h1></center>
+
+<br> <br>
+<div class="container-fluid">
+    <div class="row as-full d-flex justify-content-center">
+        <div class="col-5 align-self-center">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="iconinput fa fa-user"></i>E-mail</h5>
+                    <form action="" th:action="@{/login}" th:object="${loginForm}"
+                          method="post">
+                        <div class="form-group">
+                            <input th:field="*{email}" type="email" class="form-control" id="exampleInputEmail1"
+                                   aria-describedby="emailHelp" placeholder="Enter email">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                                Email
+                                erratav
+                            </div>
+
+                        </div>
+
+
+                        <h5 class="card-title"><i class="iconinput fa fa-keyboard"></i>Password</h5>
+                        <div class="form-group">
+                            <input th:field="*{passworld}" type="password" class="form-control"
+                                   id="exampleInputPassword1"
+                                   placeholder="Password">
+                            <h1 class="invalid-feedback" th:if="${#fields.hasErrors('passworld')}"
+                                th:errors="*{passworld}">
+                                passworld
+                                errata
+                            </h1>
+                        </div>
+                        <button type="submit" class="col-md-12 btn btn-primary">Login</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mt-1">
+                <div class="card-body">
+                    <small>Nuovo utente? Registrati <a href="registrazione.jsp">qui</a></small>.
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<th:block th:include="fragments/footbar"></th:block>
+<th:block th:include="fragments/scripts"></th:block>
+<script src="/js/navbar.js"></script>
+</body>
+</html>

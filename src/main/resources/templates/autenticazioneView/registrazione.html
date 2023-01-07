@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <th:block th:include="fragments/head"></th:block>
+    <title>Just Traditions - Registrazione</title>
+</head>
+<body>
+
+<th:block th:include="fragments/navbar"></th:block>
+<br> <br>
+
+<center><h1>Registrazione</h1></center>
+
+<br> <br>
+<div class="container-fluid">
+    <div class="row as-full d-flex justify-content-center">
+        <div class="col-5 align-self-center">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><i></i>Nome</h5>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="nome" placeholder="Nome" required="required">
+                        </div>
+                    </form>
+                    <h5 class="card-title"></i>Cognome</h5>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="cognome" placeholder="Cognome" required="required">
+                        </div>
+                    </form>
+                    <h5 class="card-title">Codice Fiscale</h5>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$"
+                                   class="form-control" id="codfiscale" placeholder="Codice Fiscale" required="required">
+                        </div>
+                    </form>
+                    <h5 class="card-title">E-mail</h5>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                   aria-describedby="emailHelp" placeholder="Enter email" required="required">
+                        </div>
+                        <h5 class="card-title">Password</h5>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="exampleInputPassword1"
+                                   placeholder="Password" required="required">
+                        </div>
+                        <h5 class="card-title"><i class="iconinput fa fa-user"></i>Sei un Artigiano?</h5>
+                        <form>
+                            <div class="form-group">
+                                <p>Si<input type="checkbox" name="CheckThis"></p>
+                            </div>
+
+
+                            <h5 class="card-title">Iban</h5>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="iban" onfocus="CheckCheckBox(this.form)"
+                                       placeholder="Iban">
+                            </div>
+                        </form>
+                        <button type="submit" class="col-md-12 btn btn-primary">Registrati</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card mt-1">
+                <div class="card-body">
+                    <small>Sei gia' Registrato? Clicca <a href="login.jsp">qui</a></small>.
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<br><br>
+<th:block th:include="fragments/footbar"></th:block>
+<th:block th:include="fragments/scripts"></th:block>
+<script src="/js/navbar.js"></script>
+<script type="text/javascript">
+    function CheckCheckBox(frm) {
+        if (!frm.CheckThis.checked)
+            frm.iban.toggle()
+    }
+</script>
+</body>
+</html>
