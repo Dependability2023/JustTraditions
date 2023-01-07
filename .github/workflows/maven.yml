@@ -14,8 +14,25 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  DB_DATABASE: justtraditionsdb
+  DB_USER: root
+  DB_PASSWORD: root
+
 jobs:
+  start-db:
+    
+    runs-on: ubuntu-latest
+
+    steps:
+  - name: Set up MySQL
+    run: |
+      sudo /etc/init.d/mysql start
+      mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+
   build:
+
+    needs: start-db
 
     runs-on: ubuntu-latest
 
