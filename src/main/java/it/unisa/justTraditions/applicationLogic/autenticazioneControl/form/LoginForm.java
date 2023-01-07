@@ -1,7 +1,15 @@
 package it.unisa.justTraditions.applicationLogic.autenticazioneControl.form;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class LoginForm {
+  @NotBlank(message = "email vuota ")
+  @Email(message = "formato email  errato")
+  @Size(max = 319)
   private String email;
+  @NotBlank(message = "passworld vuota ")
   private String passworld;
 
   public LoginForm() {

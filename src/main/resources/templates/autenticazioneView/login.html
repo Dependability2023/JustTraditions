@@ -24,12 +24,24 @@
                         <div class="form-group">
                             <input th:field="*{email}" type="email" class="form-control" id="exampleInputEmail1"
                                    aria-describedby="emailHelp" placeholder="Enter email">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                                Email
+                                erratav
+                            </div>
+
                         </div>
+
+
                         <h5 class="card-title"><i class="iconinput fa fa-keyboard"></i>Password</h5>
                         <div class="form-group">
                             <input th:field="*{passworld}" type="password" class="form-control"
                                    id="exampleInputPassword1"
                                    placeholder="Password">
+                            <h1 class="invalid-feedback" th:if="${#fields.hasErrors('passworld')}"
+                                th:errors="*{passworld}">
+                                passworld
+                                errata
+                            </h1>
                         </div>
                         <button type="submit" class="col-md-12 btn btn-primary">Login</button>
                     </form>
