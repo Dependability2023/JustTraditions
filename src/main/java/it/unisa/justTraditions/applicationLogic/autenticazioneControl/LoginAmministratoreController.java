@@ -1,10 +1,9 @@
 package it.unisa.justTraditions.applicationLogic.autenticazioneControl;
 
 import it.unisa.justTraditions.applicationLogic.autenticazioneControl.form.LoginForm;
-import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.AutenticazioneAmministratore;
+import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.SessionAmministratore;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.AmministratoreDao;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Amministratore;
-import jakarta.servlet.http.HttpSession;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +19,8 @@ public class LoginAmministratoreController {
 
   @Autowired
   AmministratoreDao amministratoreDao;
+  @Autowired
+  SessionAmministratore sessionAmministratore;
 
   @GetMapping
   public ModelAndView get() {
@@ -29,17 +30,14 @@ public class LoginAmministratoreController {
   }
 
   @PostMapping
-  public ModelAndView post(@ModelAttribute LoginForm loginForm, HttpSession session) {
-    System.out.println("Email:" + loginForm.getEmail());
-    System.out.println("Passworld:" + loginForm.getPassworld());
-
+  public ModelAndView post(@ModelAttribute LoginForm loginForm) {
     Optional<Amministratore> amministratore = amministratoreDao.findByEmail(loginForm.getEmail());
     if (amministratore.isEmpty()) {
       return new ModelAndView("autenticazioneView/login")
           .addObject("loginForm", new LoginForm())
           .addObject("errorLogin", true);
     }
-    AutenticazioneAmministratore.setAmministratore(session, amministratore.orElseThrow());
+    sessionAmministratore.setAmministratore(amministratore.orElseThrow());
     return new ModelAndView("??");
 
 
