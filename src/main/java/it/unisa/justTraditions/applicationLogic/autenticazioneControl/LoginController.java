@@ -13,29 +13,29 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
+
   @Autowired
   ClienteDao clienteDao;
+
   @Autowired
   SessionCliente sessionCliente;
 
   @GetMapping
-  public ModelAndView get() {
-    return new ModelAndView("autenticazioneView/login")
-        .addObject("loginForm", new LoginForm());
+  public String get(@ModelAttribute LoginForm loginForm) {
+    return "autenticazioneView/login";
   }
 
   @PostMapping
   public String post(@ModelAttribute @Valid LoginForm loginForm,
                      BindingResult bindingResult) {
-
     if (bindingResult.hasErrors()) {
       return "autenticazioneView/login";
     }
+
     Optional<Cliente> cliente = clienteDao.findByEmail(loginForm.getEmail());
     try {
       sessionCliente.setCliente(cliente.orElseThrow());
@@ -44,7 +44,5 @@ public class LoginController {
     }
 
     return "redirect:/";
-
-
   }
 }

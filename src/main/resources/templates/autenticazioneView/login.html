@@ -37,11 +37,11 @@
                             <input th:field="*{password}" type="password" class="form-control"
                                    id="exampleInputPassword1"
                                    placeholder="Password">
-                            <div class="invalid-feedback" th:if="${#fields.hasErrors('passworld')}"
-                                 th:errors="*{password}">
+                            <h1 class="invalid-feedback" th:if="${#fields.hasErrors('password')}"
+                                th:errors="*{password}">
                                 passworld
                                 errata
-                            </div>
+                            </h1>
                         </div>
                         <button type="submit" class="col-md-12 btn btn-primary">Login</button>
                     </form>
@@ -61,6 +61,5 @@
 <th:block th:include="fragments/footbar"></th:block>
 <th:block th:include="fragments/scripts"></th:block>
 <script src="/js/navbar.js"></script>
-
 </body>
 </html>
