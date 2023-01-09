@@ -10,7 +10,6 @@ import org.springframework.web.context.annotation.SessionScope;
 public class SessionAmministratore {
   private Amministratore amministratore;
 
-
   public Optional<Amministratore> getAmministratore() {
     return Optional.ofNullable(amministratore);
   }

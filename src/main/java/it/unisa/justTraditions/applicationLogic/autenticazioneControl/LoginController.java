@@ -1,6 +1,7 @@
 package it.unisa.justTraditions.applicationLogic.autenticazioneControl;
 
 import it.unisa.justTraditions.applicationLogic.autenticazioneControl.form.LoginForm;
+import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.PasswordEncryptor;
 import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.SessionCliente;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.ClienteDao;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Cliente;
@@ -8,6 +9,7 @@ import jakarta.validation.Valid;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,10 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
   @Autowired
-  ClienteDao clienteDao;
+  private ClienteDao clienteDao;
 
   @Autowired
-  SessionCliente sessionCliente;
+  private SessionCliente sessionCliente;
+
+  @Autowired
+  private PasswordEncryptor passwordEncryptor;
 
   @GetMapping
   public String get(@ModelAttribute LoginForm loginForm) {
@@ -31,15 +36,23 @@ public class LoginController {
 
   @PostMapping
   public String post(@ModelAttribute @Valid LoginForm loginForm,
-                     BindingResult bindingResult) {
+                     BindingResult bindingResult, Model model) {
     if (bindingResult.hasErrors()) {
       return "autenticazioneView/login";
     }
 
-    Optional<Cliente> cliente = clienteDao.findByEmail(loginForm.getEmail());
-    try {
-      sessionCliente.setCliente(cliente.orElseThrow());
-    } catch (Exception e) {
+    Optional<Cliente> optionalCliente = clienteDao.findByEmail(loginForm.getEmail());
+
+    if (optionalCliente.isEmpty()) {
+      model.addAttribute("existsEmail", false);
+      return "autenticazioneView/login";
+    }
+
+    Cliente cliente = optionalCliente.get();
+    if (passwordEncryptor.checkPassword(loginForm.getPassword(), cliente.getPassword())) {
+      sessionCliente.setCliente(cliente);
+    } else {
+      model.addAttribute("passwordErrata", true);
       return "autenticazioneView/login";
     }
 
