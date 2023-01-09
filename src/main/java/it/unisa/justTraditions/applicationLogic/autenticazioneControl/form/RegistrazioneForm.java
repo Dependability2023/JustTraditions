@@ -22,10 +22,11 @@ public class RegistrazioneForm {
   @Pattern(regexp = "^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$")
   @Size(max = 16)
   private String codiceFiscale;
-  @ExsistEmailConstraint
+
   @NotBlank(message = "email vuota ")
   @Email(message = "formato email  errato")
   @Size(max = 319)
+  @ExsistEmailConstraint
   private String email;
 
   @NotBlank(message = "passworld vuota ")
