@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-@IsArtigianoConstraint(message = "No  artigiano")
+@IsArtigianoConstraint(message = "Aggiungi l\'Iban se vuoi essere un Artigiano")
 public class RegistrazioneForm {
   @NotBlank(message = " nome vuoto")
   @Size(max = 30)

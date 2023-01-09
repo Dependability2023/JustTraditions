@@ -65,7 +65,7 @@
                             <div class="form-group">
                                 <input type="text" th:field="*{iban}" class="form-control" name="iban" onfocus="CheckCheckBox(this.form)"
                                        placeholder="Iban">
-                                <div class=" d-inline invalid-feedback  " th:if="${#fields.hasErrors('iban')}" th:errors="*{iban}"></div>
+                                <div class=" d-inline invalid-feedback  " th:if="true" th:errors="${registrazioneForm}"></div>
                             </div>
 
                         <button type="submit" class="col-md-12 btn btn-primary">Registrati</button>

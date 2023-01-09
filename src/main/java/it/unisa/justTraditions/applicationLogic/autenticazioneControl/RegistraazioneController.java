@@ -1,6 +1,7 @@
 package it.unisa.justTraditions.applicationLogic.autenticazioneControl;
 
 import it.unisa.justTraditions.applicationLogic.autenticazioneControl.form.RegistrazioneForm;
+import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.ArtigianoDao;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.ClienteDao;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Artigiano;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Cliente;
@@ -18,7 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("registrazione")
 public class RegistraazioneController {
   @Autowired
-  ClienteDao clienteDao;
+  private ClienteDao clienteDao;
+  @Autowired
+  private ArtigianoDao artigianoDao;
 
   @GetMapping
   public ModelAndView get() {
@@ -30,28 +33,32 @@ public class RegistraazioneController {
   public ModelAndView post(@ModelAttribute @Valid RegistrazioneForm registrazioneForm,
                            BindingResult bindingResult) {
     Cliente cliente;
+    Artigiano artigiano;
     if (bindingResult.hasErrors()) {
+
       return new ModelAndView("autenticazioneView/registrazione");
     }
 
-
     if (registrazioneForm.isArtigiano()) {
-      cliente = new Artigiano(
+      artigiano = new Artigiano(
           registrazioneForm.getEmail(),
           registrazioneForm.getPassworld(),
           registrazioneForm.getNome(),
           registrazioneForm.getCognome(),
           registrazioneForm.getCodiceFiscale(),
           registrazioneForm.getIban());
+      artigianoDao.save(artigiano);
+      System.out.println(artigiano);
+    } else {
+      cliente = new Cliente(
+          registrazioneForm.getEmail(),
+          registrazioneForm.getPassworld(),
+          registrazioneForm.getNome(),
+          registrazioneForm.getCognome(),
+          registrazioneForm.getCodiceFiscale());
+      clienteDao.save(cliente);
+      System.out.println(cliente);
     }
-
-    cliente = new Cliente(
-        registrazioneForm.getEmail(),
-        registrazioneForm.getPassworld(),
-        registrazioneForm.getNome(),
-        registrazioneForm.getCognome(),
-        registrazioneForm.getCodiceFiscale());
-    System.out.println(cliente);
 
 
     return new ModelAndView("redirect:/login");
