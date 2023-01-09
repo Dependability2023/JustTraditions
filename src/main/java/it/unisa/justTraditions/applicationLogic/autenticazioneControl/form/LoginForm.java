@@ -10,7 +10,7 @@ public class LoginForm {
   @Size(max = 319)
   private String email;
   @NotBlank(message = "passworld vuota ")
-  private String passworld;
+  private String password;
 
   public LoginForm() {
 
@@ -18,7 +18,7 @@ public class LoginForm {
 
   public LoginForm(String email, String passworld) {
     this.email = email;
-    this.passworld = passworld;
+    this.password = passworld;
   }
 
   public String getEmail() {
@@ -29,11 +29,11 @@ public class LoginForm {
     this.email = email;
   }
 
-  public String getPassworld() {
-    return passworld;
+  public String getPassword() {
+    return password;
   }
 
-  public void setPassworld(String passworld) {
-    this.passworld = passworld;
+  public void setPassword(String password) {
+    this.password = password;
   }
 }

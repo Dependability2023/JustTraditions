@@ -34,14 +34,14 @@
 
                         <h5 class="card-title"><i class="iconinput fa fa-keyboard"></i>Password</h5>
                         <div class="form-group">
-                            <input th:field="*{passworld}" type="password" class="form-control"
+                            <input th:field="*{password}" type="password" class="form-control"
                                    id="exampleInputPassword1"
                                    placeholder="Password">
-                            <h1 class="invalid-feedback" th:if="${#fields.hasErrors('passworld')}"
-                                th:errors="*{passworld}">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('passworld')}"
+                                 th:errors="*{password}">
                                 passworld
                                 errata
-                            </h1>
+                            </div>
                         </div>
                         <button type="submit" class="col-md-12 btn btn-primary">Login</button>
                     </form>
@@ -61,5 +61,6 @@
 <th:block th:include="fragments/footbar"></th:block>
 <th:block th:include="fragments/scripts"></th:block>
 <script src="/js/navbar.js"></script>
+
 </body>
 </html>

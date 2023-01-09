@@ -34,6 +34,7 @@ public class RegistraazioneController {
       return new ModelAndView("autenticazioneView/registrazione");
     }
 
+
     if (registrazioneForm.isArtigiano()) {
       cliente = new Artigiano(
           registrazioneForm.getEmail(),
@@ -50,8 +51,8 @@ public class RegistraazioneController {
         registrazioneForm.getNome(),
         registrazioneForm.getCognome(),
         registrazioneForm.getCodiceFiscale());
+    System.out.println(cliente);
 
-    clienteDao.save(cliente);
 
     return new ModelAndView("redirect:/login");
   }
