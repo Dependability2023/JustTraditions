@@ -16,8 +16,8 @@ public class ExsistEmailValidator implements ConstraintValidator<ExsistEmailCons
 
   @Override
   public boolean isValid(String email, ConstraintValidatorContext constraintValidatorContext) {
-    if (clienteDao.existsByEmail(email))
-      return false;
-    return true;
+
+    return !clienteDao.existsByEmail(email);
+
   }
 }
