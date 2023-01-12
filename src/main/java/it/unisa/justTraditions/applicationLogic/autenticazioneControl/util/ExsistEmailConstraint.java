@@ -9,13 +9,15 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Documented
-@Constraint(validatedBy = IsArtigianoValidator.class)
+@Constraint(validatedBy = ExsistEmailValidator.class)
 @Target({ElementType.TYPE, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface IsArtigianoConstraint {
-  String message() default "Inserire l iban per poter essere un artigiano ";
+public @interface ExsistEmailConstraint {
+
+  String message() default "Email gia esistente";
 
   Class<?>[] groups() default {};
 
   Class<? extends Payload>[] payload() default {};
+
 }

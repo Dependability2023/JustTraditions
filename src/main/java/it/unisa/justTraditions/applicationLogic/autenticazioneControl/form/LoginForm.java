@@ -2,23 +2,31 @@ package it.unisa.justTraditions.applicationLogic.autenticazioneControl.form;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class LoginForm {
-  @NotBlank(message = "email vuota ")
-  @Email(message = "formato email  errato")
-  @Size(max = 319)
+
+  @NotBlank(message = "email vuota")
+  @Email(message = "formato email errato")
+  @Size(max = 319, message = "email troppo lunga")
   private String email;
-  @NotBlank(message = "passworld vuota ")
-  private String passworld;
+
+  @NotBlank(message = "password vuota")
+  @Pattern(
+      regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*\\p{Punct})[A-Za-z\\d\\p{Punct}]{8,}$",
+      message =
+          "La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola, "
+              + "almeno una minuscola, almeno un numero e almeno un carattere speciale"
+  )
+  private String password;
 
   public LoginForm() {
-
   }
 
-  public LoginForm(String email, String passworld) {
+  public LoginForm(String email, String password) {
     this.email = email;
-    this.passworld = passworld;
+    this.password = password;
   }
 
   public String getEmail() {
@@ -29,11 +37,11 @@ public class LoginForm {
     this.email = email;
   }
 
-  public String getPassworld() {
-    return passworld;
+  public String getPassword() {
+    return password;
   }
 
-  public void setPassworld(String passworld) {
-    this.passworld = passworld;
+  public void setPassword(String password) {
+    this.password = password;
   }
 }

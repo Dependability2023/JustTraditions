@@ -1,45 +1,62 @@
 package it.unisa.justTraditions.applicationLogic.autenticazioneControl;
 
 import it.unisa.justTraditions.applicationLogic.autenticazioneControl.form.LoginForm;
+import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.PasswordEncryptor;
 import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.SessionAmministratore;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.AmministratoreDao;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Amministratore;
+import jakarta.validation.Valid;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/loginAmministratore")
 public class LoginAmministratoreController {
 
   @Autowired
-  AmministratoreDao amministratoreDao;
+  private AmministratoreDao amministratoreDao;
+
   @Autowired
-  SessionAmministratore sessionAmministratore;
+  private SessionAmministratore sessionAmministratore;
+
+  @Autowired
+  private PasswordEncryptor passwordEncryptor;
 
   @GetMapping
-  public ModelAndView get() {
-    return new ModelAndView("autenticazioneView/loginAmministratore")
-        .addObject("loginForm", new LoginForm())
-        .addObject("errorLogin", false);
+  public String get(@ModelAttribute LoginForm loginForm) {
+    return "autenticazioneView/loginAmministratore";
   }
 
   @PostMapping
-  public ModelAndView post(@ModelAttribute LoginForm loginForm) {
-    Optional<Amministratore> amministratore = amministratoreDao.findByEmail(loginForm.getEmail());
-    if (amministratore.isEmpty()) {
-      return new ModelAndView("autenticazioneView/login")
-          .addObject("loginForm", new LoginForm())
-          .addObject("errorLogin", true);
+  public String post(@ModelAttribute @Valid LoginForm loginForm,
+                     BindingResult bindingResult, Model model) {
+    if (bindingResult.hasErrors()) {
+      return "autenticazioneView/loginAmministratore";
     }
-    sessionAmministratore.setAmministratore(amministratore.orElseThrow());
-    return new ModelAndView("??");
 
+    Optional<Amministratore> optionalAmministratore =
+        amministratoreDao.findByEmail(loginForm.getEmail());
 
+    if (optionalAmministratore.isEmpty()) {
+      model.addAttribute("existsEmail", false);
+      return "autenticazioneView/loginAmministratore";
+    }
+
+    Amministratore amministratore = optionalAmministratore.get();
+    if (passwordEncryptor.checkPassword(loginForm.getPassword(), amministratore.getPassword())) {
+      sessionAmministratore.setAmministratore(amministratore);
+    } else {
+      model.addAttribute("passwordErrata", true);
+      return "autenticazioneView/loginAmministratore";
+    }
+
+    return "redirect:/homeAmministratore";
   }
 }

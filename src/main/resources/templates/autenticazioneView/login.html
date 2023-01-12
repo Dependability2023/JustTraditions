@@ -24,7 +24,8 @@
                         <div class="form-group">
                             <input th:field="*{email}" type="email" class="form-control" id="exampleInputEmail1"
                                    aria-describedby="emailHelp" placeholder="Enter email">
-                            <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                            <div class="d-inline invalid-feedback" th:if="${#fields.hasErrors('email')}"
+                                 th:errors="*{email}">
                                 Email
                                 erratav
                             </div>
@@ -34,11 +35,11 @@
 
                         <h5 class="card-title"><i class="iconinput fa fa-keyboard"></i>Password</h5>
                         <div class="form-group">
-                            <input th:field="*{passworld}" type="password" class="form-control"
+                            <input th:field="*{password}" type="password" class="form-control"
                                    id="exampleInputPassword1"
                                    placeholder="Password">
-                            <h1 class="invalid-feedback" th:if="${#fields.hasErrors('passworld')}"
-                                th:errors="*{passworld}">
+                            <h1 class="d-inline invalid-feedback" th:if="${#fields.hasErrors('password')}"
+                                th:errors="*{password}">
                                 passworld
                                 errata
                             </h1>
@@ -49,7 +50,7 @@
             </div>
             <div class="card mt-1">
                 <div class="card-body">
-                    <small>Nuovo utente? Registrati <a href="registrazione.jsp">qui</a></small>.
+                    <small>Nuovo utente? Registrati <a href="registrazione">qui</a></small>.
                 </div>
             </div>
 
