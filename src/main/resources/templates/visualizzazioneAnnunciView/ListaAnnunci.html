@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+
+<head>
+  <th:block th:include="fragments/head"></th:block>
+  <title>Just Traditions - HomePage</title>
+</head>
+
+<body>
+<th:block th:include="fragments/navbar"></th:block>
+
+  <br> <br>
+  <!--  Lista annunci  -->
+  <center><h1> Lista Annunci</h1></center>
+  <div class="d-flex flex-wrap justify-content-center mt-3">
+
+    <!--   Annunci   -->
+    <div th:each="annuncio :${annunci}" class="card m-3" style="width: 15rem;">
+
+      <img src="http://www.napoliartigianatoartistico.com/wp-content/uploads/2017/09/foto-header-pagina-intro-gigli-2-1320x990.png"
+           class="card-img-top" alt="...">
+      <div class="card-body  d-flex flex-column align-items-center ">
+        <h5 th:text="${annuncio.nomeAttivita}" class="card-title"></h5>
+        <a href="/schedaannuncio" class="btn btn-outline-success">Vai alla scheda</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Page navigation -->
+  <div class="d-flex justify-content-center">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+<th:block th:include="fragments/footbar"></th:block>
+<th:block th:include="fragments/scripts"></th:block>
+<script src="/js/navbar.js"></script>
+</body>
+</html>
+
