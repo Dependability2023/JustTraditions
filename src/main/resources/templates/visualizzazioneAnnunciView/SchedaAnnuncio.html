@@ -3,6 +3,8 @@
 
 
 
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
 
 
 <head>
@@ -39,53 +41,7 @@
 
 <body>
 
-<!-- ======= Header ======= -->
-<header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center">
-
-        <div class="logo me-auto">
-
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <a href="index.html"><img src="https://i.imgur.com/piIQmkv.png" alt="" class="img-fluid"></a>
-        </div>
-        <div>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            </form>
-
-        </div>
-
-        <nav id="navbar" class="navbar order-last order-lg-0">
-            <ul>
-                <li class="dropdown"><a href="#"><img src="https://img.icons8.com/ios-filled/20/228BE6/empty-filter.png"/></a>
-                    <ul>
-                        <input class="form-control" id="myInput" type="text" placeholder="Cerca provincia..">
-                        <li><a href="#">Bolzano</a></li>
-                        <li><a href="#">Napoli</a></li>
-                        <li><a href="#">Milano</a></li>
-                        <li><a href="#">Fisciano</a></li>
-                        <li><a href="#">Mondragone</a></li>
-                        <li><a href="#">Varcaturo</a></li>
-                    </ul>
-                </li>
-                <li><a class="nav-link scrollto active">Home</a></li>
-
-                <li><a class="nav-link scrollto" href="#">Annunci</a></li>
-                <li><a class="nav-link scrollto " href="#">Chi siamo?</a></li>
-
-            </ul>
-            <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav><!-- .navbar -->
-
-        <div class="header-social-links d-flex align-items-center">
-            <a href="#" class="twitter"><img src="https://img.icons8.com/fluency/20/null/twitter.png"/></a>
-            <a href="#" class="facebook"><img src="https://img.icons8.com/fluency/20/null/facebook-new.png"/></a>
-            <a href="#" class="instagram"><img src="https://img.icons8.com/color/20/null/instagram-new--v1.png"/></a>
-            <a href="#" class="linkedin"><img src="https://img.icons8.com/fluency/20/null/linkedin-circled.png"/></a>
-        </div>
-
-    </div>
-</header><!-- End Header -->
+<th:block th:include="fragments/navbar"></th:block>
 
 
 <main id="main">
