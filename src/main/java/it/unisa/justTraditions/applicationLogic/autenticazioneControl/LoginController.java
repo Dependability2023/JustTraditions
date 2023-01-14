@@ -30,7 +30,8 @@ public class LoginController {
   private PasswordEncryptor passwordEncryptor;
 
   @GetMapping
-  public String get(@ModelAttribute LoginForm loginForm) {
+  public String get(@ModelAttribute LoginForm loginForm, Model model) {
+    model.addAttribute("nameLogin", "/login");
     return "autenticazioneView/login";
   }
 

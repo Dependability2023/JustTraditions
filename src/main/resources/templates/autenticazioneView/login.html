@@ -19,7 +19,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><i class="iconinput fa fa-user"></i>E-mail</h5>
-                    <form action="" th:action="@{/login}" th:object="${loginForm}"
+                    <form action="" th:action="${nameLogin.toString()}" th:object="${loginForm}"
                           method="post">
                         <div class="form-group">
                             <input th:field="*{email}" type="email" class="form-control" id="exampleInputEmail1"
