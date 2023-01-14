@@ -30,8 +30,9 @@ public class LoginAmministratoreController {
   private PasswordEncryptor passwordEncryptor;
 
   @GetMapping
-  public String get(@ModelAttribute LoginForm loginForm) {
-    return "autenticazioneView/loginAmministratore";
+  public String get(@ModelAttribute LoginForm loginForm, Model model) {
+    model.addAttribute("nameLogin", "/loginAmministratore");
+    return "autenticazioneView/login";
   }
 
   @PostMapping
