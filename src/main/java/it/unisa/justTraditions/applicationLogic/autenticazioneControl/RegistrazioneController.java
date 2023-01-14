@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("registrazione")
-public class RegistraazioneController {
+public class RegistrazioneController {
   @Autowired
   private ClienteDao clienteDao;
   @Autowired

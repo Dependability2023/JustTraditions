@@ -1,6 +1,6 @@
 package it.unisa.justTraditions.applicationLogic.autenticazioneControl.util;
 
-import org.jasypt.util.password.StrongPasswordEncryptor;
+import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -8,7 +8,7 @@ public class PasswordEncryptorAdapter
     implements PasswordEncryptor {
 
   private final org.jasypt.util.password.PasswordEncryptor passwordEncryptor =
-      new StrongPasswordEncryptor();
+      new BasicPasswordEncryptor();
 
   @Override
   public String encryptPassword(String password) {

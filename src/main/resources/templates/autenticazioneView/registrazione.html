@@ -17,8 +17,8 @@
         <div class="col-5 align-self-center">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><i></i>Nome</h5>
-                    <form th:action="@{/registrazione}" th:object="${registrazioneForm}"th:text=""  method="post">
+                    <h5 class="card-title">Nome</h5>
+                    <form th:action="@{/registrazione}" th:object="${registrazioneForm}" method="post">
                         <div class="form-group">
                             <input type="text" th:field="*{nome}" class="form-control" id="nome" placeholder="Nome" re
                                    quired="required">
