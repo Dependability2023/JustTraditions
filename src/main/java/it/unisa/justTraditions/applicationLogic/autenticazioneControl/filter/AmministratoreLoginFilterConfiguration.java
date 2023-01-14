@@ -6,19 +6,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class AmministratoreLoginFiltersConfiguration {
+public class AmministratoreLoginFilterConfiguration {
+
   @Autowired
   private AmministratoreLoginFilter amministratoreLoginFilter;
 
   @Bean
-  public FilterRegistrationBean<AmministratoreLoginFilter> loggingFilter() {
-    FilterRegistrationBean<AmministratoreLoginFilter>
-        registrationBean
+  public FilterRegistrationBean<AmministratoreLoginFilter> filterRegistrationBeanAmministratore() {
+    FilterRegistrationBean<AmministratoreLoginFilter> registrationBean
         = new FilterRegistrationBean<>();
 
     registrationBean.setFilter(amministratoreLoginFilter);
     registrationBean.addUrlPatterns("");
-    registrationBean.setOrder(1);
 
     return registrationBean;
   }

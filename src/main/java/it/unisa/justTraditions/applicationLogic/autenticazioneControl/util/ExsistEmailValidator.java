@@ -5,9 +5,10 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class ExsistEmailValidator implements ConstraintValidator<ExsistEmailConstraint, String> {
+public class ExsistEmailValidator
+    implements ConstraintValidator<ExsistEmailConstraint, String> {
   @Autowired
-  ClienteDao clienteDao;
+  private ClienteDao clienteDao;
 
   @Override
   public void initialize(ExsistEmailConstraint constraintAnnotation) {
@@ -16,8 +17,6 @@ public class ExsistEmailValidator implements ConstraintValidator<ExsistEmailCons
 
   @Override
   public boolean isValid(String email, ConstraintValidatorContext constraintValidatorContext) {
-
     return !clienteDao.existsByEmail(email);
-
   }
 }

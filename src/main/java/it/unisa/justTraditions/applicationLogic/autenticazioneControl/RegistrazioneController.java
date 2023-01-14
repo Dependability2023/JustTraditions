@@ -45,7 +45,7 @@ public class RegistrazioneController {
     if (registrazioneForm.isArtigiano()) {
       artigiano = new Artigiano(
           registrazioneForm.getEmail(),
-          passwordEncryptor.encryptPassword(registrazioneForm.getPassworld()),
+          passwordEncryptor.encryptPassword(registrazioneForm.getPassword()),
           registrazioneForm.getNome(),
           registrazioneForm.getCognome(),
           registrazioneForm.getCodiceFiscale(),
@@ -55,7 +55,7 @@ public class RegistrazioneController {
     } else {
       cliente = new Cliente(
           registrazioneForm.getEmail(),
-          passwordEncryptor.encryptPassword(registrazioneForm.getPassworld()),
+          passwordEncryptor.encryptPassword(registrazioneForm.getPassword()),
           registrazioneForm.getNome(),
           registrazioneForm.getCognome(),
           registrazioneForm.getCodiceFiscale());
