@@ -1,6 +1,7 @@
 package it.unisa.justTraditions.applicationLogic.autenticazioneControl;
 
 import it.unisa.justTraditions.applicationLogic.autenticazioneControl.form.RegistrazioneForm;
+import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.PasswordEncryptor;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.ArtigianoDao;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.ClienteDao;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Artigiano;
@@ -22,6 +23,8 @@ public class RegistraazioneController {
   private ClienteDao clienteDao;
   @Autowired
   private ArtigianoDao artigianoDao;
+  @Autowired
+  private PasswordEncryptor passwordEncryptor;
 
   @GetMapping
   public ModelAndView get() {
@@ -42,7 +45,7 @@ public class RegistraazioneController {
     if (registrazioneForm.isArtigiano()) {
       artigiano = new Artigiano(
           registrazioneForm.getEmail(),
-          registrazioneForm.getPassworld(),
+          passwordEncryptor.encryptPassword(registrazioneForm.getPassworld()),
           registrazioneForm.getNome(),
           registrazioneForm.getCognome(),
           registrazioneForm.getCodiceFiscale(),
@@ -52,7 +55,7 @@ public class RegistraazioneController {
     } else {
       cliente = new Cliente(
           registrazioneForm.getEmail(),
-          registrazioneForm.getPassworld(),
+          passwordEncryptor.encryptPassword(registrazioneForm.getPassworld()),
           registrazioneForm.getNome(),
           registrazioneForm.getCognome(),
           registrazioneForm.getCodiceFiscale());
