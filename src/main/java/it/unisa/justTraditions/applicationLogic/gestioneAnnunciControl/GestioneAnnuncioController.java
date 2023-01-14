@@ -12,8 +12,6 @@ public class GestioneAnnuncioController {
 
   @GetMapping
   public ModelAndView get() {
-
-
     return new ModelAndView("gestioneAnnunciView/gestioneannuncio");
   }
 }
