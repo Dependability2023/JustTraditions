@@ -1,5 +1,6 @@
 package it.unisa.justTraditions.applicationLogic.autenticazioneControl.form;
 
+import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.ExsistEmailConstraint;
 import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.IsArtigianoConstraint;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -7,38 +8,44 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-@IsArtigianoConstraint(message = "No  artigiano")
+@IsArtigianoConstraint(message = "Aggiungi l'Iban se vuoi essere un Artigiano")
 public class RegistrazioneForm {
-  @NotBlank(message = " nome vuoto")
-  @Size(max = 30)
+  @NotBlank(message = "Nome vuoto")
+  @Size(max = 30, message = "Nome troppo lungo")
   private String nome;
 
-  @NotBlank(message = "cognome vuoto ")
-  @Size(max = 30)
+  @NotBlank(message = "Cognome vuoto")
+  @Size(max = 30, message = "Cognome troppo lungo")
   private String cognome;
 
-  @NotBlank(message = "codiceFiscale vuoto ")
-  @Pattern(regexp = "/^[A-Z]{6}\\d{2}[A-Z]\\d{2}[A-Z]\\d{3}[A-Z]$/i")
-  @Size(max = 16)
+  @NotBlank(message = "Codice Fiscale vuoto")
+  @Pattern(regexp = "^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$",
+      message = "Formato codice fiscale errato")
+  @Size(max = 16, message = "Codice Fiscale troppo lungo")
   private String codiceFiscale;
 
-  @NotBlank(message = "email vuota ")
-  @Email(message = "formato email  errato")
-  @Size(max = 319)
+  @NotBlank(message = "Email vuota")
+  @Email(message = "Formato email errato")
+  @Size(max = 319, message = "Email troppo lunga")
+  @ExsistEmailConstraint
   private String email;
 
-  @NotBlank(message = "passworld vuota ")
-  @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*\\p{Punct})[A-Za-z\\d\\p{Punct}]{8,}$")
-  private String passworld;
+  @NotBlank(message = "Password vuota")
+  @Pattern(
+      regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*\\p{Punct})[A-Za-z\\d\\p{Punct}]{8,}$",
+      message =
+          "La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola, "
+              + "almeno una minuscola, almeno un numero e almeno un carattere speciale"
+  )
+  private String password;
 
-  @NotNull
-  private Boolean Artigiano;
+  @NotNull(message = "Parametro artigiano mancante")
+  private Boolean artigiano;
 
-  @Size(max = 27)
+  @Size(max = 27, message = "Iban troppo lungo")
   private String iban;
 
   public RegistrazioneForm() {
-
   }
 
   public String getNome() {
@@ -73,20 +80,24 @@ public class RegistrazioneForm {
     this.email = email;
   }
 
-  public String getPassworld() {
-    return passworld;
+  public String getPassword() {
+    return password;
   }
 
-  public void setPassworld(String passworld) {
-    this.passworld = passworld;
+  public void setPassword(String password) {
+    this.password = password;
   }
 
   public Boolean isArtigiano() {
-    return Artigiano;
+    return this.artigiano;
+  }
+
+  public Boolean getArtigiano() {
+    return this.artigiano;
   }
 
   public void setArtigiano(Boolean artigiano) {
-    Artigiano = artigiano;
+    this.artigiano = artigiano;
   }
 
   public String getIban() {

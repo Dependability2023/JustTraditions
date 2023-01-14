@@ -19,14 +19,16 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><i class="iconinput fa fa-user"></i>E-mail</h5>
-                    <form action="" th:action="@{/login}" th:object="${loginForm}"
+                    <form action="" th:action="${nameLogin.toString()}" th:object="${loginForm}"
                           method="post">
                         <div class="form-group">
                             <input th:field="*{email}" type="email" class="form-control" id="exampleInputEmail1"
                                    aria-describedby="emailHelp" placeholder="Enter email">
-                            <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
-                                Email
-                                erratav
+                            <div class="d-inline invalid-feedback" th:if="${#fields.hasErrors('email')}"
+                                 th:errors="*{email}">
+                            </div>
+                            <div class="d-inline invalid-feedback" th:if="${existsEmail != null}"
+                                 th:text="'Email non registrata'">
                             </div>
 
                         </div>
@@ -34,14 +36,15 @@
 
                         <h5 class="card-title"><i class="iconinput fa fa-keyboard"></i>Password</h5>
                         <div class="form-group">
-                            <input th:field="*{passworld}" type="password" class="form-control"
+                            <input th:field="*{password}" type="password" class="form-control"
                                    id="exampleInputPassword1"
                                    placeholder="Password">
-                            <h1 class="invalid-feedback" th:if="${#fields.hasErrors('passworld')}"
-                                th:errors="*{passworld}">
-                                passworld
-                                errata
-                            </h1>
+                            <div class="d-inline invalid-feedback" th:if="${#fields.hasErrors('password')}"
+                                 th:errors="*{password}">
+                            </div>
+                            <div class="d-inline invalid-feedback" th:if="${passwordErrata != null}"
+                                 th:text="'Password errata'">
+                            </div>
                         </div>
                         <button type="submit" class="col-md-12 btn btn-primary">Login</button>
                     </form>
@@ -49,7 +52,7 @@
             </div>
             <div class="card mt-1">
                 <div class="card-body">
-                    <small>Nuovo utente? Registrati <a href="registrazione.jsp">qui</a></small>.
+                    <small>Nuovo utente? Registrati <a href="registrazione">qui</a></small>.
                 </div>
             </div>
 

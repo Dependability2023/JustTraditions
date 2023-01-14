@@ -14,9 +14,6 @@ public class IsArtigianoValidator
   @Override
   public boolean isValid(RegistrazioneForm registrazioneForm,
                          ConstraintValidatorContext constraintValidatorContext) {
-    if (registrazioneForm.isArtigiano() && registrazioneForm.getIban().isEmpty()) {
-      return false;
-    }
-    return true;
+    return !registrazioneForm.isArtigiano() || !registrazioneForm.getIban().isBlank();
   }
 }

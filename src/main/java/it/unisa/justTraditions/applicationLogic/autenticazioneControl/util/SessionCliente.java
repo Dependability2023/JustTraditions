@@ -8,8 +8,8 @@ import org.springframework.web.context.annotation.SessionScope;
 @Component
 @SessionScope
 public class SessionCliente {
-  private Cliente cliente;
 
+  private Cliente cliente;
 
   public Optional<Cliente> getCliente() {
     return Optional.ofNullable(cliente);
