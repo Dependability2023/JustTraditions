@@ -1,7 +1,5 @@
 package it.unisa.justTraditions.applicationLogic.autenticazioneControl.form;
 
-import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.ExsistEmailConstraint;
-import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.IsArtigianoConstraint;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -43,6 +41,10 @@ public class RegistrazioneForm {
   private Boolean artigiano;
 
   @Size(max = 27, message = "Iban troppo lungo")
+  @Pattern(
+      regexp = "^(it|IT)[0-9]{2}[A-Za-z][0-9]{10}[0-9A-Za-z]{12}$",
+      message = "Il formato dell'iban non è corretto"
+  )
   private String iban;
 
   public RegistrazioneForm() {

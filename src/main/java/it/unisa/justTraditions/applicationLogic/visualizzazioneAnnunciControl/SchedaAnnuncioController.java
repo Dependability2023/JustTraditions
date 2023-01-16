@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/schedaannuncio")
+@RequestMapping("/schedaAnnuncio")
 public class SchedaAnnuncioController {
 
 
@@ -14,7 +14,7 @@ public class SchedaAnnuncioController {
   public ModelAndView get() {
 
 
-    return new ModelAndView("visualizzazioneSchedaAnnuncio");
+    return new ModelAndView("visualizzazioneAnnunciView/visualizzazioneSchedaAnnuncio");
   }
 }
 

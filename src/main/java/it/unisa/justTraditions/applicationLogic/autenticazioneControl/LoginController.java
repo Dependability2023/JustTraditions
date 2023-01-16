@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/login")
 public class LoginController {
 
+  private static final String loginView = "autenticazioneView/login";
+  private static final String homeController = "/";
+
   @Autowired
   private ClienteDao clienteDao;
 
@@ -32,21 +35,21 @@ public class LoginController {
   @GetMapping
   public String get(@ModelAttribute LoginForm loginForm, Model model) {
     model.addAttribute("nameLogin", "/login");
-    return "autenticazioneView/login";
+    return loginView;
   }
 
   @PostMapping
   public String post(@ModelAttribute @Valid LoginForm loginForm,
                      BindingResult bindingResult, Model model) {
     if (bindingResult.hasErrors()) {
-      return "autenticazioneView/login";
+      return loginView;
     }
 
     Optional<Cliente> optionalCliente = clienteDao.findByEmail(loginForm.getEmail());
 
     if (optionalCliente.isEmpty()) {
       model.addAttribute("existsEmail", false);
-      return "autenticazioneView/login";
+      return loginView;
     }
 
     Cliente cliente = optionalCliente.get();
@@ -54,9 +57,9 @@ public class LoginController {
       sessionCliente.setCliente(cliente);
     } else {
       model.addAttribute("passwordErrata", true);
-      return "autenticazioneView/login";
+      return loginView;
     }
 
-    return "redirect:/";
+    return "redirect:" + homeController;
   }
 }
