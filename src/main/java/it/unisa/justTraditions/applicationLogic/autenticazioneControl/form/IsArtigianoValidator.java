@@ -1,6 +1,5 @@
-package it.unisa.justTraditions.applicationLogic.autenticazioneControl.util;
+package it.unisa.justTraditions.applicationLogic.autenticazioneControl.form;
 
-import it.unisa.justTraditions.applicationLogic.autenticazioneControl.form.RegistrazioneForm;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

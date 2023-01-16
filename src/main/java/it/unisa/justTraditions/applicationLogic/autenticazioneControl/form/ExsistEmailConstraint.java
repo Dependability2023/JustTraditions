@@ -1,4 +1,4 @@
-package it.unisa.justTraditions.applicationLogic.autenticazioneControl.util;
+package it.unisa.justTraditions.applicationLogic.autenticazioneControl.form;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/logoutAmministratore")
-public class LogoutAmministratore {
+public class LogoutAmministratoreController {
   @Autowired
   private SessionAmministratore sessionAmministratore;
 

@@ -1,4 +1,4 @@
-package it.unisa.justTraditions.applicationLogic.autenticazioneControl.util;
+package it.unisa.justTraditions.applicationLogic.autenticazioneControl.form;
 
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.ClienteDao;
 import jakarta.validation.ConstraintValidator;

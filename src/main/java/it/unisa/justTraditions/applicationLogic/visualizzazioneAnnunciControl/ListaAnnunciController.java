@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/listaannunci")
+@RequestMapping("/listaAnnunci")
 public class ListaAnnunciController {
 
   @Autowired
@@ -20,7 +20,7 @@ public class ListaAnnunciController {
   public ModelAndView get() {
     List<Annuncio> annunci = annuncioDao.findAll();
 
-    return new ModelAndView("listaAnnunci")
+    return new ModelAndView("visualizzazioneAnnunciView/listaAnnunci")
         .addObject("annunci", annunci);
   }
 }
