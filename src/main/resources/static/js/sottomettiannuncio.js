@@ -27,43 +27,43 @@ $(document).ready(function () {
 
     $(lunedi).click(function (e) {
         e.preventDefault();
-        $(wrapper0).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a></div>'); //add input box
+        $(wrapper0).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a><input type="hidden" name="MONDAY"></div>'); //add input box
 
     });
 
     $(martedi).click(function (e) {
         e.preventDefault();
-        $(wrapper1).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a></div>'); //add input box
+        $(wrapper1).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a><input type="hidden" name="TUESDAY"></div>'); //add input box
 
     });
 
     $(mercoledi).click(function (e) {
         e.preventDefault();
-        $(wrapper2).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a></div>'); //add input box
+        $(wrapper2).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a><input type="hidden" name="WEDNESDAY"></div>'); //add input box
 
     });
 
     $(giovedi).click(function (e) {
         e.preventDefault();
-        $(wrapper3).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a></div>'); //add input box
+        $(wrapper3).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a><input type="hidden" name="THURSDAY"></div>'); //add input box
 
     });
 
     $(venerdi).click(function (e) {
         e.preventDefault();
-        $(wrapper4).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a></div>'); //add input box
+        $(wrapper4).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a><input type="hidden" name="FRIDAY"></div>'); //add input box
 
     });
 
     $(sabato).click(function (e) {
         e.preventDefault();
-        $(wrapper5).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a></div>'); //add input box
+        $(wrapper5).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a><input type="hidden" name="SATURDAY"></div>'); //add input box
 
     });
 
     $(domenica).click(function (e) {
         e.preventDefault();
-        $(wrapper6).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a></div>'); //add input box
+        $(wrapper6).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a><input type="hidden" name="SUNDAY"></div>'); //add input box
 
     });
 
