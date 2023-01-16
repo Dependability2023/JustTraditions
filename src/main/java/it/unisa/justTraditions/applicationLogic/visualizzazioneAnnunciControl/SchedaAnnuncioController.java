@@ -10,11 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class SchedaAnnuncioController {
 
 
-    @GetMapping
-    public ModelAndView get() {
+  @GetMapping
+  public ModelAndView get() {
 
 
-        return new ModelAndView("visualizzazioneAnnunciView/SchedaAnnuncio");
-    }
+    return new ModelAndView("visualizzazioneSchedaAnnuncio");
+  }
 }
 

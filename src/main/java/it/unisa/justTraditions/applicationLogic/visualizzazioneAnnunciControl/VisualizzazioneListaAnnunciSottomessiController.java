@@ -7,14 +7,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/mieiannunci")
-public class MieiAnnunciController {
+public class VisualizzazioneListaAnnunciSottomessiController {
 
 
   @GetMapping
   public ModelAndView get() {
 
 
-    return new ModelAndView("visualizzazioneAnnunciView/mieiannunci");
+    return new ModelAndView("visualizzazioneAnnunciView/visualizzazioneListaAnnunciSottomessi");
   }
 }
 
