@@ -6,15 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/sottomettiannuncio")
-public class SottomettiAnnuncioController {
+@RequestMapping("/modificaannuncio")
+public class ModificaAnnuncioController {
 
 
   @GetMapping
   public ModelAndView get() {
-
-
-    return new ModelAndView("gestioneAnnunciView/sottomissioneAnnuncio");
+    return new ModelAndView("gestioneAnnunciView/modificaAnnuncio");
   }
 }
 

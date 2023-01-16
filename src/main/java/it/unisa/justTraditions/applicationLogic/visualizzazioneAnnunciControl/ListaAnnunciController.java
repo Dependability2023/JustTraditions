@@ -13,15 +13,15 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/listaannunci")
 public class ListaAnnunciController {
 
-    @Autowired
-    private AnnuncioDao annuncioDao;
+  @Autowired
+  private AnnuncioDao annuncioDao;
 
-    @GetMapping
-    public ModelAndView get() {
-        List<Annuncio> annunci = annuncioDao.findAll();
+  @GetMapping
+  public ModelAndView get() {
+    List<Annuncio> annunci = annuncioDao.findAll();
 
-        return new ModelAndView("visualizzazioneAnnunciView/ListaAnnunci")
-                .addObject("annunci", annunci);
-    }
+    return new ModelAndView("listaAnnunci")
+        .addObject("annunci", annunci);
+  }
 }
 
