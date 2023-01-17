@@ -3,6 +3,7 @@ package it.unisa.justTraditions.applicationLogic.gestioneAnnunciControl.form;
 import jakarta.validation.constraints.NotNull;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @OrarioIsValidConstraint
 public class VisitaForm {
@@ -13,9 +14,11 @@ public class VisitaForm {
   private DayOfWeek giorno;
 
   @NotNull(message = "orario di inizio vuoto")
+  @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
   private LocalTime orarioInizio;
 
   @NotNull(message = "orario di fine vuoto")
+  @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
   private LocalTime orarioFine;
 
   public VisitaForm() {
