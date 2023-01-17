@@ -6,20 +6,34 @@ import java.time.LocalTime;
 
 @OrarioIsValidConstraint
 public class VisitaForm {
+
+  private Long idVisita;
+
   @NotNull(message = "giorno vuoto")
   private DayOfWeek giorno;
+
   @NotNull(message = "orario di inizio vuoto")
   private LocalTime orarioInizio;
+
   @NotNull(message = "orario di fine vuoto")
   private LocalTime orarioFine;
 
   public VisitaForm() {
   }
 
-  public VisitaForm(DayOfWeek giorno, LocalTime orarioInizio, LocalTime orarioFine) {
+  public VisitaForm(Long idVisita, DayOfWeek giorno, LocalTime orarioInizio, LocalTime orarioFine) {
+    this.idVisita = idVisita;
     this.giorno = giorno;
     this.orarioInizio = orarioInizio;
     this.orarioFine = orarioFine;
+  }
+
+  public Long getIdVisita() {
+    return idVisita;
+  }
+
+  public void setIdVisita(Long idVisita) {
+    this.idVisita = idVisita;
   }
 
   public LocalTime getOrarioInizio() {
@@ -44,5 +58,16 @@ public class VisitaForm {
 
   public void setGiorno(DayOfWeek giorno) {
     this.giorno = giorno;
+  }
+
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("VisitaForm{");
+    sb.append("idVisita=").append(idVisita);
+    sb.append(", giorno=").append(giorno);
+    sb.append(", orarioInizio=").append(orarioInizio);
+    sb.append(", orarioFine=").append(orarioFine);
+    sb.append('}');
+    return sb.toString();
   }
 }

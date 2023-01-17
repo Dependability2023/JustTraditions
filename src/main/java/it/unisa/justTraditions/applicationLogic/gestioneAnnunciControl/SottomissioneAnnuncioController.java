@@ -19,28 +19,34 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/sottomettiannuncio")
-public class SottomettiAnnuncioController {
-  private final static String SottomissioneView = "gestioneAnnunciView/sottomissioneAnnuncio";
+@RequestMapping("/sottomissioneAnnuncio")
+public class SottomissioneAnnuncioController {
+
+  private static final String sottomissioneAnnuncioView =
+      "gestioneAnnunciView/sottomissioneAnnuncio";
+  private static final String sottomissioneAnnuncioSuccessView =
+      "gestioneAnnunciView/sottomissioneAnnuncioSuccess";
+
   @Autowired
   SessionCliente sessionCliente;
+
   @Autowired
   ArtigianoDao artigianoDao;
 
   @GetMapping
-  public ModelAndView get() {
-    return new ModelAndView(SottomissioneView)
-        .addObject("annuncioForm", new AnnuncioForm());
+  public String get(@ModelAttribute AnnuncioForm annuncioForm) {
+    return sottomissioneAnnuncioView;
   }
 
   @PostMapping
   public String post(@ModelAttribute @Valid AnnuncioForm annuncioForm,
                      BindingResult bindingResult, Model model) {
-    System.out.println("registrzione: " + annuncioForm.toString() + annuncioForm.getFoto().size());
-
+    if (bindingResult.hasErrors()) {
+      return sottomissioneAnnuncioView;
+    }
+    
     Annuncio annuncio = new Annuncio(
         annuncioForm.getNomeAttivita(),
         annuncioForm.getProvinciaAttivita(),
@@ -51,27 +57,30 @@ public class SottomettiAnnuncioController {
         annuncioForm.getPrezzoVisita(),
         Annuncio.Stato.PROPOSTO
     );
+
     for (MultipartFile file : annuncioForm.getFoto()) {
       try {
         annuncio.addFoto(new Foto(file.getBytes()));
       } catch (IOException e) {
         model.addAttribute("erroreFile", true);
-        return SottomissioneView;
+        return sottomissioneAnnuncioView;
       }
     }
+
     for (VisitaForm visitaForm : annuncioForm.getVisite()) {
-
-      annuncio.addVisita(new Visita(visitaForm.getGiorno(), visitaForm.getOrarioInizio(),
-          visitaForm.getOrarioFine(), true));
-      return SottomissioneView;
-
+      annuncio.addVisita(new Visita(
+          visitaForm.getGiorno(),
+          visitaForm.getOrarioInizio(),
+          visitaForm.getOrarioFine(),
+          true
+      ));
     }
 
     Artigiano artigiano = (Artigiano) sessionCliente.getCliente().get();
     artigiano.addAnnuncio(annuncio);
     artigianoDao.save(artigiano);
 
-    return "redirect:/";
+    return sottomissioneAnnuncioSuccessView;
   }
 }
 

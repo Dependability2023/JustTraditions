@@ -16,7 +16,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface OrarioIsValidConstraint {
-  String message() default " ";
+  String message() default "Orario di fine antecedente a quello di inizio";
 
   Class<?>[] groups() default {};
 

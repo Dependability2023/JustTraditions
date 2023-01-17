@@ -5,12 +5,11 @@ import jakarta.validation.ConstraintValidatorContext;
 
 public class OrarioIsValidValidator
     implements ConstraintValidator<OrarioIsValidConstraint, VisitaForm> {
+
   @Override
   public boolean isValid(VisitaForm visitaForm,
                          ConstraintValidatorContext constraintValidatorContext) {
-
-
-    return visitaForm.getOrarioFine().isAfter(visitaForm.getOrarioInizio());
+    return !visitaForm.getOrarioFine().isBefore(visitaForm.getOrarioInizio());
   }
 
   @Override
