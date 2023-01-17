@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ModificaAnnuncioController {
 
   private static final String modificaAnnuncioView = "gestioneAnnunciView/modificaAnnuncio";
+  private static final String sottomissioneAnnuncioSuccessView =
+      "gestioneAnnunciView/sottomissioneAnnuncioSuccess";
 
   @Autowired
   private AnnuncioDao annuncioDao;
@@ -117,7 +119,8 @@ public class ModificaAnnuncioController {
         annuncio.removeFoto(foto);
       }
     }
-    
+
+    return sottomissioneAnnuncioSuccessView;
   }
 }
 
