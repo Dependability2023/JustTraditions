@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
+@OrarioIsValidConstraint
 public class VisitaForm {
   @NotNull(message = "giorno vuoto")
   private DayOfWeek giorno;
