@@ -42,9 +42,11 @@ public class AnnuncioForm {
   @Digits(integer = 5, fraction = 2)
   private BigDecimal prezzoVisita;
 
+  @NotNull
   @Size(min = 1, max = 3)
   private List<MultipartFile> foto;
 
+  @NotNull
   @Size(min = 1)
   private List<@Valid VisitaForm> visite;
 
