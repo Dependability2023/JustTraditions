@@ -41,6 +41,7 @@ public class LoginController {
   @PostMapping
   public String post(@ModelAttribute @Valid LoginForm loginForm,
                      BindingResult bindingResult, Model model) {
+    model.addAttribute("nameLogin", "/login");
     if (bindingResult.hasErrors()) {
       return loginView;
     }
@@ -57,6 +58,7 @@ public class LoginController {
       sessionCliente.setCliente(cliente);
     } else {
       model.addAttribute("passwordErrata", true);
+
       return loginView;
     }
 

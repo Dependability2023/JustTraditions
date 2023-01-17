@@ -43,10 +43,13 @@ public class SottomissioneAnnuncioController {
   @PostMapping
   public String post(@ModelAttribute @Valid AnnuncioForm annuncioForm,
                      BindingResult bindingResult, Model model) {
+
+
     if (bindingResult.hasErrors()) {
+      System.out.println(bindingResult.getAllErrors());
       return sottomissioneAnnuncioView;
     }
-    
+
     Annuncio annuncio = new Annuncio(
         annuncioForm.getNomeAttivita(),
         annuncioForm.getProvinciaAttivita(),

@@ -14,7 +14,7 @@
         <div class="card-header text-center">Pubblicazione Annuncio</div>
         <div class="card-body card-header" align="center">
 
-            <form th:action="@{/sottomettiannuncio}" enctype="multipart/form-data" th:method="post"
+            <form th:action="@{/sottomissioneAnnuncio}" enctype="multipart/form-data" th:method="post"
                   th:object="${annuncioForm}">
                 <div class="form-group">
 
@@ -60,10 +60,21 @@
                             <div class="form-label-group">
                                 <label id="fasciaoraria">Inserisci giorni e fasce orarie:</label>
                                 <br>
+                                <div>
+
+                                    <input type="hidden" th:field="*{visite[__0__].giorno}" th:attr="value = 'MONDAY'">
+                                    <input type="time" th:field="*{visite[__0__].orarioInizio}">
+                                    <input type="time" th:field="*{visite[__0__].orarioFine}">
+                                    <a href="#" class="delete"> x</a>
+
+                                </div>
+
+
                                 <div class="container0">
                                     <label id="lunedi">Lunedì</label>
                                     <button class="add_form_field0"><i class="fa fa-plus-square"></i></button>
                                     <br>
+
                                 </div>
                                 <div class="container1">
                                     <label id="martedi">Martedì</label>
