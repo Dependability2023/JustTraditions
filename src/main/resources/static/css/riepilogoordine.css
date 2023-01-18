@@ -1,0 +1,70 @@
+body {
+
+    background-color: rgb(182, 160, 224);
+
+}
+
+h2 {
+    color: white;
+}
+
+#span {
+    color: white;
+}
+
+
+.container {
+
+    height: 100vh;
+
+
+}
+
+
+.card {
+    border: none;
+}
+
+.card-blue {
+
+    background-color: #212529;
+}
+
+.hightlight {
+
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.yellow {
+
+    color: #fdcc49;
+}
+
+.decoration {
+
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #492bc4;
+    border-color: #492bc4;
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: #492bc4;
+    border-color: #492bc4;
+}
+
+
+.decoration:hover {
+
+    text-decoration: none;
+    color: #fdcc49;
+}
