@@ -26,8 +26,8 @@ public class SottomissioneAnnuncioController {
 
   private static final String sottomissioneAnnuncioView =
       "gestioneAnnunciView/sottomissioneAnnuncio";
-  private static final String sottomissioneAnnuncioSuccessView =
-      "gestioneAnnunciView/sottomissioneAnnuncioSuccess";
+  private static final String modificaAnnuncioSuccessView =
+      "gestioneAnnunciView/modificaAnnuncioSuccess";
 
   @Autowired
   SessionCliente sessionCliente;
@@ -43,10 +43,7 @@ public class SottomissioneAnnuncioController {
   @PostMapping
   public String post(@ModelAttribute @Valid AnnuncioForm annuncioForm,
                      BindingResult bindingResult, Model model) {
-
-
     if (bindingResult.hasErrors()) {
-      System.out.println(bindingResult.getAllErrors());
       return sottomissioneAnnuncioView;
     }
 
@@ -83,7 +80,7 @@ public class SottomissioneAnnuncioController {
     artigiano.addAnnuncio(annuncio);
     artigianoDao.save(artigiano);
 
-    return sottomissioneAnnuncioSuccessView;
+    return modificaAnnuncioSuccessView;
   }
 }
 

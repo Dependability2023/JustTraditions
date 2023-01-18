@@ -10,17 +10,17 @@ import org.springframework.web.context.annotation.SessionScope;
 @Component
 @SessionScope
 public class SessionCliente {
+
+  private Long idCliente;
+
   @Autowired
   private ClienteDao clienteDao;
-  private Long idCliente;
 
   public Optional<Cliente> getCliente() {
     if (idCliente != null) {
       return clienteDao.findById(idCliente);
     }
     return Optional.empty();
-
-
   }
 
   public void setCliente(Cliente cliente) {
@@ -29,6 +29,5 @@ public class SessionCliente {
     } else {
       this.idCliente = cliente.getId();
     }
-
   }
 }

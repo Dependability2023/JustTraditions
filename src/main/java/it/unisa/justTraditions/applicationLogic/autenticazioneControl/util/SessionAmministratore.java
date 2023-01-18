@@ -10,7 +10,9 @@ import org.springframework.web.context.annotation.SessionScope;
 @Component
 @SessionScope
 public class SessionAmministratore {
+
   private Long idAmministratore;
+
   @Autowired
   private AmministratoreDao amministratoreDao;
 
