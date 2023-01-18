@@ -8,24 +8,29 @@ import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Foto;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Visita;
 import jakarta.validation.Valid;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/modificaAnnuncio")
 public class ModificaAnnuncioController {
 
-  private static final String modificaAnnuncioView = "gestioneAnnunciView/modificaAnnuncio";
-  private static final String sottomissioneAnnuncioSuccessView =
-      "gestioneAnnunciView/sottomissioneAnnuncioSuccess";
+  private static final String sottomissioneAnnuncioView =
+      "gestioneAnnunciView/sottomissioneAnnuncio";
+  private static final String modificaAnnuncioSuccessView =
+      "gestioneAnnunciView/modificaAnnuncioSuccess";
 
   @Autowired
   private AnnuncioDao annuncioDao;
@@ -67,12 +72,22 @@ public class ModificaAnnuncioController {
 
     model.addAttribute("annuncioForm", annuncioForm);
 
-    return modificaAnnuncioView;
+    return sottomissioneAnnuncioView;
   }
 
   @PostMapping
-  public String post(@ModelAttribute @Valid AnnuncioForm annuncioForm,
-                     @RequestParam List<Long> idFoto) {
+  public String post(@ModelAttribute @Valid AnnuncioForm annuncioForm, BindingResult bindingResult,
+                     @RequestParam List<Long> idFoto, Model model) {
+    if (bindingResult.hasFieldErrors("foto")) {
+      if (bindingResult.getErrorCount() > 1) {
+        return sottomissioneAnnuncioView;
+      }
+    } else {
+      if (bindingResult.getErrorCount() > 0) {
+        return sottomissioneAnnuncioView;
+      }
+    }
+
     if (annuncioForm.getIdAnnuncio() == null) {
       throw new IllegalArgumentException();
     }
@@ -87,7 +102,7 @@ public class ModificaAnnuncioController {
       throw new IllegalArgumentException();
     }
 
-    boolean modificaInformazioniAttivita;
+    boolean modificaInformazioniAttivita = false;
 
     if (!annuncio.getNomeAttivita().equals(annuncioForm.getNomeAttivita())) {
       annuncio.setNomeAttivita(annuncioForm.getNomeAttivita());
@@ -114,13 +129,44 @@ public class ModificaAnnuncioController {
       modificaInformazioniAttivita = true;
     }
 
-    for (Foto foto : annuncio.getFoto()) {
-      if (!idFoto.contains(foto.getId())) {
-        annuncio.removeFoto(foto);
+    List<Foto> foto = annuncio.getFoto();
+    List<Foto> fotoRimosse = new ArrayList<>();
+    for (Foto f : foto) {
+      if (!idFoto.contains(f.getId())) {
+        fotoRimosse.add(f);
+        modificaInformazioniAttivita = true;
+      }
+    }
+    for (Foto f : fotoRimosse) {
+      annuncio.removeFoto(f);
+    }
+
+    List<MultipartFile> annuncioFormFoto = annuncioForm.getFoto();
+    if (annuncioFormFoto != null) {
+      for (MultipartFile file : annuncioFormFoto) {
+        if (foto.size() >= 3) {
+          break;
+        }
+
+        try {
+          annuncio.addFoto(new Foto(file.getBytes()));
+          modificaInformazioniAttivita = true;
+        } catch (IOException e) {
+          model.addAttribute("erroreFile", true);
+          return sottomissioneAnnuncioView;
+        }
       }
     }
 
-    return sottomissioneAnnuncioSuccessView;
+    if (modificaInformazioniAttivita) {
+      annuncio.setStato(Annuncio.Stato.PROPOSTO);
+    }
+
+    //TODO modifica informazioni di servizio
+
+    annuncioDao.save(annuncio);
+
+    return modificaAnnuncioSuccessView;
   }
 }
 

@@ -1,6 +1,7 @@
 package it.unisa.justTraditions.applicationLogic.gestioneAnnunciControl.form;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -14,40 +15,43 @@ public class AnnuncioForm {
 
   private Long idAnnuncio;
 
-  @NotBlank(message = "Nome vuoto")
-  @Size(max = 40, message = "Nome troppo lungo")
+  @NotBlank(message = "Nome attività vuoto")
+  @Size(min = 2, max = 40, message = "Nome attività deve avere una lunghezza compresa fra 2 e 40")
   private String nomeAttivita;
 
-  @NotBlank(message = "Nome vuoto")
-  @Size(max = 21, message = "Provincia troppo lungo")
+  @NotBlank(message = "Provincia attività vuota")
+  @ProvinciaIsValidConstraint
   private String provinciaAttivita;
 
-  @NotBlank(message = "Nome vuoto")
-  @Size(max = 128, message = "Nome troppo lungo")
+  @NotBlank(message = "Indirizzo vuoto")
+  @Size(min = 2, max = 128, message = "Indirizzo deve avere una lunghezza compresa fra 2 e 128")
   private String indirizzoAttivita;
 
-  @NotBlank(message = "Nome vuoto")
-  @Size(max = 1024, message = "Nome troppo lungo")
+  @NotBlank(message = "Descrizione vuota")
+  @Size(min = 2, max = 1024, message = "Descrizione deve avere una lunghezza compresa fra 2 e 1024")
   private String descrizione;
 
-  @NotBlank(message = "Nome vuoto")
-  @Size(max = 255, message = "Nome troppo lungo")
+  @NotBlank(message = "Servizi offerti vuoto")
+  @Size(min = 2, max = 255,
+      message = "Servizi offerti deve avere una lunghezza compresa fra 2 e 255")
   private String serviziOfferti;
 
-  @NotNull(message = "Nome vuoto")
-  @Min(value = 1, message = "minimo una persona")
+  @NotNull(message = "Numero massimo di persone per visita vuoto")
+  @Min(value = 1, message = "Almeno una persona")
   private Integer numMaxPersonePerVisita;
 
-  @NotNull(message = "Nome vuoto")
-  @Digits(integer = 5, fraction = 2)
+  @NotNull(message = "Prezzo visita vuoto")
+  @DecimalMin(value = "0.0", inclusive = false, message = "Prezzo minore o uguale a 0")
+  @Digits(integer = 3, fraction = 2,
+      message = "Prezzo può avere massimo 3 cifre intere e due decimali")
   private BigDecimal prezzoVisita;
 
-  @NotNull
-  @Size(min = 1, max = 3)
+  @NotNull(message = "Nessuna foto inserita")
+  @Size(min = 1, max = 3, message = "Almeno una, massimo 3 foto")
   private List<MultipartFile> foto;
 
-  @NotNull
-  @Size(min = 1)
+  @NotNull(message = "Nessuna visita inserita")
+  @Size(min = 1, message = "Almeno una visita")
   private List<@Valid VisitaForm> visite;
 
   public AnnuncioForm() {

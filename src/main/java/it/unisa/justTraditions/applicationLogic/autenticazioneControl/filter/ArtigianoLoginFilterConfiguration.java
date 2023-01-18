@@ -17,7 +17,8 @@ public class ArtigianoLoginFilterConfiguration {
         = new FilterRegistrationBean<>();
 
     registrationBean.setFilter(artigianoLoginFilter);
-    registrationBean.addUrlPatterns("/sottomissioneAnnuncio");
+    registrationBean.addUrlPatterns("/sottomissioneAnnuncio", "/rimozioneAnnuncio",
+        "/modificaAnnuncio");
 
     return registrationBean;
   }
