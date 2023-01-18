@@ -1,7 +1,6 @@
 package it.unisa.justTraditions.applicationLogic.gestioneAnnunciControl.form;
 
 
-import it.unisa.justTraditions.applicationLogic.autenticazioneControl.form.IsArtigianoValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import java.lang.annotation.Documented;
@@ -12,7 +11,7 @@ import java.lang.annotation.Target;
 
 
 @Documented
-@Constraint(validatedBy = IsArtigianoValidator.class)
+@Constraint(validatedBy = OrarioIsValidValidator.class)
 @Target({ElementType.TYPE, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface OrarioIsValidConstraint {

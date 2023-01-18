@@ -41,6 +41,7 @@ public class LoginAmministratoreController {
   @PostMapping
   public String post(@ModelAttribute @Valid LoginForm loginForm,
                      BindingResult bindingResult, Model model) {
+    model.addAttribute("nameLogin", "/loginAmministratore");
     if (bindingResult.hasErrors()) {
       return loginView;
     }
