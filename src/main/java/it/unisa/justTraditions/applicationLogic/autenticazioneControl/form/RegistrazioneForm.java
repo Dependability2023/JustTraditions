@@ -1,14 +1,12 @@
 package it.unisa.justTraditions.applicationLogic.autenticazioneControl.form;
 
-import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.ExsistEmailConstraint;
-import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.IsArtigianoConstraint;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-@IsArtigianoConstraint(message = "Aggiungi l'Iban se vuoi essere un Artigiano")
+@IsArtigianoConstraint
 public class RegistrazioneForm {
   @NotBlank(message = "Nome vuoto")
   @Size(max = 30, message = "Nome troppo lungo")

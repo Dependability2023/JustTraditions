@@ -7,7 +7,7 @@ $(document).ready(function () {
     var wrapper4 = $(".container4");
     var wrapper5 = $(".container5");
     var wrapper6 = $(".container6");
-    var wrapper7 = $(".container7");
+
 
     var lunedi = $(".add_form_field0");
     var martedi = $(".add_form_field1");
@@ -16,54 +16,62 @@ $(document).ready(function () {
     var venerdi = $(".add_form_field4");
     var sabato = $(".add_form_field5");
     var domenica = $(".add_form_field6");
-    var addFoto = $(".add_form_field7");
+    var count = 0;
 
-
-    $(addFoto).click(function (e) {
-        e.preventDefault();
-        $(wrapper7).append('<div><input type="file"><a href="#" class="delete"> x</a></div>'); //add input box
-
-    });
 
     $(lunedi).click(function (e) {
         e.preventDefault();
-        $(wrapper0).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a></div>'); //add input box
 
+        $(wrapper0).append('<div><input type="hidden" value="MONDAY" id="visite' + count + '.giorno" name="visite[' + count + '].giorno"><input type="time" id="visite' + count + '.orarioInizio" name="visite[' + count + '].orarioInizio" value=""><input type="time" id="visite' + count + '.orarioFine" name="visite[' + count + '].orarioFine" value=""><a href="#" class="delete"> x</a></div>'); //add input box
+        count++;
     });
 
     $(martedi).click(function (e) {
         e.preventDefault();
-        $(wrapper1).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a></div>'); //add input box
+
+        $(wrapper1).append('<div><input type="hidden" value="TUESDAY" id="visite' + count + '.giorno" name="visite[' + count + '].giorno"><input type="time" id="visite' + count + '.orarioInizio" name="visite[' + count + '].orarioInizio" value=""><input type="time" id="visite' + count + '.orarioFine" name="visite[' + count + '].orarioFine" value=""><a href="#" class="delete"> x</a></div>'); //add input box
+        count++;
 
     });
 
     $(mercoledi).click(function (e) {
         e.preventDefault();
-        $(wrapper2).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a></div>'); //add input box
+
+        $(wrapper2).append('<div><input type="hidden" value="WEDNESDAY" id="visite' + count + '.giorno" name="visite[' + count + '].giorno"><input type="time" id="visite' + count + '.orarioInizio" name="visite[' + count + '].orarioInizio" value=""><input type="time" id="visite' + count + '.orarioFine" name="visite[' + count + '].orarioFine" value=""><a href="#" class="delete"> x</a></div>'); //add input box
+        count++;
 
     });
 
     $(giovedi).click(function (e) {
         e.preventDefault();
-        $(wrapper3).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a></div>'); //add input box
+
+        $(wrapper3).append('<div><input type="hidden" value="THURSDAY" id="visite' + count + '.giorno" name="visite[' + count + '].giorno"><input type="time" id="visite' + count + '.orarioInizio" name="visite[' + count + '].orarioInizio" value=""><input type="time" id="visite' + count + '.orarioFine" name="visite[' + count + '].orarioFine" value=""><a href="#" class="delete"> x</a></div>'); //add input box
+        count++;
 
     });
 
     $(venerdi).click(function (e) {
+
         e.preventDefault();
-        $(wrapper4).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a></div>'); //add input box
+
+        $(wrapper4).append('<div><input type="hidden" value="FRIDAY" id="visite' + count + '.giorno" name="visite[' + count + '].giorno"><input type="time" id="visite' + count + '.orarioInizio" name="visite[' + count + '].orarioInizio" value=""><input type="time" id="visite' + count + '.orarioFine" name="visite[' + count + '].orarioFine" value=""><a href="#" class="delete"> x</a></div>'); //add input box
+        count++;
 
     });
 
     $(sabato).click(function (e) {
         e.preventDefault();
-        $(wrapper5).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a></div>'); //add input box
+
+        $(wrapper5).append('<div><input type="hidden" value="SATURDAY" id="visite' + count + '.giorno" name="visite[' + count + '].giorno"><input type="time" id="visite' + count + '.orarioInizio" name="visite[' + count + '].orarioInizio" value=""><input type="time" id="visite' + count + '.orarioFine" name="visite[' + count + '].orarioFine" value=""><a href="#" class="delete"> x</a></div>'); //add input box
+        count++;
 
     });
 
     $(domenica).click(function (e) {
         e.preventDefault();
-        $(wrapper6).append('<div><input type="time""/><input type="time""/><a href="#" class="delete"> x</a></div>'); //add input box
+
+        $(wrapper6).append('<div><input type="hidden" value="SUNDAY" id="visite' + count + '.giorno" name="visite[' + count + '].giorno"><input type="time" id="visite' + count + '.orarioInizio" name="visite[' + count + '].orarioInizio" value=""><input type="time" id="visite' + count + '.orarioFine" name="visite[' + count + '].orarioFine" value=""><a href="#" class="delete"> x</a></div>'); //add input box
+        count++;
 
     });
 
@@ -95,8 +103,5 @@ $(document).ready(function () {
         e.preventDefault();
         $(this).parent('div').remove();
     })
-    $(wrapper7).on("click", ".delete", function (e) {
-        e.preventDefault();
-        $(this).parent('div').remove();
-    })
+
 });

@@ -14,57 +14,56 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("registrazione")
+@RequestMapping("/registrazione")
 public class RegistrazioneController {
+
+  private static final String registrazioneView = "autenticazioneView/registrazione";
+  private static final String loginController = "/login";
+
   @Autowired
   private ClienteDao clienteDao;
+
   @Autowired
   private ArtigianoDao artigianoDao;
+
   @Autowired
   private PasswordEncryptor passwordEncryptor;
 
   @GetMapping
-  public ModelAndView get() {
-    return new ModelAndView("autenticazioneView/registrazione")
-        .addObject("registrazioneForm", new RegistrazioneForm());
+  public String get(@ModelAttribute RegistrazioneForm registrazioneForm) {
+    return registrazioneView;
   }
 
   @PostMapping
-  public ModelAndView post(@ModelAttribute @Valid RegistrazioneForm registrazioneForm,
-                           BindingResult bindingResult) {
-    Cliente cliente;
-    Artigiano artigiano;
+  public String post(@ModelAttribute @Valid RegistrazioneForm registrazioneForm,
+                     BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
-
-      return new ModelAndView("autenticazioneView/registrazione");
+      return registrazioneView;
     }
 
     if (registrazioneForm.isArtigiano()) {
-      artigiano = new Artigiano(
+      Artigiano artigiano = new Artigiano(
           registrazioneForm.getEmail(),
           passwordEncryptor.encryptPassword(registrazioneForm.getPassword()),
           registrazioneForm.getNome(),
           registrazioneForm.getCognome(),
           registrazioneForm.getCodiceFiscale(),
-          registrazioneForm.getIban());
+          registrazioneForm.getIban()
+      );
       artigianoDao.save(artigiano);
-      System.out.println(artigiano);
     } else {
-      cliente = new Cliente(
+      Cliente cliente = new Cliente(
           registrazioneForm.getEmail(),
           passwordEncryptor.encryptPassword(registrazioneForm.getPassword()),
           registrazioneForm.getNome(),
           registrazioneForm.getCognome(),
-          registrazioneForm.getCodiceFiscale());
+          registrazioneForm.getCodiceFiscale()
+      );
       clienteDao.save(cliente);
-      System.out.println(cliente);
     }
 
-
-    return new ModelAndView("redirect:/login");
+    return "redirect:" + loginController;
   }
-
 }

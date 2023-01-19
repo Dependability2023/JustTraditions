@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/loginAmministratore")
 public class LoginAmministratoreController {
 
+  private static final String loginView = "autenticazioneView/login";
+  private static final String homeAmministratoreController = "/homeAmministratore";
+
   @Autowired
   private AmministratoreDao amministratoreDao;
 
@@ -32,14 +35,15 @@ public class LoginAmministratoreController {
   @GetMapping
   public String get(@ModelAttribute LoginForm loginForm, Model model) {
     model.addAttribute("nameLogin", "/loginAmministratore");
-    return "autenticazioneView/login";
+    return loginView;
   }
 
   @PostMapping
   public String post(@ModelAttribute @Valid LoginForm loginForm,
                      BindingResult bindingResult, Model model) {
+    model.addAttribute("nameLogin", "/loginAmministratore");
     if (bindingResult.hasErrors()) {
-      return "autenticazioneView/loginAmministratore";
+      return loginView;
     }
 
     Optional<Amministratore> optionalAmministratore =
@@ -47,7 +51,7 @@ public class LoginAmministratoreController {
 
     if (optionalAmministratore.isEmpty()) {
       model.addAttribute("existsEmail", false);
-      return "autenticazioneView/loginAmministratore";
+      return loginView;
     }
 
     Amministratore amministratore = optionalAmministratore.get();
@@ -55,9 +59,9 @@ public class LoginAmministratoreController {
       sessionAmministratore.setAmministratore(amministratore);
     } else {
       model.addAttribute("passwordErrata", true);
-      return "autenticazioneView/loginAmministratore";
+      return loginView;
     }
 
-    return "redirect:/homeAmministratore";
+    return "redirect:" + homeAmministratoreController;
   }
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+    <th:block th:include="fragments/head"></th:block>
+    <title>Just Traditions - Riepilogo Ordine</title>
+</head>
+<body>
+
+<th:block th:include="fragments/navbar"></th:block>
+
+
+<div class="container mt-5 px-5">
+
+    <div class="mb-4 d-flex justify-content-center">
+
+        <h2>Riepilogo dell'ordine</h2>
+
+
+    </div>
+
+    <div class="row d-flex justify-content-center">
+
+
+        <div class="col-md-4">
+
+            <div class="card card-blue p-3 bg-dark text-white mb-3">
+
+                <span>Data selezionata : </span>
+                <span>Orario selezionato:</span>
+                <span>Numero di persone selezionato:</span>
+                <span>-------------------------------</span>
+
+
+                <span>Costi di iva  : 5€</span>
+
+                <div class="mt-4 mb-4">
+
+                    <button class="btn btn-outline-warning  px-3">
+                        Pay €50
+                    </button>
+
+                    <button class="btn btn-outline-warning  px-3">
+                        Torna indietro
+                    </button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<th:block th:include="fragments/footbar"></th:block>
+<th:block th:include="fragments/scripts"></th:block>
+<script src="/js/navbar.js"></script>
+
+</body>
+</html>

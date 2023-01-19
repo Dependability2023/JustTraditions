@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+
+<head>
+
+    <th:block th:include="fragments/head"></th:block>
+    <title>Just Traditions - Profilo Utente</title>
+
+</head>
+
+<body>
+<th:block th:include="fragments/navbar"></th:block>
+
+<br><br><br>
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-lg-6 mt-2 mb-tg-0 order-2 order-lg-1">
+            <h3 th:text="${cliente.Nome}+' '+${cliente.Cognome}"></h3>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-lg-6 mt-2 mb-tg-0 order-2 order-lg-1">
+            <a href="#" class="btn btn-outline-success">Le Mie Prenotazioni</a>
+            <a href="/listaprenotazioni" class="btn btn-outline-success">Dati Personali</a>
+            <a th:if="${cliente.class.simpleName.equals('Artigiano')}" href="/mieiannunci"
+               class="btn btn-outline-success">I miei annunci</a>
+
+        </div>
+    </div>
+</div>
+
+
+<th:block th:include="fragments/footbar"></th:block>
+<th:block th:include="fragments/scripts"></th:block>
+<script src="/js/navbar.js"></script>
+
+
+</body>
+</html>

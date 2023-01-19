@@ -56,19 +56,20 @@
                         <h5 class="card-title"><i class="iconinput fa fa-user"></i>Sei un Artigiano?</h5>
 
                             <div class="form-group">
-                                <p>Si<input type="checkbox"  th:field="*{artigiano}"  name="CheckThis" ></p>
+                                <p>Si<input type="checkbox"  th:field="*{artigiano}"  id="check" ></p>
 
                             </div>
 
-
+                        <div id="checkid" style="display:none">
                             <h5 class="card-title">Iban</h5>
                             <div class="form-group">
-                                <input type="text" th:field="*{iban}" class="form-control" name="iban" onfocus="CheckCheckBox(this.form)"
+                                <input type="text" th:field="*{iban}" class="form-control"
                                        placeholder="Iban">
                                 <div class=" d-inline invalid-feedback  " th:if="true" th:errors="${registrazioneForm}"></div>
                             </div>
-
+                        </div>
                         <button type="submit" class="col-md-12 btn btn-primary">Registrati</button>
+
                     </form>
                 </div>
             </div>
@@ -88,10 +89,9 @@
 <th:block th:include="fragments/scripts"></th:block>
 <script src="/js/navbar.js"></script>
 <script type="text/javascript">
-    function CheckCheckBox(frm) {
-        if (!frm.CheckThis.checked)
-            frm.iban.toggle()
-    }
+    $( "#check" ).click(function() {
+        $("#checkid").toggle();
+    });
 </script>
 </body>
 </html>
