@@ -26,8 +26,8 @@ public class SottomissioneAnnuncioController {
 
   private static final String sottomissioneAnnuncioView =
       "gestioneAnnunciView/sottomissioneAnnuncio";
-  private static final String aggiuntaAnnuncioSuccessView =
-      "gestioneAnnunciView/aggiuntaAnnuncioNotifica";
+  private static final String modificaAnnuncioSuccessView =
+      "gestioneAnnunciView/modificaAnnuncioSuccess";
 
   @Autowired
   SessionCliente sessionCliente;
@@ -80,7 +80,7 @@ public class SottomissioneAnnuncioController {
     artigiano.addAnnuncio(annuncio);
     artigianoDao.save(artigiano);
 
-    return aggiuntaAnnuncioSuccessView;
+    return modificaAnnuncioSuccessView;
   }
 }
 

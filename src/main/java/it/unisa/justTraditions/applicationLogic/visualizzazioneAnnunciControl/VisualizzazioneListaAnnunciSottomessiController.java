@@ -6,15 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/mieiannunci")
+@RequestMapping("/visualizzazioneListaAnnunciSottomessi")
 public class VisualizzazioneListaAnnunciSottomessiController {
 
+  private static final String visualizzazioneListaAnnunciSottomessiView =
+      "visualizzazioneAnnunciView/visualizzazioneListaAnnunciSottomessi";
 
   @GetMapping
   public ModelAndView get() {
-
-
-    return new ModelAndView("visualizzazioneAnnunciView/visualizzazioneListaAnnunciSottomessi");
+    return new ModelAndView(visualizzazioneListaAnnunciSottomessiView);
   }
 }
-

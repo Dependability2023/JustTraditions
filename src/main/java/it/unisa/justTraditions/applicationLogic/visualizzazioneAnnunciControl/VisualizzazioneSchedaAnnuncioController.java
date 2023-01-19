@@ -9,17 +9,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/schedaAnnuncio")
-public class SchedaAnnuncioController {
+@RequestMapping("/visualizzazioneSchedaAnnuncio")
+public class VisualizzazioneSchedaAnnuncioController {
+
+  private static final String visualizzazioneSchedaAnnuncioView =
+      "visualizzazioneAnnunciView/visualizzazioneSchedaAnnuncio";
+
   @Autowired
-  AnnuncioDao annuncioDao;
+  private AnnuncioDao annuncioDao;
 
   @GetMapping
   public ModelAndView get(@RequestParam Long id) {
-
-
-    return new ModelAndView("visualizzazioneAnnunciView/visualizzazioneSchedaAnnuncio").addObject(
-        annuncioDao.findById(id));
+    return new ModelAndView(visualizzazioneSchedaAnnuncioView)
+        .addObject(annuncioDao.findById(id).get());
   }
 }
 

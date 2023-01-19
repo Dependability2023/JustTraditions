@@ -11,21 +11,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@RequestMapping("/img")
 @Controller
+@RequestMapping("/img")
 public class ImgController {
+
   @Autowired
-  FotoDao fotoDao;
+  private FotoDao fotoDao;
 
-  @GetMapping()
-  void showImage(@RequestParam() Long id, HttpServletResponse response)
+  @GetMapping
+  public void get(@RequestParam Long id, HttpServletResponse response)
       throws ServletException, IOException {
-
-    System.out.println(id);
     Foto foto = fotoDao.findById(id).get();
 
     response.setContentType("image/jpeg");
     response.getOutputStream().write(foto.getDati());
-    
   }
 }

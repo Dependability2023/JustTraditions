@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-@IsArtigianoConstraint(message = "Aggiungi l'Iban se vuoi essere un Artigiano")
+@IsArtigianoConstraint
 public class RegistrazioneForm {
   @NotBlank(message = "Nome vuoto")
   @Size(max = 30, message = "Nome troppo lungo")
@@ -41,10 +41,6 @@ public class RegistrazioneForm {
   private Boolean artigiano;
 
   @Size(max = 27, message = "Iban troppo lungo")
- /* @Pattern(
-      regexp = "^(it|IT)[0-9]{2}[A-Za-z][0-9]{10}[0-9A-Za-z]{12}$",
-      message = "Il formato dell'iban non è corretto"
-  )*/
   private String iban;
 
   public RegistrazioneForm() {

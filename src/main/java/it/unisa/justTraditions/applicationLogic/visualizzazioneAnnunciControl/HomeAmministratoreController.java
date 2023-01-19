@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/homeAmministratore")
 public class HomeAmministratoreController {
 
+  private static final String homeAmministratoreView =
+      "visualizzazioneAnnunciView/homeAmministratore";
+
   @GetMapping
   public String get() {
-    return "visualizzazioneAnnunciView/adminPage";
+    return homeAmministratoreView;
   }
 }
 

@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/")
 public class HomeController {
 
+  private static final String homeView = "visualizzazioneAnnunciView/home";
+
   @Autowired
   private AnnuncioDao annuncioDao;
 
@@ -26,7 +28,7 @@ public class HomeController {
         Sort.by(Sort.Direction.DESC, "id")
     )).getContent();
 
-    return new ModelAndView("visualizzazioneAnnunciView/home")
+    return new ModelAndView(homeView)
         .addObject("annunci", annunci);
   }
 }
