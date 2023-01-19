@@ -60,15 +60,6 @@
                             <div class="form-label-group">
                                 <label id="fasciaoraria">Inserisci giorni e fasce orarie:</label>
                                 <br>
-                                <div>
-
-                                    <input type="hidden" th:field="*{visite[__0__].giorno}" th:attr="value = 'MONDAY'">
-                                    <input type="time" th:field="*{visite[__0__].orarioInizio}">
-                                    <input type="time" th:field="*{visite[__0__].orarioFine}">
-                                    <a href="#" class="delete"> x</a>
-
-                                </div>
-
 
                                 <div class="container0">
                                     <label id="lunedi">Lunedì</label>
@@ -180,10 +171,12 @@
 
 
                                 <div class="container7">
-                                    <label>Inserisci foto :</label>
-                                    <button class="add_form_field7"><i class="fa fa-plus-square"></i></button>
-                                    <br>
-                                    <input type="file" multiple th:field="*{foto}" class="form-control-file">
+                                    <div class="mb-3">
+                                        <label for="formFileSm" class="form-label">Inserisci foto</label>
+                                        <input class="form-control form-control-sm" type="file" multiple
+                                               th:field="*{foto}" id="formFileSm">
+                                    </div>
+
 
                                 </div>
                             </div>

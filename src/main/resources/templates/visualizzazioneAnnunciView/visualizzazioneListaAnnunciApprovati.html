@@ -17,7 +17,7 @@
     <!--   Annunci   -->
     <div th:each="annuncio :${annunci}" class="card m-3" style="width: 15rem;">
 
-      <img th:src="@{/img(id=${annuncio.getFoto().get(1).id})}"
+      <img th:src="@{/img(id=${annuncio.getFoto().get(0).id})}"
            class="card-img-top" alt="...">
       <div class="card-body  d-flex flex-column align-items-center ">
         <h5 th:text="${annuncio.nomeAttivita}" class="card-title"></h5>
