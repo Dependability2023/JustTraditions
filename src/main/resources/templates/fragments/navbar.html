@@ -51,12 +51,30 @@
                     <li class="nav-item my-auto" style="width: 6rem;">
                         <a class="nav-link" href="/listaannunci">Annunci</a>
                     </li>
-                    <li class="nav-item my-auto" style="width: 6rem;">
+                    <li class="nav-item my-auto" style="width: 8rem;">
                         <a class="nav-link" href="/chisiamo">Chi siamo?</a>
                     </li>
-                    <li class="nav-item my-auto" style="width: 6rem;">
-                        <a href="/login" class="btn btn-outline-success">Login</a>
-                    </li>
+
+                    <div th:if="${cliente != null}">
+                        <li class="nav-item my-auto" style="width : 6rem;">
+                            <div class="dropdown" aria-expanded="false">
+                                <<img data-bs-toggle="dropdown"
+                                      src="https://i.imgur.com/QHU1402.jpg"
+                                      style="width:35px;height:35px;">
+
+                                <div class="dropdown-menu bg-dark" style="min-width: 8rem" ;>
+                                    <a href="">Area Personale</a>
+                                    <a href="/logout">Logout</a>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+
+                    <div th:if="${cliente == null}">
+                        <li class="nav-item my-auto" style="width: 6rem;">
+                            <a href="/login" class="btn btn-outline-success">Login</a>
+                        </li>
+                    </div>
                 </ul>
             </div>
         </div>
