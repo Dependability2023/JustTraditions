@@ -1,8 +1,11 @@
 package it.unisa.justTraditions.applicationLogic.gestioneAnnunciControl;
 
+import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.SessionAmministratore;
 import it.unisa.justTraditions.applicationLogic.gestioneAnnunciControl.form.ModificaStatoAnnuncioForm;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.dao.AnnuncioDao;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
+import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.AmministratoreDao;
+import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Amministratore;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +31,12 @@ public class ModificaStatoAnnuncioController {
   @Autowired
   private AnnuncioDao annuncioDao;
 
+  @Autowired
+  private AmministratoreDao amministratoreDao;
+
+  @Autowired
+  private SessionAmministratore sessionAmministratore;
+
   @GetMapping
   public ModelAndView get(@RequestParam Long idAnnuncio) {
     return new ModelAndView(modificaStatoAnnuncioView)
@@ -45,11 +54,24 @@ public class ModificaStatoAnnuncioController {
     }
 
     annuncio.setStato(modificaStatoAnnuncioForm.getNuovoStato());
+
     String motivoDelRifiuto = null;
     if (modificaStatoAnnuncioForm.getNuovoStato() == Annuncio.Stato.RIFIUTATO) {
       motivoDelRifiuto = modificaStatoAnnuncioForm.getMotivoDelRifiuto();
     }
     annuncio.setMotivoDelRifiuto(motivoDelRifiuto);
+
+    if (modificaStatoAnnuncioForm.getNuovoStato() == Annuncio.Stato.APPROVATO) {
+      Amministratore amministratore = sessionAmministratore.getAmministratore().get();
+      amministratore.addAnnuncioApprovato(annuncio);
+      amministratoreDao.save(amministratore);
+    } else if (modificaStatoAnnuncioForm.getNuovoStato() == Annuncio.Stato.IN_REVISIONE) {
+      Amministratore amministratore = annuncio.getAmministratore();
+      if (amministratore != null) {
+        amministratore.removeAnnuncioApprovato(annuncio);
+        amministratoreDao.save(amministratore);
+      }
+    }
 
     annuncioDao.save(annuncio);
 
