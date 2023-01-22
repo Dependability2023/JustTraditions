@@ -7,6 +7,8 @@ import it.unisa.justTraditions.storage.gestioneAnnunciStorage.dao.AnnuncioDao;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Foto;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Visita;
+import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.AmministratoreDao;
+import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Amministratore;
 import jakarta.validation.Valid;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,13 +29,16 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/modificaAnnuncio")
 public class ModificaAnnuncioController {
 
-  private static final String sottomissioneAnnuncioView =
-      "gestioneAnnunciView/sottomissioneAnnuncio";
+  private static final String modificaAnnuncioView =
+      "gestioneAnnunciView/modificaAnnuncio";
   private static final String modificaAnnuncioSuccessView =
       "gestioneAnnunciView/modificaAnnuncioSuccess";
 
   @Autowired
   private AnnuncioDao annuncioDao;
+
+  @Autowired
+  private AmministratoreDao amministratoreDao;
 
   @Autowired
   private SessionCliente sessionCliente;
@@ -47,6 +52,11 @@ public class ModificaAnnuncioController {
 
     Annuncio annuncio = optionalAnnuncio.get();
     if (!annuncio.getArtigiano().equals(sessionCliente.getCliente().get())) {
+      throw new IllegalArgumentException();
+    }
+
+    if (annuncio.getStato() == Annuncio.Stato.PROPOSTO
+        || annuncio.getStato() == Annuncio.Stato.IN_REVISIONE) {
       throw new IllegalArgumentException();
     }
 
@@ -72,20 +82,25 @@ public class ModificaAnnuncioController {
 
     model.addAttribute("annuncioForm", annuncioForm);
 
-    return sottomissioneAnnuncioView;
+    return modificaAnnuncioView;
   }
 
   @PostMapping
   public String post(@ModelAttribute @Valid AnnuncioForm annuncioForm, BindingResult bindingResult,
-                     @RequestParam List<Long> idFoto, Model model) {
+                     @RequestParam(required = false) List<Long> idFoto, Model model) {
     if (bindingResult.hasFieldErrors("foto")) {
       if (bindingResult.getErrorCount() > 1) {
-        return sottomissioneAnnuncioView;
+        return modificaAnnuncioView;
       }
     } else {
       if (bindingResult.getErrorCount() > 0) {
-        return sottomissioneAnnuncioView;
+        return modificaAnnuncioView;
       }
+    }
+
+    if (idFoto == null && annuncioForm.getFoto() == null) {
+      model.addAttribute("nessunaFoto", true);
+      return modificaAnnuncioView;
     }
 
     if (annuncioForm.getIdAnnuncio() == null) {
@@ -99,6 +114,11 @@ public class ModificaAnnuncioController {
 
     Annuncio annuncio = optionalAnnuncio.get();
     if (!annuncio.getArtigiano().equals(sessionCliente.getCliente().get())) {
+      throw new IllegalArgumentException();
+    }
+
+    if (annuncio.getStato() == Annuncio.Stato.PROPOSTO
+        || annuncio.getStato() == Annuncio.Stato.IN_REVISIONE) {
       throw new IllegalArgumentException();
     }
 
@@ -132,9 +152,8 @@ public class ModificaAnnuncioController {
     List<Foto> foto = annuncio.getFoto();
     List<Foto> fotoRimosse = new ArrayList<>();
     for (Foto f : foto) {
-      if (!idFoto.contains(f.getId())) {
+      if (idFoto == null || !idFoto.contains(f.getId())) {
         fotoRimosse.add(f);
-        modificaInformazioniAttivita = true;
       }
     }
     for (Foto f : fotoRimosse) {
@@ -153,17 +172,50 @@ public class ModificaAnnuncioController {
           modificaInformazioniAttivita = true;
         } catch (IOException e) {
           model.addAttribute("erroreFile", true);
-          return sottomissioneAnnuncioView;
+          return modificaAnnuncioView;
         }
       }
     }
 
+    Amministratore amministratore = annuncio.getAmministratore();
     if (modificaInformazioniAttivita) {
       annuncio.setStato(Annuncio.Stato.PROPOSTO);
+      if (amministratore != null) {
+        amministratore.removeAnnuncioApprovato(annuncio);
+      }
+      annuncio.setMotivoDelRifiuto(null);
     }
 
-    //TODO modifica informazioni di servizio
+    annuncio.setPrezzoVisita(annuncioForm.getPrezzoVisita());
+    annuncio.setNumMaxPersonePerVisita(annuncioForm.getNumMaxPersonePerVisita());
 
+    List<Visita> visite = annuncio.getVisite();
+    List<VisitaForm> visiteForm = annuncioForm.getVisite();
+
+    visite.forEach(visita -> visita.setValidita(false));
+
+    for (VisitaForm visitaForm : visiteForm) {
+      Optional<Visita> optionalVisita = visite.stream()
+          .filter(visita -> visita.getGiorno().equals(visitaForm.getGiorno())
+              && visita.getOrarioInizio().equals(visitaForm.getOrarioInizio())
+              && visita.getOrarioFine().equals(visitaForm.getOrarioFine()))
+          .findFirst();
+      if (optionalVisita.isPresent()) {
+        optionalVisita.get().setValidita(true);
+      } else {
+        Visita visita = new Visita(
+            visitaForm.getGiorno(),
+            visitaForm.getOrarioInizio(),
+            visitaForm.getOrarioFine(),
+            true
+        );
+        annuncio.addVisita(visita);
+      }
+    }
+
+    if (modificaInformazioniAttivita && amministratore != null) {
+      amministratoreDao.save(amministratore);
+    }
     annuncioDao.save(annuncio);
 
     return modificaAnnuncioSuccessView;
