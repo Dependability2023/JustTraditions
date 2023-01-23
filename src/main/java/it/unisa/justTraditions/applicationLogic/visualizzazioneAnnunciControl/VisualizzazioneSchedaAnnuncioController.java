@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class VisualizzazioneSchedaAnnuncioController {
 
   private static final String visualizzazioneSchedaAnnuncioView =
-      "visualizzazioneAnnunciView/visualizzazioneSchedaAnnuncio";
+          "visualizzazioneDettagliAnnuncio";
 
   @Autowired
   private AnnuncioDao annuncioDao;
