@@ -28,6 +28,8 @@ public class RicercaAnnunciController {
   @Autowired
   private Province province;
 
+  private int count;
+
   @GetMapping
   public String get(@RequestParam(defaultValue = "", required = false) String nomeAttivita,
                     @RequestParam(defaultValue = "", required = false) String provincia,
@@ -48,7 +50,9 @@ public class RicercaAnnunciController {
                 PageRequest.of(pagina, 4, Sort.by(Sort.Direction.ASC, "nomeAttivita"))
         );
 
+
 if(annunci.isEmpty()){
+
     pagina--;
      annunci =
             annuncioDao.findByNomeAttivitaContainsIgnoreCaseAndProvinciaAttivitaContains(
