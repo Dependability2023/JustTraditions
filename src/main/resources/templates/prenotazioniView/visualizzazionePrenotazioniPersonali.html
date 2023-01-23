@@ -48,7 +48,7 @@
           <td class="fw-bold mb-1" th:text="${prenotazione.getPrezzoVisita()}">€</td>
           <td class="fw-bold mb-1" th:text="${prenotazione.getNumPersonePrenotate()}">persone</td>
           <td>
-            <a th:href="@{/schedaAnnuncio(id=${prenotazione.getVisita().getAnnuncio().getId()})}"
+            <a th:href="@{/visualizzazioneDettagliAnnuncio(id=${prenotazione.getVisita().getAnnuncio().getId()})}"
                class="btn btn-outline-success">Vai alla scheda</a>
           </td>
         </tr>

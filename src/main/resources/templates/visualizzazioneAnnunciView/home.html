@@ -59,7 +59,7 @@
         <div th:each="annuncio :${annunci}" class="card m-3" style="width: 15rem;">
 
             <img th:src="@{/img(id=${annuncio.getFoto().get(0).id})}"
-                 class="card-img-top" alt="...">
+                 class="card-img-top" style="width: 240px; height: 225px;">
             <div class="card-body  d-flex flex-column align-items-center ">
                 <h5 th:text="${annuncio.nomeAttivita}" class="card-title"></h5>
                 <a th:href="@{/visualizzazioneDettagliAnnuncio(id=${annuncio.id})}" class="btn btn-outline-success">Vai alla scheda</a>
