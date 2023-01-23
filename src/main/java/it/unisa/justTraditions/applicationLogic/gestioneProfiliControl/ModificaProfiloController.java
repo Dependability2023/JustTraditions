@@ -45,7 +45,7 @@ public class ModificaProfiloController {
             registrazioneForm.setIban(artigiano.getIban());
 
         }else {
-            Cliente cliente = (Cliente) sessionCliente.getCliente().get();
+            Cliente cliente = sessionCliente.getCliente().get();
             registrazioneForm.setNome(cliente.getNome());
             registrazioneForm.setCognome(cliente.getCognome());
             registrazioneForm.setCodiceFiscale(cliente.getCodiceFiscale());
