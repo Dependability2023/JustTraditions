@@ -13,44 +13,49 @@
   <!--  Lista annunci  -->
   <center><h1> Lista Annunci</h1></center>
   <div class="d-flex flex-wrap justify-content-center mt-3">
-
     <!--   Annunci   -->
     <div th:each="annuncio :${annunci}" class="card m-3" style="width: 15rem;">
 
       <img th:src="@{/img(id=${annuncio.getFoto().get(0).id})}"
-           class="card-img-top" alt="...">
+           class="card-img-top" style="width: 240px; height: 225px;">
       <div class="card-body  d-flex flex-column align-items-center ">
         <h5 th:text="${annuncio.nomeAttivita}" class="card-title"></h5>
-        <a th:href="@{/schedaAnnuncio(id=${annuncio.id})}"  class="btn btn-outline-success">Vai alla scheda</a>
+        <a th:href="@{/visualizzazioneDettagliAnnuncio(id=${annuncio.id})}"  class="btn btn-outline-success">Vai alla scheda</a>
       </div>
     </div>
 
   </div>
 
   <!-- Page navigation -->
-  <div class="d-flex justify-content-center">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+
+<div class="paging-wrapper d-flex flex-wrap justify-content-center mt-3">
+  <form th:method="get" th:action="@{/ricercaAnnunci}">
+    <input type="hidden" th:name="nomeAttivita" th:value="${ricercaNomeAttivita}">
+    <input type="hidden" th:name="pagina" th:value="${ricercaPagina}-1">
+    <input type="hidden" th:name="provincia" th:value="${ricercaProvincia}">
+
+
+    <button th:if="${ricercaPagina > 0}"  type="submit" value="Precedente" class="btn btn-success">Precedente</button>
+    <button th:unless="${ricercaPagina > 0}"  type="submit" value="Precedente" class="btn btn-success" disabled>Precedente</button>
+
+  </form>
+
+  <strong class="paging-wrapper d-flex flex-wrap justify-content-center mt-3" th:text="'Pagina:'+${ricercaPagina}"></strong>
+
+  <form th:method="get" th:action="@{/ricercaAnnunci}">
+    <input type="hidden" th:name="nomeAttivita" th:value="${ricercaNomeAttivita}">
+    <input type="hidden" th:name="pagina" th:value="${ricercaPagina}+1">
+    <input type="hidden" th:name="provincia" th:value="${ricercaProvincia}">
+
+    <button type="submit" value="Successivo" class="btn btn-success">Successivo</button>
+  </form>
+
+
 </div>
+
+
 <th:block th:include="fragments/footbar"></th:block>
 <th:block th:include="fragments/scripts"></th:block>
 <script src="/js/navbar.js"></script>
 </body>
 </html>
-

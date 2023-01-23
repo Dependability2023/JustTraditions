@@ -24,7 +24,7 @@ public class HomeController {
   public ModelAndView get() {
     List<Annuncio> annunci = annuncioDao.findAll(PageRequest.of(
         0,
-        5,
+        8,
         Sort.by(Sort.Direction.DESC, "id")
     )).getContent();
 

@@ -13,7 +13,7 @@
     <div class="row">
         <div align="left">
 
-            <button type="button" onclick="location.href='/sottomettiannuncio'"
+            <button type="button" onclick="location.href='/sottomissioneAnnuncio'"
                     class="btn btn-sm btn-primary btn-create">Crea nuovo annuncio
             </button>
 
@@ -29,149 +29,46 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr th:each="annuncio :${annunci}">
                     <td>
                         <div class="d-flex align-items-center">
                             <img
-                                    src="https://bit.ly/3hYm0xg"
+                                    th:src="@{/img(id=${annuncio.getFoto().get(0).id})}"
                                     alt=""
                                     style="width: 45px; height: 45px"
                                     class="rounded-circle"
                             />
                             <div class="ms-3">
-                                <p class="fw-bold mb-1">Il legno di Tom</p>
+                                <p class="fw-bold mb-1" th:text="${annuncio.nomeAttivita}"></p>
                             </div>
                         </div>
                     </td>
                     <td>
-                        <span class="badge badge-success rounded-pill d-inline">Approvato</span>
+                        <span th:if="${annuncio.getStato()} == ${annuncio.stato.PROPOSTO}" class="badge badge-primary rounded-pill d-inline">PROPOSTO</span>
+                        <span th:if="${annuncio.getStato()} == ${annuncio.stato.IN_REVISIONE}" class="badge badge-warning rounded-pill d-inline">IN REVISIONE</span>
+                        <span th:if="${annuncio.getStato()} == ${annuncio.stato.APPROVATO}" class="badge badge-success rounded-pill d-inline">APPROVATO</span>
+                        <span th:if="${annuncio.getStato()} == ${annuncio.stato.RIFIUTATO}" class="badge badge-danger rounded-pill d-inline">RIFIUTATO</span>
                     </td>
-                    <td class="fw-bold mb-1">Via Gianluca Terzilli,2 Anagnina</td>
+                    <td class="fw-bold mb-1" th:text="${annuncio.indirizzoAttivita}"></td>
                     <td>
                         <a href="/modificaannuncio" class="btn-ls"><em class="fa fa-pencil">Modifica
                             Annuncio</em></a><br><br>
-                        <a href="/listaprenotazioni" class="btn-ls"><em class="fa fa-user">Lista
+                        <a href="/visualizzazionePrenotazioniAnnuncio" class="btn-ls"><em class="fa fa-user">Lista
                             Prenotazioni</em></a><br><br>
-                        <a class="btn-ls"><em class="fa fa-arrow-down">Scheda
+                        <a th:href="@{/visualizzazioneDettagliAnnuncio(id=${annuncio.id})}" class="btn-ls"><em class="fa fa-arrow-down">Dettagli
                             Annuncio</em></a><br><br>
-                        <a class="btn-ls btn-danger"><em class="fa fa-trash">Elimina Annuncio</em></a>
+                        <a href="/rimozioneAnnuncio" class="btn-ls btn-danger"><em class="fa fa-trash">Elimina Annuncio</em></a>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img
-                                    src="https://bit.ly/3Ca2zs5"
-                                    class="rounded-circle"
-                                    alt=""
-                                    style="width: 45px; height: 45px"
-                            />
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">Il ferro battuto</p>
-                            </div>
-                        </div>
-                    </td>
 
-                    <td>
-        <span class="badge badge-primary rounded-pill d-inline"
-        >Proposto</span
-        >
-                    </td>
-                    <td class="fw-bold mb-1">Via dei mille, 55 Roccadeiforti</td>
-
-                    <td>
-                        <a href="/modificaannuncio" class="btn-ls"><em class="fa fa-pencil">Modifica
-                            Annuncio</em></a><br><br>
-                        <a href="/listaprenotazioni" class="btn-ls"><em class="fa fa-user">Lista
-                            Prenotazioni</em></a><br><br>
-                        <a class="btn-ls"><em class="fa fa-arrow-down">Scheda
-                            Annuncio</em></a><br><br>
-                        <a class="btn-ls btn-danger"><em class="fa fa-trash">Elimina Annuncio</em></a>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img
-                                    src="https://bit.ly/3VyxLZd"
-                                    class="rounded-circle"
-                                    alt=""
-                                    style="width: 45px; height: 45px"
-                            />
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">Pentolame magico</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="badge badge-warning rounded-pill d-inline">In revisione</span>
-                    </td>
-                    <td class="fw-bold mb-1">Via Aldo Moro, 16 Sardinia</td>
-                    <td>
-                        <a href="/modificaannuncio" class="btn-ls"><em class="fa fa-pencil">Modifica
-                            Annuncio</em></a><br><br>
-                        <a href="/listaprenotazioni" class="btn-ls"><em class="fa fa-user">Lista
-                            Prenotazioni</em></a><br><br>
-                        <a class="btn-ls"><em class="fa fa-arrow-down">Scheda
-                            Annuncio</em></a><br><br>
-                        <a class="btn-ls btn-danger"><em class="fa fa-trash">Elimina Annuncio</em></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="d-flex align-items-center">
-                            <img
-                                    src="https://bit.ly/3VVfplh"
-                                    class="rounded-circle"
-                                    alt=""
-                                    style="width: 45px; height: 45px"
-                            />
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">Le candele italiane</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="badge badge-danger rounded-pill d-inline">Rifiutato</span>
-                    </td>
-                    <td class="fw-bold mb-1">Via Caput Lurdi, 16 Vicenza</td>
-                    <td>
-                        <a href="/modificaannuncio" class="btn-ls"><em class="fa fa-pencil">Modifica
-                            Annuncio</em></a><br><br>
-                        <a href="/listaprenotazioni" class="btn-ls"><em class="fa fa-user">Lista
-                            Prenotazioni</em></a><br><br>
-                        <a class="btn-ls"><em class="fa fa-arrow-down">Scheda
-                            Annuncio</em></a><br><br>
-                        <a class="btn-ls btn-danger"><em class="fa fa-trash">Elimina Annuncio</em></a>
-                    </td>
-                </tr>
                 </tbody>
             </table>
 
         </div>
-        <div class="panel-footer">
-            <div class="row">
-                <div class="col col-xs-4">Page 1 of 5
-                </div>
-                <div class="col col-xs-8">
-                    <ul class="pagination hidden-xs pull-right">
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                    </ul>
-                    <ul class="pagination visible-xs pull-right">
-                        <li><a href="#">«</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
-
 </div>
+
+
 
 <th:block th:include="fragments/footbar"></th:block>
 
