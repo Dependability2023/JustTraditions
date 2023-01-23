@@ -24,9 +24,9 @@
 <div class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-lg-6 mt-2 mb-tg-0 order-2 order-lg-1">
-            <a href="#" class="btn btn-outline-success">Le Mie Prenotazioni</a>
-            <a href="/modificaprofilo" class="btn btn-outline-success">Dati Personali</a>
-            <a th:if="${cliente.class.simpleName.equals('Artigiano')}" href="/mieiannunci"
+            <a href="/visualizzazionePrenotazioniPersonali" class="btn btn-outline-success">Le Mie Prenotazioni</a>
+            <a href="#" class="btn btn-outline-success">Dati Personali</a>
+            <a th:if="${cliente.class.simpleName.equals('Artigiano')}" href="/visualizzazioneListaAnnunciSottomessi"
                class="btn btn-outline-success">I miei annunci</a>
 
         </div>
