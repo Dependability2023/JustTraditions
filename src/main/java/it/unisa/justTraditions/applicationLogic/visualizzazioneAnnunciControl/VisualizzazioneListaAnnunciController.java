@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/visualizzazioneListaAnnunci")
 public class VisualizzazioneListaAnnunciController {
 
-  private static final String visualizzazioneListaAnnunciSottomessiView =
+  private static final String visualizzazioneListaAnnunciView =
       "visualizzazioneAnnunciView/visualizzazioneListaAnnunci";
 
   @Autowired
@@ -22,10 +22,9 @@ public class VisualizzazioneListaAnnunciController {
 
   @GetMapping
   public ModelAndView get(@RequestParam(required = false) Annuncio.Stato stato) {
-
     Annuncio annuncio = new Annuncio();
     annuncio.setStato(stato);
-    return new ModelAndView(visualizzazioneListaAnnunciSottomessiView)
+    return new ModelAndView(visualizzazioneListaAnnunciView)
         .addObject("annunci", annuncioDao.findAll(Example.of(annuncio)));
   }
 }
