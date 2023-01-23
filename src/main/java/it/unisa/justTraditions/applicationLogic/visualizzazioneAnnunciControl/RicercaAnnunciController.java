@@ -17,36 +17,36 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/ricercaAnnunci")
 public class RicercaAnnunciController {
 
-  private static final String ricercaAnnunciView =
-      "visualizzazioneAnnunciView/ricercaAnnunci";
+    private static final String ricercaAnnunciView =
+            "visualizzazioneAnnunciView/ricercaAnnunci";
 
-  @Autowired
-  private AnnuncioDao annuncioDao;
+    @Autowired
+    private AnnuncioDao annuncioDao;
 
-  @Autowired
-  private Province province;
+    @Autowired
+    private Province province;
 
-  @GetMapping
-  public String get(@RequestParam(defaultValue = "", required = false) String nomeAttivita,
-                    @RequestParam(defaultValue = "", required = false) String provincia,
-                    @RequestParam(defaultValue = "0", required = false) Integer pagina,
-                    Model model) {
-    if (!nomeAttivita.isBlank() && nomeAttivita.length() > 40) {
-      throw new IllegalArgumentException();
+    @GetMapping
+    public String get(@RequestParam(defaultValue = "", required = false) String nomeAttivita,
+                      @RequestParam(defaultValue = "", required = false) String provincia,
+                      @RequestParam(defaultValue = "0", required = false) Integer pagina,
+                      Model model) {
+        if (!nomeAttivita.isBlank() && nomeAttivita.length() > 40) {
+            throw new IllegalArgumentException();
+        }
+        if (!provincia.isBlank() && !province.getProvince().contains(provincia)) {
+            throw new IllegalArgumentException();
+        }
+
+        List<Annuncio> annunci =
+                annuncioDao.findByNomeAttivitaContainsIgnoreCaseAndProvinciaAttivitaContains(
+                        nomeAttivita,
+                        provincia,
+                        PageRequest.of(pagina, 20, Sort.by(Sort.Direction.ASC, "nomeAttivita"))
+                );
+
+        model.addAttribute("annunci", annunci);
+
+        return ricercaAnnunciView;
     }
-    if (!provincia.isBlank() && !province.getProvince().contains(provincia)) {
-      throw new IllegalArgumentException();
-    }
-
-    List<Annuncio> annunci =
-        annuncioDao.findByNomeAttivitaContainsIgnoreCaseAndProvinciaAttivitaContains(
-            nomeAttivita,
-            provincia,
-            PageRequest.of(pagina, 20, Sort.by(Sort.Direction.ASC, "nomeAttivita"))
-        );
-
-    model.addAttribute("annunci", annunci);
-
-    return ricercaAnnunciView;
-  }
 }
