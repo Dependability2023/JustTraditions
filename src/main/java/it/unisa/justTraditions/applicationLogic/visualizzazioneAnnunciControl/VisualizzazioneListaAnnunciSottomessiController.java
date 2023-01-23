@@ -14,14 +14,14 @@ public class VisualizzazioneListaAnnunciSottomessiController {
 
   private static final String visualizzazioneListaAnnunciSottomessiView =
       "visualizzazioneAnnunciView/visualizzazioneListaAnnunciSottomessi";
+
   @Autowired
   private SessionCliente sessionCliente;
-
 
   @GetMapping
   public ModelAndView get() {
     Artigiano artigiano = (Artigiano) sessionCliente.getCliente().get();
     return new ModelAndView(visualizzazioneListaAnnunciSottomessiView)
-            .addObject("annunci", artigiano.getAnnunci());
+        .addObject("annunci", artigiano.getAnnunci());
   }
 }

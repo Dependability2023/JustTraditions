@@ -51,13 +51,14 @@
                     </td>
                     <td class="fw-bold mb-1" th:text="${annuncio.indirizzoAttivita}"></td>
                     <td>
-                        <a href="/modificaannuncio" class="btn-ls"><em class="fa fa-pencil">Modifica
+                        <a th:if="${annuncio.getStato()} == ${annuncio.stato.RIFIUTATO} or ${annuncio.getStato()} == ${annuncio.stato.APPROVATO}" href="/modificaannuncio" class="btn-ls"><em class="fa fa-pencil">Modifica
                             Annuncio</em></a><br><br>
                         <a href="/visualizzazionePrenotazioniAnnuncio" class="btn-ls"><em class="fa fa-user">Lista
                             Prenotazioni</em></a><br><br>
                         <a th:href="@{/visualizzazioneDettagliAnnuncio(id=${annuncio.id})}" class="btn-ls"><em class="fa fa-arrow-down">Dettagli
                             Annuncio</em></a><br><br>
-                        <a href="/rimozioneAnnuncio" class="btn-ls btn-danger"><em class="fa fa-trash">Elimina Annuncio</em></a>
+
+                        <a th:href="@{/rimozioneAnnuncio(id=${annuncio.id})}"class="btn-ls btn-danger"><em class="fa fa-trash">Elimina Annuncio</em></a>
                     </td>
                 </tr>
 
