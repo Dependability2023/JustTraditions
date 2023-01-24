@@ -10,8 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/visualizzazioneAmministratori")
 public class VisualizzazioneAmministratoriController {
+
   private static final String visualizzazioneAmministratoriView =
       "gestioneProfiliView/visualizzazioneAmministratori";
+
   @Autowired
   AmministratoreDao amministratoreDao;
 

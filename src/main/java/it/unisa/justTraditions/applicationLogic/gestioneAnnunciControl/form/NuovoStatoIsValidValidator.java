@@ -16,7 +16,8 @@ public class NuovoStatoIsValidValidator
   public boolean isValid(ModificaStatoAnnuncioForm modificaStatoAnnuncioForm,
                          ConstraintValidatorContext constraintValidatorContext) {
     Annuncio.Stato stato =
-        annuncioDao.findById(modificaStatoAnnuncioForm.getIdAnnuncio()).get().getStato();
+        annuncioDao.findById(modificaStatoAnnuncioForm.getIdAnnuncio())
+            .orElseThrow(IllegalArgumentException::new).getStato();
     Annuncio.Stato nuovoStato = modificaStatoAnnuncioForm.getNuovoStato();
     return !((stato == Annuncio.Stato.PROPOSTO
         && nuovoStato != Annuncio.Stato.IN_REVISIONE)

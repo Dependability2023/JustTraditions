@@ -18,27 +18,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/aggiuntaAmministratore")
 public class AggiuntaAmministratoreController {
 
-  private static final String aggiuntaAmministratore = "gestioneProfiliView/aggiuntaAmministratore";
-  private static final String visualizzazioneAmministratori = "/visualizzazioneAmministratori";
+  private static final String aggiuntaAmministratoreView =
+      "gestioneProfiliView/aggiuntaAmministratore";
+  private static final String visualizzazioneAmministratoriController =
+      "/visualizzazioneAmministratori";
 
   @Autowired
   private PasswordEncryptor passwordEncryptor;
+
   @Autowired
   AmministratoreDao amministratoreDao;
 
 
   @GetMapping
   public String get(@ModelAttribute AggiuntaAmministratoreForm aggiuntaAmministratoreForm) {
-    return aggiuntaAmministratore;
+    return aggiuntaAmministratoreView;
   }
 
   @PostMapping
   public String post(@ModelAttribute @Valid AggiuntaAmministratoreForm aggiuntaAmministratoreForm,
                      BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
-      return aggiuntaAmministratore;
+      return aggiuntaAmministratoreView;
     }
-
 
     Amministratore amministratore = new Amministratore(
         aggiuntaAmministratoreForm.getEmail(),
@@ -48,7 +50,6 @@ public class AggiuntaAmministratoreController {
     );
     amministratoreDao.save(amministratore);
 
-
-    return "redirect:" + visualizzazioneAmministratori;
+    return "redirect:" + visualizzazioneAmministratoriController;
   }
 }

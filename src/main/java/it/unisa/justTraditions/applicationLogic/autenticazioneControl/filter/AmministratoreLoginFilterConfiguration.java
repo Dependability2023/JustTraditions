@@ -17,7 +17,8 @@ public class AmministratoreLoginFilterConfiguration {
         = new FilterRegistrationBean<>();
 
     registrationBean.setFilter(amministratoreLoginFilter);
-    registrationBean.addUrlPatterns("/modificaStatoAnnuncio");
+    registrationBean.addUrlPatterns("/modificaStatoAnnuncio", "/rimozioneAmministratore",
+        "/visualizzazioneAmministratori");
 
     return registrationBean;
   }

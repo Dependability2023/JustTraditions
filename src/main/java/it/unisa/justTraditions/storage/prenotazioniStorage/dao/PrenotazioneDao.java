@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PrenotazioneDao
     extends JpaRepository<Prenotazione, Long> {
-  List<Prenotazione> finByVisitaAnnuncioAndDataVisita(Annuncio annuncio, LocalDate dataVisita);
+  List<Prenotazione> findByVisitaAnnuncioAndDataVisita(Annuncio annuncio, LocalDate dataVisita);
 }
