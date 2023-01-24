@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-@RequestMapping("/RimozioneAmministratore")
+@RequestMapping("/rimozioneAmministratore")
 public class RimozioneAmministratoreController {
   private static final String visualizzazioneAmministratori =
       "redirect:/visualizzazioneAmministratori";
