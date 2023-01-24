@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/modificaStatoAnnuncio")
@@ -38,15 +37,23 @@ public class ModificaStatoAnnuncioController {
   private SessionAmministratore sessionAmministratore;
 
   @GetMapping
-  public ModelAndView get(@RequestParam Long idAnnuncio) {
-    return new ModelAndView(modificaStatoAnnuncioView)
-        .addObject("annuncio", annuncioDao.findById(idAnnuncio).get());
+  public String get(@RequestParam Long idAnnuncio,
+                    @ModelAttribute ModificaStatoAnnuncioForm modificaStatoAnnuncioForm,
+                    Model model) {
+    Annuncio annuncio = annuncioDao.findById(idAnnuncio).orElseThrow(IllegalArgumentException::new);
+
+    modificaStatoAnnuncioForm.setIdAnnuncio(idAnnuncio);
+
+    model.addAttribute("annuncio", annuncio);
+
+    return modificaStatoAnnuncioView;
   }
 
   @PostMapping
   public String post(@ModelAttribute @Valid ModificaStatoAnnuncioForm modificaStatoAnnuncioForm,
                      BindingResult bindingResult, Model model) {
-    Annuncio annuncio = annuncioDao.findById(modificaStatoAnnuncioForm.getIdAnnuncio()).get();
+    Annuncio annuncio = annuncioDao.findById(modificaStatoAnnuncioForm.getIdAnnuncio())
+        .orElseThrow(IllegalArgumentException::new);
 
     if (bindingResult.hasErrors()) {
       model.addAttribute("annuncio", annuncio);
