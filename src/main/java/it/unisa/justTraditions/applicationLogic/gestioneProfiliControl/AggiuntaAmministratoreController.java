@@ -42,7 +42,7 @@ public class AggiuntaAmministratoreController {
 
     Amministratore amministratore = new Amministratore(
         aggiuntaAmministratoreForm.getEmail(),
-        aggiuntaAmministratoreForm.getPassword(),
+        passwordEncryptor.encryptPassword(aggiuntaAmministratoreForm.getPassword()),
         aggiuntaAmministratoreForm.getNome(),
         aggiuntaAmministratoreForm.getCognome()
     );
