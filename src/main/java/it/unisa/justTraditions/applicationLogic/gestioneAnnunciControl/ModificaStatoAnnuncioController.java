@@ -39,8 +39,13 @@ public class ModificaStatoAnnuncioController {
 
   @GetMapping
   public ModelAndView get(@RequestParam Long idAnnuncio) {
+    Annuncio annuncio = annuncioDao.findById(idAnnuncio).get();
+    ModificaStatoAnnuncioForm modificaStatoAnnuncioForm = new ModificaStatoAnnuncioForm();
+    modificaStatoAnnuncioForm.setIdAnnuncio(idAnnuncio);
+    modificaStatoAnnuncioForm.setNuovoStato(annuncio.getStato());
     return new ModelAndView(modificaStatoAnnuncioView)
-        .addObject("annuncio", annuncioDao.findById(idAnnuncio).get());
+        .addObject("annuncio", annuncio)
+        .addObject("modificaStatoAnnuncioForm", modificaStatoAnnuncioForm);
   }
 
   @PostMapping
