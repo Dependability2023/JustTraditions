@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="it">
 
 <head>
-  <meta charset="utf-8">
   <th:block th:include="fragments/head"></th:block>
   <title>Just Traditions - Admin</title>
 
@@ -24,7 +23,7 @@
         </li>
 
         <li class="sidebar-item active">
-          <a class="sidebar-link" href="/adminpage">
+          <a class="sidebar-link" href="/homeAmministratore">
             <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
           </a>
         </li>
@@ -35,13 +34,13 @@
         </li>
 
         <li class="sidebar-item">
-          <a class="sidebar-link" href="/gestioneamministratori">
+          <a class="sidebar-link" href="/visualizzazioneAmministratori">
             <i class="align-middle" data-feather="users"></i> <span class="align-middle">Gestione Amministratori</span>
           </a>
         </li>
 
         <li class="sidebar-item">
-          <a class="sidebar-link" href="/gestioneamministratori">
+          <a class="sidebar-link" href="/visualizzazioneListaAnnunci">
             <i class="align-middle" data-feather="inbox"></i> <span class="align-middle">Annunci</span>
           </a>
         </li>
@@ -59,19 +58,10 @@
 
       <div class="navbar-collapse collapse">
         <ul class="navbar-nav navbar-align">
-          <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-            <img src="/css/admin/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Domenico Avella" /> <span class="text-dark">Domenico Avella</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-end">
-            <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-            <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-            <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Log out</a>
-          </div>
-          </li>
+
+            <img src="/css/admin/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" /> <span th:text="${amministratore.nome} + ' '+ ${amministratore.cognome}"></span>
+
+
         </ul>
       </div>
     </nav>
@@ -90,7 +80,7 @@
               <h5 class="card-title mb-0">Administrators</h5>
             </div>
             <table class="table table-hover my-0">
-              <button type="button" onclick="location.href='/listaannunci'"
+              <button type="button" onclick="location.href='/aggiuntaAmministratore'"
                       class="btn btn-sm btn-success btn-create">Nuovo Amministratore
               </button>
               <thead>
@@ -102,46 +92,11 @@
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>Vanessa</td>
-                <td class="d-none d-xl-table-cell">Tucker</td>
-                <td class="d-none d-xl-table-cell">vanessa.t@email.com</td>
-                <td><a class="badge bg-danger" data-feather="trash-2" ></a></td>
-              </tr>
-              <tr>
-                <td>Vanessa</td>
-                <td class="d-none d-xl-table-cell">Tucker</td>
-                <td class="d-none d-xl-table-cell">vanessa.t@email.com</td>
-                <td><a class="badge bg-danger" data-feather="trash-2" ></a></td>
-              </tr>
-              <tr>
-                <td>Vanessa</td>
-                <td class="d-none d-xl-table-cell">Tucker</td>
-                <td class="d-none d-xl-table-cell">vanessa.t@email.com</td>
-                <td><a class="badge bg-danger" data-feather="trash-2" ></a></td>
-              </tr><tr>
-                <td>Vanessa</td>
-                <td class="d-none d-xl-table-cell">Tucker</td>
-                <td class="d-none d-xl-table-cell">vanessa.t@email.com</td>
-                <td><a class="badge bg-danger" data-feather="trash-2" ></a></td>
-              </tr>
-              <tr>
-                <td>Vanessa</td>
-                <td class="d-none d-xl-table-cell">Tucker</td>
-                <td class="d-none d-xl-table-cell">vanessa.t@email.com</td>
-                <td><a class="badge bg-danger" data-feather="trash-2" ></a></td>
-              </tr>
-              <tr>
-                <td>Vanessa</td>
-                <td class="d-none d-xl-table-cell">Tucker</td>
-                <td class="d-none d-xl-table-cell">vanessa.t@email.com</td>
-                <td><a class="badge bg-danger" data-feather="trash-2" ></a></td>
-              </tr>
-              <tr>
-                <td>Vanessa</td>
-                <td class="d-none d-xl-table-cell">Tucker</td>
-                <td class="d-none d-xl-table-cell">vanessa.t@email.com</td>
-                <td><a class="badge bg-danger" data-feather="trash-2" ></a></td>
+              <tr th:each="admin :${Amministratori} ">
+                <td th:text="${admin.nome}"></td>
+                <td class="d-none d-xl-table-cell" th:text="${admin.cognome}"></td>
+                <td class="d-none d-xl-table-cell" th:text="${admin.email}"></td>
+                <td><a th:href="@{/rimozioneAmministratore(id=${amministratore.id})}" class="badge bg-danger"  ><img src="https://img.icons8.com/ios/16/FFFFFF/delete--v1.png"/></a></td>
 
               </tr>
 
@@ -161,7 +116,10 @@
 
 
 
+<th:block th:include="fragments/footbar"></th:block>
 
+<th:block th:include="fragments/scripts"></th:block>
+<script src="/js/navbar.js"></script>
 </body>
 
 </html>
