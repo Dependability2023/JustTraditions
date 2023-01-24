@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/visualizzazioneSchedaAnnuncio")
-public class VisualizzazioneSchedaAnnuncioController {
+@RequestMapping("/visualizzazioneDettagliAnnuncio")
+public class VisualizzazioneDettagliAnnuncioController {
 
   private static final String visualizzazioneSchedaAnnuncioView =
-      "visualizzazioneAnnunciView/visualizzazioneSchedaAnnuncio";
+      "visualizzazioneAnnunciView/visualizzazioneDettagliAnnuncio";
 
   @Autowired
   private AnnuncioDao annuncioDao;

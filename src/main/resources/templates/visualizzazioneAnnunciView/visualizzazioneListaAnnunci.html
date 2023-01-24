@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+
+<head>
+  <meta charset="utf-8">
+  <th:block th:include="fragments/head"></th:block>
+  <title>Just Traditions - Admin</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/@adminkit/core@latest/dist/css/app.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="wrapper">
+  <nav id="sidebar" class="sidebar js-sidebar">
+    <div class="sidebar-content js-simplebar">
+      <a class="sidebar-brand" href="adminPage.html">
+        <span class="align-middle">Admin Just Traditions</span>
+      </a>
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-header">
+          Pages
+        </li>
+
+        <li class="sidebar-item active">
+          <a class="sidebar-link" href="adminPage.html">
+            <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="#">
+            <i class="align-middle" data-feather="log-out"></i> <span class="align-middle">Log out</span>
+          </a>
+        </li>
+
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="/gestioneamministratori">
+            <i class="align-middle" data-feather="users"></i> <span class="align-middle">Gestione Amministratori</span>
+          </a>
+        </li>
+
+        <li class="sidebar-item">
+          <a class="sidebar-link" href="/gestioneamministratori">
+            <i class="align-middle" data-feather="inbox"></i> <span class="align-middle">Annunci</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+
+  </nav>
+
+  <div class="main">
+    <nav class="navbar navbar-expand navbar-light navbar-bg">
+      <a class="sidebar-toggle js-sidebar-toggle">
+        <i class="hamburger align-self-center"></i>
+      </a>
+
+      <div class="navbar-collapse collapse">
+        <ul class="navbar-nav navbar-align">
+          <img src="/css/admin/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"  /> <span class="text-dark">Domenico Avella</span>
+
+
+        </ul>
+      </div>
+    </nav>
+
+    <main class="content">
+      <div class="container-fluid p-0">
+
+        <h1 class="h3 mb-3"><strong>Announcements</strong> Dashboard</h1>
+
+
+
+        <div class="row">
+
+          <div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2">
+            <div class="card flex-fill w-100">
+              <div class="card-header">
+
+                <h5 class="card-title mb-0">Latest Announcements</h5>
+              </div>
+              <table class="table align-middle mb-0 bg-white">
+                <thead class="bg-light">
+                <tr>
+                  <th>Nome attività</th>
+                  <th>Stato</th>
+                  <th>Indirizzo</th>
+                  <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="annuncio :${annunci}">
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="ms-3">
+                        <p class="fw-bold mb-1" th:text="${annuncio.nomeAttivita}"></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span th:if="${annuncio.getStato()} == ${annuncio.stato.PROPOSTO}" class="badge badge-primary rounded-pill d-inline">PROPOSTO</span>
+                    <span th:if="${annuncio.getStato()} == ${annuncio.stato.IN_REVISIONE}" class="badge badge-warning rounded-pill d-inline">IN REVISIONE</span>
+                    <span th:if="${annuncio.getStato()} == ${annuncio.stato.APPROVATO}" class="badge badge-success rounded-pill d-inline">APPROVATO</span>
+                    <span th:if="${annuncio.getStato()} == ${annuncio.stato.RIFIUTATO}" class="badge badge-danger rounded-pill d-inline">RIFIUTATO</span>
+                  </td>
+                  <td class="fw-bold mb-1" th:text="${annuncio.indirizzoAttivita}"></td>
+                  <td>
+                    <a th:href="@{/modificaStatoAnnuncio(id=${annuncio.id})}"href="/modificaannuncio" class="btn-ls"><em class="fa fa-pencil">Modifica
+                      Stato</em></a><br><br>
+
+
+
+
+                  </td>
+                </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </main>
+
+
+  </div>
+</div>
+
+<script src="https://unpkg.com/@adminkit/core@latest/dist/js/app.js"></script>
+
+
+
+
+
+
+
+</body>
+
+</html>
