@@ -9,15 +9,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Documented
-@Constraint(validatedBy = DataVisitaIsValidValidator.class)
+@Constraint(validatedBy = PrenotazioneIsValidValidator.class)
 @Target({ElementType.TYPE, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface DataVisitaIsValidConstraint {
-
-  String message() default "Data visita non valida";
+public @interface PrenotazioneIsValidConstraint {
+  String message() default "Prenotazione non valida";
 
   Class<?>[] groups() default {};
 
   Class<? extends Payload>[] payload() default {};
-
 }
