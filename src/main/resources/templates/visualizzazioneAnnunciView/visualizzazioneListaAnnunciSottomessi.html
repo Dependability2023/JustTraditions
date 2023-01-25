@@ -50,10 +50,11 @@
                         <span th:if="${annuncio.getStato()} == ${annuncio.stato.RIFIUTATO}" class="badge badge-danger rounded-pill d-inline">RIFIUTATO</span>
                     </td>
                     <td class="fw-bold mb-1" th:text="${annuncio.indirizzoAttivita}"></td>
+                    <td th:if="${annuncio.getStato()}== ${annuncio.stato.RIFIUTATO}" th:text="${annuncio.motivoDelRifiuto}"></td>
                     <td>
                         <a th:if="${annuncio.getStato()} == ${annuncio.stato.RIFIUTATO} or ${annuncio.getStato()} == ${annuncio.stato.APPROVATO}" th:href="@{/modificaAnnuncio(id=${annuncio.id})}" class="btn-ls"><em class="fa fa-pencil">Modifica
                             Annuncio</em></a><br><br>
-                        <a href="/visualizzazionePrenotazioniAnnuncio" class="btn-ls"><em class="fa fa-user">Lista
+                        <a th:if="${annuncio.getStato()}== ${annuncio.stato.APPROVATO}" href="/visualizzazionePrenotazioniAnnuncio" class="btn-ls"><em class="fa fa-user">Lista
                             Prenotazioni</em></a><br><br>
                         <a th:href="@{/visualizzazioneDettagliAnnuncio(id=${annuncio.id})}" class="btn-ls"><em class="fa fa-arrow-down">Dettagli
                             Annuncio</em></a><br><br>
