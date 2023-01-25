@@ -2,6 +2,7 @@ package it.unisa.justTraditions.storage.prenotazioniStorage.dao;
 
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Visita;
+import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Cliente;
 import it.unisa.justTraditions.storage.prenotazioniStorage.entity.Prenotazione;
 import java.time.LocalDate;
 import java.util.List;
@@ -15,4 +16,6 @@ public interface PrenotazioneDao
                                                        Pageable pageable);
 
   List<Prenotazione> findByVisitaAndDataVisita(Visita visita, LocalDate dataVisita);
+
+  Page<Prenotazione> findByCliente(Cliente cliente, Pageable pageable);
 }

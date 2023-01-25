@@ -51,16 +51,21 @@ public class VisualizzazionePrenotazioniAnnuncioController {
     if (!annuncio.getArtigiano().equals(sessionCliente.getCliente().get())) {
       throw new IllegalArgumentException();
     }
-    Page<Prenotazione> prenotazionePage =
-        prenotazioneDao.findByVisitaAnnuncioAndDataVisita(annuncio, dataVisita,
-            PageRequest.of(pagina, 20, Sort.by(
-                Sort.Direction.DESC, "dataVisita")));
+
+    Page<Prenotazione> prenotazionePage = prenotazioneDao.findByVisitaAnnuncioAndDataVisita(
+        annuncio,
+        dataVisita,
+        PageRequest.of(
+            pagina,
+            20,
+            Sort.by(Sort.Direction.DESC, "dataVisita")
+        )
+    );
 
     int totalPages = prenotazionePage.getTotalPages();
     if (totalPages <= pagina) {
       throw new IllegalArgumentException();
     }
-
 
     model.addAttribute("prenotazioni", prenotazionePage.getContent());
     model.addAttribute("pagina", pagina);

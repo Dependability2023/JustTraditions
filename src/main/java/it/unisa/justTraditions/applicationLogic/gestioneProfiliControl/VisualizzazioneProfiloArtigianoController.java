@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/VisualizzazioneProfiloArtigiano")
+@RequestMapping("/visualizzazioneProfiloArtigiano")
 public class VisualizzazioneProfiloArtigianoController {
+
   private static final String visualizzazioneProfiloArtigianoView =
       "gestioneProfiliView/visualizzazioneProfiloArtigiano";
+
   @Autowired
-  ArtigianoDao artigianoDao;
+  private ArtigianoDao artigianoDao;
 
   @GetMapping
   public String get(@RequestParam Long id, Model model) {

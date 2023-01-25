@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/CancellazioneAccount")
-public class CancellazioneAccountContriller {
-
+@RequestMapping("/cancellazioneAccount")
+public class CancellazioneAccountController {
 
   private static final String homeController =
       "/";
@@ -25,12 +24,9 @@ public class CancellazioneAccountContriller {
 
   @GetMapping
   public String get() {
-
-
     Cliente cliente = sessionCliente.getCliente().get();
     sessionCliente.setCliente(null);
     clienteDao.delete(cliente);
-
 
     return "redirect:" + homeController;
   }
