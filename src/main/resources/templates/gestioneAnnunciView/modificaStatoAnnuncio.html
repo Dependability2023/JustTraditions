@@ -133,7 +133,7 @@
                                     <option th:value="${annuncio.stato.IN_REVISIONE}">IN REVISIONE</option>
                                     <option th:value="${annuncio.stato.RIFIUTATO}">RIFIUTATO</option>
                                 </select>
-                                <div id="divMotivo">Motivo del rifiuto<br><input type="text-area" th:field="*{motivoDelRifiuto}"><br></div>
+                                <div id="divMotivo">Motivo del rifiuto<br><textarea type="text-area" th:field="*{motivoDelRifiuto}"></textarea></div>
                                 <input type="hidden" th:field="*{idAnnuncio}">
                         </form>
                         </div>
