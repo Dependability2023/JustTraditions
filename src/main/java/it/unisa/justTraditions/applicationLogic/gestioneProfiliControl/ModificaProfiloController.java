@@ -5,9 +5,11 @@ import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.Sessi
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.ClienteDao;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Artigiano;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Cliente;
+import jakarta.validation.Valid;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,8 +44,13 @@ public class ModificaProfiloController {
   }
 
   @PostMapping
-  public String post(@ModelAttribute RegistrazioneForm registrazioneForm) {
-
+  public String post(@ModelAttribute @Valid RegistrazioneForm registrazioneForm,
+                     BindingResult bindingResult) {
+    if (bindingResult.hasFieldErrors("nome") || bindingResult.hasFieldErrors("cognome") ||
+        bindingResult.hasFieldErrors("email") || bindingResult.hasFieldErrors("codiceFiscale") ||
+        bindingResult.hasFieldErrors("iban")) {
+      return modificaProfiloView;
+    }
     Optional<Cliente> optionalCliente = clienteDao.findByEmail(registrazioneForm.getEmail());
     Cliente cliente = optionalCliente.get();
 
@@ -64,10 +71,8 @@ public class ModificaProfiloController {
     }
 
     if (cliente.getClass() == Artigiano.class) {
-      registrazioneForm.setArtigiano(true);
+
       ((Artigiano) cliente).setIban(registrazioneForm.getIban());
-    } else {
-      registrazioneForm.setArtigiano(false);
     }
     clienteDao.save(cliente);
     return modificaProfiloView;
