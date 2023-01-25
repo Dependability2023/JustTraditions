@@ -43,8 +43,8 @@
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
         <div class="container">
-                <div class="content pt-4 pt-lg-0">
-                    <h3><th:block th:text="${annuncio.nomeAttivita}"></th:block></h3>
+            <div class="content pt-4 pt-lg-0">
+                <h3><th:block th:text="${annuncio.nomeAttivita}"></th:block></h3>
             </div>
 
             <div class="row">
@@ -113,43 +113,29 @@
                     <ul class="nav nav-tabs flex-column">
                         <li class="nav-item" data-aos="fade-up">
                             <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">
-                                <h4><img src="https://img.icons8.com/color/30/null/calendar--v3.png"/>  Data</h4>
+                                <h4><img src="https://img.icons8.com/color/30/null/calendar--v3.png"/>Stato</h4>
                                 <p></p>
                             </a>
                         </li>
-                        <li class="nav-item mt-2" data-aos="fade-up" data-aos-delay="200">
-                            <a class="nav-link" data-bs-toggle="tab" href="#tab-2">
-                                <h4><img src="https://img.icons8.com/office/30/null/clock--v1.png"/>   Fascia oraria</h4>
-                                <p></p>
-                            </a>
-                        </li>
-                        <li class="nav-item mt-2" data-aos="fade-up" data-aos-delay="200">
-                            <a class="nav-link" data-bs-toggle="tab" href="#tab-3">
-                                <h4><img src="https://img.icons8.com/color/30/null/queue-skin-type-4.png"/>  Numero persone</h4>
-                                <p></p>
-                            </a>
-                        </li>
-                        <button type="button" onclick="location.href='#'"
-                                class="btn btn-sm btn-primary btn-create">Prenota
+
+                        <button type="submit" form="formModificaStato"
+                                class="btn btn-sm btn-primary btn-create">Modifica Stato
                         </button>
                     </ul>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in">
                     <div class="tab-content">
                         <div class="tab-pane active show" id="tab-1">
-                            <form action = "" method = "get">
-                                Data<br><input type="date" name="mydatetime"><br>
-                            </form>
-                        </div>
-                        <div class="tab-pane" id="tab-2">
-                            <form action = "" method = "get">
-                                Fascia oraria<br><input type="time" name="mydatetime"><br>
-                            </form>
-                        </div>
-                        <div class="tab-pane" id="tab-3">
-                            <form action = "" method = "get">
-                                Numero persone<br><input type="number"/><br>
-                            </form>
+                            <form id="formModificaStato" action = "/modificaStatoAnnuncio" method = "post" th:object="${modificaStatoAnnuncioForm}">
+                                <select th:field="*{nuovoStato}">
+                                    <option th:value="''">Nuovo Stato</option>
+                                    <option th:value="${annuncio.stato.APPROVATO}">APPROVATO</option>
+                                    <option th:value="${annuncio.stato.IN_REVISIONE}">IN REVISIONE</option>
+                                    <option th:value="${annuncio.stato.RIFIUTATO}">RIFIUTATO</option>
+                                </select>
+                                <div id="divMotivo">Motivo del rifiuto<br><input type="text-area" th:field="*{motivoDelRifiuto}"><br></div>
+                                <input type="hidden" th:field="*{idAnnuncio}">
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -213,6 +199,7 @@
 <script src="/carousel/js/owl.carousel.min.js"></script>
 <script src="/carousel/js/main.js"></script>
 <script src="/assets/js/main.js"></script>
+<script src="/js/modificaStatoAnnuncio.js"></script>
 
 
 </body>
