@@ -17,7 +17,8 @@ public class ClienteLoginFilterConfiguration {
         = new FilterRegistrationBean<>();
 
     registrationBean.setFilter(clienteLoginFilter);
-    registrationBean.addUrlPatterns("/modificaProfilo", "/visualizzazioneProfiloPersonale");
+    registrationBean.addUrlPatterns("/modificaProfilo", "/visualizzazioneProfiloPersonale",
+        "/visualizzazionePrenotazioniPersonali");
 
     return registrationBean;
   }
