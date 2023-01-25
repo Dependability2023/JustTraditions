@@ -24,7 +24,7 @@
         </li>
 
         <li class="sidebar-item active">
-          <a class="sidebar-link" href="adminPage.html">
+          <a class="sidebar-link" href="/homeAmministratore">
             <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
           </a>
         </li>
@@ -41,7 +41,7 @@
         </li>
 
         <li class="sidebar-item">
-          <a class="sidebar-link" href="/gestioneamministratori">
+          <a class="sidebar-link" href="/visualizzazioneAmministratori">
             <i class="align-middle" data-feather="inbox"></i> <span class="align-middle">Annunci</span>
           </a>
         </li>
@@ -78,8 +78,17 @@
           <div class="col-12 col-md-12 col-xxl-6 d-flex order-3 order-xxl-2">
             <div class="card flex-fill w-100">
               <div class="card-header">
+                <form method="get" action="/visualizzazioneListaAnnunci">
 
-                <h5 class="card-title mb-0">Latest Announcements</h5>
+                <select name="stato">
+                  <option value="">Tutti gli stati</option>
+                  <option value="PROPOSTO">Proposto</option>
+                  <option value="APPROVATO">Approvato</option>
+                  <option value="IN_REVISIONE">In revisione</option>
+                  <option value="RIFIUTATO">Rifiutato</option>
+                </select>
+                  <input type="submit">
+                </form>
               </div>
               <table class="table align-middle mb-0 bg-white">
                 <thead class="bg-light">
@@ -107,7 +116,7 @@
                   </td>
                   <td class="fw-bold mb-1" th:text="${annuncio.indirizzoAttivita}"></td>
                   <td>
-                    <a th:href="@{/modificaStatoAnnuncio(id=${annuncio.id})}"href="/modificaannuncio" class="btn-ls"><em class="fa fa-pencil">Modifica
+                    <a th:href="@{/modificaStatoAnnuncio(idAnnuncio=${annuncio.id})}" class="btn-ls"><em class="fa fa-pencil">Modifica
                       Stato</em></a><br><br>
 
 
