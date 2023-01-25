@@ -7,8 +7,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @PrenotazioneIsValidConstraint
 public class PrenotazioneForm {
+
   @NotNull
   private Long idVisita;
+
   @NotNull
   @Min(1)
   private Integer numeroPersone;
@@ -18,6 +20,12 @@ public class PrenotazioneForm {
   private LocalDate dataVisita;
 
   public PrenotazioneForm() {
+  }
+
+  public PrenotazioneForm(Long idVisita, Integer numeroPersone, LocalDate dataVisita) {
+    this.idVisita = idVisita;
+    this.numeroPersone = numeroPersone;
+    this.dataVisita = dataVisita;
   }
 
   public Long getIdVisita() {
@@ -42,5 +50,15 @@ public class PrenotazioneForm {
 
   public void setDataVisita(LocalDate dataVisita) {
     this.dataVisita = dataVisita;
+  }
+
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("PrenotazioneForm{");
+    sb.append("idVisita=").append(idVisita);
+    sb.append(", numeroPersone=").append(numeroPersone);
+    sb.append(", dataVisita=").append(dataVisita);
+    sb.append('}');
+    return sb.toString();
   }
 }

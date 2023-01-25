@@ -28,28 +28,23 @@ public class VisualizzazioneListaAnnunciController {
   public ModelAndView get(@RequestParam(required = false) Annuncio.Stato stato,
                           @RequestParam(defaultValue = "0", required = false) Integer pagina,
                           Model model) {
-
-
     Annuncio annuncio = new Annuncio();
-    if (stato != null) {
-      annuncio.setStato(stato);
-    }
+    annuncio.setStato(stato);
 
-    Page<Annuncio> annuncioPage =
-        annuncioDao.findAll(Example.of(annuncio),
-            PageRequest.of(pagina, 20, Sort.by(Sort.Direction.DESC, "id"))
-        );
+    Page<Annuncio> annuncioPage = annuncioDao.findAll(
+        Example.of(annuncio),
+        PageRequest.of(pagina, 20, Sort.by(Sort.Direction.DESC, "id"))
+    );
 
     int totalPages = annuncioPage.getTotalPages();
     if (totalPages <= pagina) {
       throw new IllegalArgumentException();
     }
+
     model.addAttribute("annunci", annuncioPage.getContent());
     model.addAttribute("pagina", pagina);
     model.addAttribute("pagineTotali", totalPages);
 
-
     return new ModelAndView(visualizzazioneListaAnnunciView);
-
   }
 }

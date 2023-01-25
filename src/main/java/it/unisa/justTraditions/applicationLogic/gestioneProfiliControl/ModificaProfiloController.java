@@ -6,7 +6,6 @@ import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.ClienteDao;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Artigiano;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Cliente;
 import jakarta.validation.Valid;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,8 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ModificaProfiloController {
 
   private static final String modificaProfiloView = "gestioneProfiliView/modificaProfilo";
+  private static final String visualizzazioneProfiloPersonaleController =
+      "/visualizzazioneProfiloPersonale";
+
   @Autowired
   private SessionCliente sessionCliente;
+
   @Autowired
   private ClienteDao clienteDao;
 
@@ -46,35 +49,24 @@ public class ModificaProfiloController {
   @PostMapping
   public String post(@ModelAttribute @Valid RegistrazioneForm registrazioneForm,
                      BindingResult bindingResult) {
-    if (bindingResult.hasFieldErrors("nome") || bindingResult.hasFieldErrors("cognome") ||
-        bindingResult.hasFieldErrors("email") || bindingResult.hasFieldErrors("codiceFiscale") ||
-        bindingResult.hasFieldErrors("iban")) {
+    if (bindingResult.hasFieldErrors("nome") || bindingResult.hasFieldErrors("cognome")
+        || bindingResult.hasFieldErrors("email") || bindingResult.hasFieldErrors("codiceFiscale")
+        || bindingResult.hasFieldErrors("artigiano") || bindingResult.hasFieldErrors("iban")
+        || bindingResult.hasGlobalErrors()) {
       return modificaProfiloView;
     }
-    Optional<Cliente> optionalCliente = clienteDao.findByEmail(registrazioneForm.getEmail());
-    Cliente cliente = optionalCliente.get();
 
-    if (!cliente.getNome().equals(registrazioneForm.getNome())) {
-      cliente.setNome(registrazioneForm.getNome());
-    }
-
-    if (!cliente.getCognome().equals(registrazioneForm.getCognome())) {
-      cliente.setCognome(registrazioneForm.getCognome());
-    }
-
-    if (!cliente.getEmail().equals(registrazioneForm.getEmail())) {
-      cliente.setEmail(registrazioneForm.getEmail());
-    }
-
-    if (!cliente.getCodiceFiscale().equals(registrazioneForm.getCodiceFiscale())) {
-      cliente.setCodiceFiscale(registrazioneForm.getCodiceFiscale());
-    }
-
+    Cliente cliente = sessionCliente.getCliente().get();
+    cliente.setNome(registrazioneForm.getNome());
+    cliente.setCognome(registrazioneForm.getCognome());
+    cliente.setEmail(registrazioneForm.getEmail());
+    cliente.setCodiceFiscale(registrazioneForm.getCodiceFiscale());
     if (cliente.getClass() == Artigiano.class) {
-
       ((Artigiano) cliente).setIban(registrazioneForm.getIban());
     }
+
     clienteDao.save(cliente);
-    return modificaProfiloView;
+
+    return "redirect:" + visualizzazioneProfiloPersonaleController;
   }
 }
