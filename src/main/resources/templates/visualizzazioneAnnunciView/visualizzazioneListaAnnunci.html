@@ -23,7 +23,7 @@
           Pages
         </li>
 
-        <li class="sidebar-item active">
+        <li class="sidebar-item">
           <a class="sidebar-link" href="/homeAmministratore">
             <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
           </a>
@@ -40,7 +40,7 @@
           </a>
         </li>
 
-        <li class="sidebar-item">
+        <li class="sidebar-item active">
           <a class="sidebar-link" href="/visualizzazioneAmministratori">
             <i class="align-middle" data-feather="inbox"></i> <span class="align-middle">Annunci</span>
           </a>
@@ -59,9 +59,9 @@
 
       <div class="navbar-collapse collapse">
         <ul class="navbar-nav navbar-align">
-          <img src="/css/admin/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1"  /> <span class="text-dark">Domenico Avella</span>
-
-
+          <a><strong>BENVENUTO</strong>
+            <span th:text="${amministratore.nome} + ' '+ ${amministratore.cognome}"></span>
+          </a>
         </ul>
       </div>
     </nav>
