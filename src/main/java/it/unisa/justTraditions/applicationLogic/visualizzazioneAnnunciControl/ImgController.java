@@ -21,7 +21,7 @@ public class ImgController {
   @GetMapping
   public void get(@RequestParam Long id, HttpServletResponse response)
       throws ServletException, IOException {
-    Foto foto = fotoDao.findById(id).get();
+    Foto foto = fotoDao.findById(id).orElseThrow(IllegalArgumentException::new);
 
     response.setContentType("image/jpeg");
     response.getOutputStream().write(foto.getDati());

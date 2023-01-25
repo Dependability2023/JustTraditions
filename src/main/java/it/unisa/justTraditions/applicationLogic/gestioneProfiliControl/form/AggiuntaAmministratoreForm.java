@@ -5,8 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-
 public class AggiuntaAmministratoreForm {
+  
   @NotBlank(message = "Nome vuoto")
   @Size(max = 30, message = "Nome troppo lungo")
   private String nome;
@@ -15,10 +15,10 @@ public class AggiuntaAmministratoreForm {
   @Size(max = 30, message = "Cognome troppo lungo")
   private String cognome;
 
-
   @NotBlank(message = "Email vuota")
   @Email(message = "Formato email errato")
   @Size(max = 319, message = "Email troppo lunga")
+  @ExsistEmailAmministratoreConstraint
   private String email;
 
   @NotBlank(message = "Password vuota")
@@ -32,6 +32,13 @@ public class AggiuntaAmministratoreForm {
 
 
   public AggiuntaAmministratoreForm() {
+  }
+
+  public AggiuntaAmministratoreForm(String nome, String cognome, String email, String password) {
+    this.nome = nome;
+    this.cognome = cognome;
+    this.email = email;
+    this.password = password;
   }
 
   public String getNome() {
@@ -64,5 +71,16 @@ public class AggiuntaAmministratoreForm {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("AggiuntaAmministratoreForm{");
+    sb.append("nome='").append(nome).append('\'');
+    sb.append(", cognome='").append(cognome).append('\'');
+    sb.append(", email='").append(email).append('\'');
+    sb.append(", password='").append(password).append('\'');
+    sb.append('}');
+    return sb.toString();
   }
 }
