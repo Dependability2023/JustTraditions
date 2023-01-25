@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class VisualizzazioneDettagliAnnuncioController {
 
   private static final String visualizzazioneSchedaAnnuncioView =
-      "visualizzazioneAnnunciView/visualizzazioneDettagliAnnuncio";
+          "visualizzazioneAnnunciView/visualizzazioneDettagliAnnuncio";
 
   @Autowired
   private AnnuncioDao annuncioDao;
@@ -21,7 +21,7 @@ public class VisualizzazioneDettagliAnnuncioController {
   @GetMapping
   public ModelAndView get(@RequestParam Long id) {
     return new ModelAndView(visualizzazioneSchedaAnnuncioView)
-        .addObject(annuncioDao.findById(id).orElseThrow(IllegalArgumentException::new));
+        .addObject(annuncioDao.findById(id).get());
   }
 }
 
