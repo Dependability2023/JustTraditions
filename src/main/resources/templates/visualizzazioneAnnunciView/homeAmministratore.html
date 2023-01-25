@@ -26,22 +26,21 @@
 						<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
 					</a>
 				</li>
-
 				<li class="sidebar-item">
 					<a class="sidebar-link" href="#">
-						<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+						<i class="align-middle" data-feather="log-out"></i> <span class="align-middle">Log out</span>
 					</a>
 				</li>
 
 				<li class="sidebar-item">
-					<a class="sidebar-link" href="#">
-						<i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
+					<a class="sidebar-link" href="/visualizzazioneAmministratori">
+						<i class="align-middle" data-feather="users"></i> <span class="align-middle">Gestione Amministratori</span>
 					</a>
 				</li>
 
 				<li class="sidebar-item">
-					<a class="sidebar-link" href="#">
-						<i class="align-middle" data-feather="home"></i> <span class="align-middle">Home</span>
+					<a class="sidebar-link" href="/visualizzazioneListaAnnunci">
+						<i class="align-middle" data-feather="inbox"></i> <span class="align-middle">Annunci</span>
 					</a>
 				</li>
 			</ul>
@@ -49,6 +48,7 @@
 
 
 	</nav>
+
 
 	<div class="main">
 		<nav class="navbar navbar-expand navbar-light navbar-bg">
@@ -61,15 +61,6 @@
 					<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
 						<img src="/css/admin/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Domenico Avella" /> <span class="text-dark">Domenico Avella</span>
 					</a>
-					<div class="dropdown-menu dropdown-menu-end">
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="homeAmministratore.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-						<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Log out</a>
-					</div>
 					</li>
 				</ul>
 			</div>
@@ -100,15 +91,19 @@
 									<table class="table mb-0">
 										<tbody>
 										<tr>
-											<td>Approved</td>
+											<td>APPROVATO</td>
 											<td class="text-end">5</td>
 										</tr>
 										<tr>
-											<td>In Progress</td>
+											<td>IN REVISIONE</td>
 											<td class="text-end">2</td>
 										</tr>
 										<tr>
-											<td>Cancelled</td>
+											<td>RIFIUTATO</td>
+											<td class="text-end">1</td>
+										</tr>
+										<tr>
+											<td>PROPOSTO</td>
 											<td class="text-end">1</td>
 										</tr>
 										</tbody>
@@ -121,75 +116,43 @@
 						<div class="card flex-fill w-100">
 							<div class="card-header">
 
-								<h5 class="card-title mb-0">Latest Projects</h5>
+								<h5 class="card-title mb-0">Latest Announcements</h5>
 							</div>
-							<table class="table table-hover my-0">
-								<thead>
+							<table class="table align-middle mb-0 bg-white">
+								<thead class="bg-light">
 								<tr>
-									<th>Name</th>
-									<th class="d-none d-xl-table-cell">Start Date</th>
-									<th class="d-none d-xl-table-cell">End Date</th>
-									<th>Status</th>
-									<th class="d-none d-md-table-cell">Assignee</th>
+									<th>Nome attività</th>
+									<th>Stato</th>
+									<th>Indirizzo</th>
+									<th>Nome Artigiano</th>
 								</tr>
 								</thead>
 								<tbody>
-								<tr>
-									<td>Tour dei vigneti</td>
-									<td class="d-none d-xl-table-cell">01/01/2021</td>
-									<td class="d-none d-xl-table-cell">31/06/2021</td>
-									<td><span class="badge bg-success">Approved</span></td>
-									<td class="d-none d-md-table-cell">Vanessa Tucker</td>
+								<tr th:each="annuncio :${annunci}">
+									<td>
+										<div class="d-flex align-items-center">
+											<div class="ms-3">
+												<p class="fw-bold mb-1" th:text="${annuncio.nomeAttivita}"></p>
+											</div>
+										</div>
+									</td>
+									<td>
+										<span th:if="${annuncio.getStato()} == ${annuncio.stato.PROPOSTO}" class="badge badge-primary rounded-pill d-inline">PROPOSTO</span>
+										<span th:if="${annuncio.getStato()} == ${annuncio.stato.IN_REVISIONE}" class="badge badge-warning rounded-pill d-inline">IN REVISIONE</span>
+										<span th:if="${annuncio.getStato()} == ${annuncio.stato.APPROVATO}" class="badge badge-success rounded-pill d-inline">APPROVATO</span>
+										<span th:if="${annuncio.getStato()} == ${annuncio.stato.RIFIUTATO}" class="badge badge-danger rounded-pill d-inline">RIFIUTATO</span>
+									</td>
+									<td class="fw-bold mb-1" th:text="${annuncio.indirizzoAttivita}"></td>
+									<td>
+										<div class="d-flex align-items-center">
+											<div class="ms-3">
+												<a th:text="${annuncio.artigiano.nome}"></a>
+												<a th:text="${annuncio.artigiano.cognome}"></a>
+											</div>
+										</div>
+									</td>
 								</tr>
-								<tr>
-									<td>Festa dei gigli</td>
-									<td class="d-none d-xl-table-cell">01/01/2021</td>
-									<td class="d-none d-xl-table-cell">31/02/2021</td>
-									<td><span class="badge bg-danger">Cancelled</span></td>
-									<td class="d-none d-md-table-cell">William Harris</td>
-								</tr>
-								<tr>
-									<td>Mostra di Van Gogh</td>
-									<td class="d-none d-xl-table-cell">01/01/2021</td>
-									<td class="d-none d-xl-table-cell">31/06/2021</td>
-									<td><span class="badge bg-success">Approved</span></td>
-									<td class="d-none d-md-table-cell">Sharon Lessman</td>
-								</tr>
-								<tr>
-									<td>Vino buono</td>
-									<td class="d-none d-xl-table-cell">01/01/2021</td>
-									<td class="d-none d-xl-table-cell">31/06/2022</td>
-									<td><span class="badge bg-warning">In progress</span></td>
-									<td class="d-none d-md-table-cell">Vanessa Tucker</td>
-								</tr>
-								<tr>
-									<td>Festa di Tufino</td>
-									<td class="d-none d-xl-table-cell">01/01/2021</td>
-									<td class="d-none d-xl-table-cell">31/08/2021</td>
-									<td><span class="badge bg-success">Approved</span></td>
-									<td class="d-none d-md-table-cell">William Harris</td>
-								</tr>
-								<tr>
-									<td>La Sagra delle Sagre</td>
-									<td class="d-none d-xl-table-cell">01/01/2021</td>
-									<td class="d-none d-xl-table-cell">31/05/2021</td>
-									<td><span class="badge bg-success">Approved</span></td>
-									<td class="d-none d-md-table-cell">Sharon Lessman</td>
-								</tr>
-								<tr>
-									<td>Sagra delle nocciole</td>
-									<td class="d-none d-xl-table-cell">01/01/2021</td>
-									<td class="d-none d-xl-table-cell">31/04/2021</td>
-									<td><span class="badge bg-success">Approved</span></td>
-									<td class="d-none d-md-table-cell">Christina Mason</td>
-								</tr>
-								<tr>
-									<td>Tour Spaccanapoli</td>
-									<td class="d-none d-xl-table-cell">01/01/2021</td>
-									<td class="d-none d-xl-table-cell">31/01/2021</td>
-									<td><span class="badge bg-warning">In progress</span></td>
-									<td class="d-none d-md-table-cell">William Harris</td>
-								</tr>
+
 								</tbody>
 							</table>
 						</div>
@@ -229,13 +192,14 @@
 		new Chart(document.getElementById("chartjs-dashboard-pie"), {
 			type: "pie",
 			data: {
-				labels: ["Approved", "In Progress", "Cancelled"],
+				labels: ["APPROVATO", "IN REVISIONE", "RIFIUTATO","PROPOSTO"],
 				datasets: [{
-					data: [5, 2, 1],
+					data: [5, 2, 1,1],
 					backgroundColor: [
 						window.theme.success,
 						window.theme.warning,
-						window.theme.danger
+						window.theme.danger,
+						window.theme.dark
 					],
 					borderWidth: 5
 				}]
