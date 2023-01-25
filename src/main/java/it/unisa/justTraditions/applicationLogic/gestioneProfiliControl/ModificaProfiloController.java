@@ -18,10 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ModificaProfiloController {
 
   private static final String modificaProfiloView = "gestioneProfiliView/modificaProfilo";
-
   @Autowired
   private SessionCliente sessionCliente;
-
   @Autowired
   private ClienteDao clienteDao;
 
