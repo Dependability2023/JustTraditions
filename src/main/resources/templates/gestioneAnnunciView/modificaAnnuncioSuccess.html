@@ -18,7 +18,8 @@
 
         <div class=" col-md-6 mt-5">
             <p class="fs-3">L'operazione effettuata sull'annuncio è andata a buon fine</p>
-            <a href="/" class="btn btn-primary">Vai alla Home</a>
+            <a th:if="${isAmministratore}" href="/homeAmministratore" class="btn btn-primary">Vai alla Home</a>
+            <a th:unless ="${isAmministratore}" href="/" class="btn btn-primary">Vai alla Home</a>
         </div>
 
     </div>
