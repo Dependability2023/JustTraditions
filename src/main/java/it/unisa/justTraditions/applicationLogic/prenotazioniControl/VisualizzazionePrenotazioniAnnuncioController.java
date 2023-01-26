@@ -4,8 +4,12 @@ import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.Sessi
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.dao.AnnuncioDao;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
 import it.unisa.justTraditions.storage.prenotazioniStorage.dao.PrenotazioneDao;
+import it.unisa.justTraditions.storage.prenotazioniStorage.entity.Prenotazione;
 import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,14 +45,31 @@ public class VisualizzazionePrenotazioniAnnuncioController {
   public String post(@RequestParam Long idAnnuncio,
                      @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
                      LocalDate dataVisita,
+                     @RequestParam(defaultValue = "0", required = false) Integer pagina,
                      Model model) {
     Annuncio annuncio = annuncioDao.findById(idAnnuncio).orElseThrow(IllegalArgumentException::new);
     if (!annuncio.getArtigiano().equals(sessionCliente.getCliente().get())) {
       throw new IllegalArgumentException();
     }
 
-    model.addAttribute("prenotazioni",
-        prenotazioneDao.findByVisitaAnnuncioAndDataVisita(annuncio, dataVisita));
+    Page<Prenotazione> prenotazionePage = prenotazioneDao.findByVisitaAnnuncioAndDataVisita(
+        annuncio,
+        dataVisita,
+        PageRequest.of(
+            pagina,
+            20,
+            Sort.by(Sort.Direction.DESC, "dataVisita")
+        )
+    );
+
+    int totalPages = prenotazionePage.getTotalPages();
+    if (totalPages <= pagina) {
+      throw new IllegalArgumentException();
+    }
+
+    model.addAttribute("prenotazioni", prenotazionePage.getContent());
+    model.addAttribute("pagina", pagina);
+    model.addAttribute("pagineTotali", totalPages);
     model.addAttribute("idAnnuncio", idAnnuncio);
     model.addAttribute("dataVisita", dataVisita);
 

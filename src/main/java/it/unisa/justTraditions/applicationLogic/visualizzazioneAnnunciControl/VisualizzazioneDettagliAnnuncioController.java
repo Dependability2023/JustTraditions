@@ -13,11 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class VisualizzazioneDettagliAnnuncioController {
 
   private static final String visualizzazioneSchedaAnnuncioView =
-<<<<<<<<< Temporary merge branch 1:src/main/java/it/unisa/justTraditions/applicationLogic/visualizzazioneAnnunciControl/VisualizzazioneSchedaAnnuncioController.java
-          "visualizzazioneDettagliAnnuncio";
-=========
           "visualizzazioneAnnunciView/visualizzazioneDettagliAnnuncio";
->>>>>>>>> Temporary merge branch 2:src/main/java/it/unisa/justTraditions/applicationLogic/visualizzazioneAnnunciControl/VisualizzazioneDettagliAnnuncioController.java
 
   @Autowired
   private AnnuncioDao annuncioDao;

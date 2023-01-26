@@ -129,11 +129,11 @@
                             <form id="formModificaStato" action = "/modificaStatoAnnuncio" method = "post" th:object="${modificaStatoAnnuncioForm}">
                                 <select th:field="*{nuovoStato}">
                                     <option th:value="''">Nuovo Stato</option>
-                                    <option th:value="${annuncio.stato.APPROVATO}">APPROVATO</option>
-                                    <option th:value="${annuncio.stato.IN_REVISIONE}">IN REVISIONE</option>
-                                    <option th:value="${annuncio.stato.RIFIUTATO}">RIFIUTATO</option>
+                                    <option th:if="${annuncio.getStato()} == ${annuncio.stato.IN_REVISIONE}" th:value="${annuncio.stato.APPROVATO}">APPROVATO</option>
+                                    <option th:if="${annuncio.getStato()} == ${annuncio.stato.PROPOSTO}" th:value="${annuncio.stato.IN_REVISIONE}">IN REVISIONE</option>
+                                    <option th:if="${annuncio.getStato()} == ${annuncio.stato.IN_REVISIONE}" th:value="${annuncio.stato.RIFIUTATO}">RIFIUTATO</option>
                                 </select>
-                                <div id="divMotivo">Motivo del rifiuto<br><input type="text-area" th:field="*{motivoDelRifiuto}"><br></div>
+                                <div id="divMotivo">Motivo del rifiuto<br><textarea type="text-area" th:field="*{motivoDelRifiuto}"></textarea></div>
                                 <input type="hidden" th:field="*{idAnnuncio}">
                         </form>
                         </div>

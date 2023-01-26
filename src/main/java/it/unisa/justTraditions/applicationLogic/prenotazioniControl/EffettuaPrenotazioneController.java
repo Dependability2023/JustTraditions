@@ -19,15 +19,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/effettuaPrenotazione")
 public class EffettuaPrenotazioneController {
-  private static final String effettuaPrenotazione = "prenotazioniView/effettuaPrenotazione";
-  private static final String esitoPrenotazione = "prenotazioniView/esitoPrenotazione";
+
+  private static final String effettuaPrenotazioneView = "prenotazioniView/effettuaPrenotazione";
+  private static final String esitoPrenotazioneView = "prenotazioniView/esitoPrenotazione";
 
   @Autowired
   private VisitaDao visitaDao;
+
   @Autowired
   private SessionCliente sessionCliente;
+
   @Autowired
-  ClienteDao clienteDao;
+  private ClienteDao clienteDao;
 
   @GetMapping
   public String get(@ModelAttribute @Valid PrenotazioneForm prenotazioneForm,
@@ -35,26 +38,30 @@ public class EffettuaPrenotazioneController {
     if (bindingResult.hasErrors()) {
       throw new IllegalArgumentException();
     }
-    return effettuaPrenotazione;
+    return effettuaPrenotazioneView;
   }
 
   @PostMapping
   public String post(@ModelAttribute @Valid PrenotazioneForm prenotazioneForm,
                      BindingResult bindingResult) {
-
     if (bindingResult.hasErrors()) {
       throw new IllegalArgumentException();
     }
+
     Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita()).get();
+
     Prenotazione prenotazione =
         new Prenotazione(visita.getAnnuncio().getPrezzoVisita(), prenotazioneForm.getDataVisita(),
             prenotazioneForm.getNumeroPersone());
+
     Cliente cliente = sessionCliente.getCliente().get();
     cliente.addPrenotazione(prenotazione);
+
     visita.addPrenotazione(prenotazione);
+    
     clienteDao.save(cliente);
     visitaDao.save(visita);
 
-    return esitoPrenotazione;
+    return esitoPrenotazioneView;
   }
 }
