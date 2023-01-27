@@ -2,8 +2,11 @@ package it.unisa.justTraditions.applicationLogic;
 
 import it.unisa.justTraditions.applicationLogic.util.Province;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.dao.AnnuncioDao;
+import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.PasswordEncryptor;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
+import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.AmministratoreDao;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.ArtigianoDao;
+import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Amministratore;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Artigiano;
 import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,86 +24,16 @@ public class TestDataBaseController {
   private AnnuncioDao annuncioDao;
 
   @Autowired
-  private ArtigianoDao artigianoDao;
+  private PasswordEncryptor passwordEncryptor;
 
   @Autowired
-  private Province province;
+  private AmministratoreDao admin;
 
   @GetMapping
-  public @ResponseBody String get() {
-    Artigiano artigiano = new Artigiano();
-    artigiano.setCodiceFiscale("12345678910");
-    artigianoDao.findOne(Example.of(artigiano)).ifPresent(artigianoDao::delete);
+  public @ResponseBody void get() {
 
-    Artigiano arturo = new Artigiano(
-        "Arturo@gmail.com",
-        "1234",
-        "Arturo",
-        "Bido",
-        "12345678910",
-        "12345678"
-    );
-    Annuncio vinoBuono = new Annuncio(
-        "VinoBuono",
-        "Avellino",
-        "IndirizzoCasa",
-        "Faccio il vino buono",
-        "Faccio il vino buono",
-        8,
-        new BigDecimal(3),
-        Annuncio.Stato.PROPOSTO
-    );
-    Annuncio vinoBrutto = new Annuncio(
-        "VinoBuono",
-        "Napoli",
-        "IndirizzoCasa",
-        "Faccio il vino buono",
-        "Faccio il vino buono",
-        8,
-        new BigDecimal(3),
-        Annuncio.Stato.PROPOSTO
-    );
-    Annuncio buono = new Annuncio(
-        "VinoBuono",
-        "Benevento",
-        "IndirizzoCasa",
-        "Faccio il vino buono",
-        "Faccio il vino buono",
-        8,
-        new BigDecimal(3),
-        Annuncio.Stato.PROPOSTO
-    );
-    Annuncio buonoBuone = new Annuncio(
-        "VinoBuono",
-        "Matera",
-        "IndirizzoCasa",
-        "Faccio il vino buono",
-        "Faccio il vino buono",
-        8,
-        new BigDecimal(3),
-        Annuncio.Stato.PROPOSTO
-    );
-    Annuncio medioBuono = new Annuncio(
-        "VinoBuono",
-        "Monza",
-        "IndirizzoCasa",
-        "Faccio il vino buono",
-        "Faccio il vino buono",
-        8,
-        new BigDecimal(3),
-        Annuncio.Stato.PROPOSTO
-    );
+    Amministratore amministratore = new Amministratore("admin@live.it",passwordEncryptor.encryptPassword("Ciaoxd.1d"),"Pasquale","De Rosa");
 
-    //vinoBuono.setArtigiano(arturo);
-
-    arturo.addAnnuncio(vinoBuono);
-    arturo.addAnnuncio(buono);
-    arturo.addAnnuncio(vinoBrutto);
-    arturo.addAnnuncio(buonoBuone);
-    arturo.addAnnuncio(medioBuono);
-    artigianoDao.save(arturo);
-
-    return annuncioDao.findById(vinoBuono.getId()).orElseThrow().toString()
-        + province.getProvince().toString();
+    admin.save(amministratore);
   }
 }
