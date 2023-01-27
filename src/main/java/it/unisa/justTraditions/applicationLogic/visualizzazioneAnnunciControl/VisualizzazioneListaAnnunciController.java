@@ -37,7 +37,7 @@ public class VisualizzazioneListaAnnunciController {
     );
 
     int totalPages = annuncioPage.getTotalPages();
-    if (totalPages <= pagina) {
+    if (totalPages < pagina) {
       throw new IllegalArgumentException();
     }
 
