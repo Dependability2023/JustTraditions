@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/visualizzazioneProfiloArtigiano")
@@ -19,10 +20,9 @@ public class VisualizzazioneProfiloArtigianoController {
   private ArtigianoDao artigianoDao;
 
   @GetMapping
-  public String get(@RequestParam Long id, Model model) {
-    model.addAttribute("artigiano",
-        artigianoDao.findById(id).orElseThrow(IllegalArgumentException::new));
+  public ModelAndView get(@RequestParam Long id, Model model) {
 
-    return visualizzazioneProfiloArtigianoView;
+    return new ModelAndView(visualizzazioneProfiloArtigianoView)
+            .addObject(artigianoDao.findById(id).get());
   }
 }

@@ -17,8 +17,8 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-start flex-grow-1 pe-3 mb-2 mb-lg-0">
                     <li class="nav-item my-auto">
-                        <form class="d-flex" id="formRicerca">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <form class="d-flex" id="formRicerca" method="get" action="/ricercaAnnunci">
+                            <input name="nomeAttivita" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         </form>
                     </li>
                     <li class="nav-item my-auto">
@@ -36,7 +36,7 @@
                                     <label for="provincia0">Inserisci provincia</label>
                                 </div>
                                 <div class="form-li" th:each="provincia, iStat : ${@province.province}">
-                                    <input th:id="|provincia${iStat.count}|" type="radio" name="provincia"
+                                    <input form="formRicerca" th:id="|provincia${iStat.count}|" type="radio" name="provincia"
                                            th:value="${provincia}">
                                     <label th:for="|provincia${iStat.count}|" th:text="${provincia}"></label>
                                 </div>
