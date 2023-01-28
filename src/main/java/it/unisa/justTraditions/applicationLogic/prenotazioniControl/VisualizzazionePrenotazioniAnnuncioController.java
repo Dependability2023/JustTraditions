@@ -63,7 +63,7 @@ public class VisualizzazionePrenotazioniAnnuncioController {
     );
 
     int totalPages = prenotazionePage.getTotalPages();
-    if (totalPages <= pagina) {
+    if (totalPages < pagina) {
       throw new IllegalArgumentException();
     }
 

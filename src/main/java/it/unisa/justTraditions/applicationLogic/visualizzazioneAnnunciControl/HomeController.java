@@ -4,6 +4,8 @@ import it.unisa.justTraditions.storage.gestioneAnnunciStorage.dao.AnnuncioDao;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -22,11 +24,15 @@ public class HomeController {
 
   @GetMapping
   public ModelAndView get() {
-    List<Annuncio> annunci = annuncioDao.findAll(PageRequest.of(
-        0,
-        8,
-        Sort.by(Sort.Direction.DESC, "id")
-    )).getContent();
+    Annuncio annuncio = new Annuncio();
+    annuncio.setStato(Annuncio.Stato.APPROVATO);
+
+    Page<Annuncio> annunci = annuncioDao.findAll(
+            Example.of(annuncio),
+            PageRequest.of(0, 8, Sort.by(Sort.Direction.DESC, "id"))
+    );
+
+
 
     return new ModelAndView(homeView)
         .addObject("annunci", annunci);

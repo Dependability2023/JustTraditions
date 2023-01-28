@@ -11,25 +11,7 @@
 <br><br> <br><br>
 <div class="container">
     <div class="row">
-        <div align="left">
 
-            <h2>Nome attività</h2>
-            <select name="ricercaAttivita">
-                <option>
-                    Seleziona nome attività
-                </option>
-                <option>
-                    Il clero di Edoardo
-                </option>
-                <option>
-                    Lunga vita a Carlo
-                </option>
-                <option>
-                    Berlusconi presidente
-                </option>
-            </select>
-
-        </div>
         <div align="center">
 
             <h2>Prenotazioni</h2>
@@ -37,9 +19,13 @@
 
         </div>
         <hr>
+
         <div class="form-group">
+            <form id="formdata" action="/visualizzazionePrenotazioniAnnuncio" method="post">
+                <input type="hidden" name="idAnnuncio" th:value="${idAnnuncio}">
             <label class="active" for="dateStandard">Inserisci data</label>
-            <input type="date" id="dateStandard" name="dateStandard">
+            <input type="date" id="dateStandard" name="dataVisita">
+            </form>
         </div>
 
         <div class="panel-body">
@@ -54,46 +40,70 @@
                     <th>Numero di prenotati</th>
                 </tr>
                 </thead>
+
                 <tbody>
-                <tr>
-                    <td class="fw-bold mb-1">Giacomo</td>
-                    <td class="fw-bold mb-1">Gullizzani</td>
-                    <td class="fw-bold mb-1">CDFSDLFL33FDDL</td>
-                    <td class="fw-bold mb-1">28/09/20</td>
-                    <td class="fw-bold mb-1">11.00 - 12.00</td>
-                    <td class="fw-bold mb-1">2</td>
+                <tr th:each="prenotazione :${prenotazioni}">
+                    <td class="fw-bold mb-1" th:text="${prenotazione.cliente.nome}"></td>
+                    <td class="fw-bold mb-1" th:text="${prenotazione.cliente.cognome}"></td>
+                    <td class="fw-bold mb-1" th:text="${prenotazione.cliente.codiceFiscale}"></td>
+                    <td class="fw-bold mb-1" th:text="${prenotazione.dataVisita}"></td>
+                    <td class="fw-bold mb-1"
+                        th:text="${prenotazione.visita.orarioInizio} +' '+ ${prenotazione.visita.orarioFine}"></td>
+                    <td class="fw-bold mb-1" th:text="${prenotazione.numPersonePrenotate}"></td>
                 </tr>
 
                 </tbody>
             </table>
 
         </div>
-        <div class="panel-footer">
-            <div class="row">
-                <div class="col col-xs-4">Page 1 of 5
-                </div>
-                <div class="col col-xs-8">
-                    <ul class="pagination hidden-xs pull-right">
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                    </ul>
-                    <ul class="pagination visible-xs pull-right">
-                        <li><a href="#">«</a></li>
-                        <li><a href="#">»</a></li>
-                    </ul>
-                </div>
-            </div>
+
+        <!-- Page navigation -->
+
+        <div th:if="${pagina} != null" class="paging-wrapper d-flex flex-wrap justify-content-center mt-3">
+            <form th:method="get" th:action="@{/visualizzazionePrenotazioniAnnuncio}">
+                <input type="hidden" th:name="stato" th:value="${dataVisita}">
+                <input type="hidden" th:name="stato" th:value="${idAnnuncio}">
+                <input type="hidden" th:name="pagina" th:value="${pagina -1}">
+
+
+                <button th:if="${pagina > 0}" type="submit" value="Precedente" class="btn btn-primary">Precedente
+                </button>
+                <button th:unless="${pagina > 0}" type="submit" value="Precedente" class="btn btn-primary" disabled>
+                    Precedente
+                </button>
+
+            </form>
+
+            <strong class="paging-wrapper d-flex flex-wrap justify-content-center mt-3"
+                    th:text="'Pagina:'+${pagina+1}"></strong>
+
+            <form th:method="get" th:action="@{/visualizzazioneListaAnnunci}">
+                <input type="hidden" th:name="stato" th:value="${dataVisita}">
+                <input type="hidden" th:name="stato" th:value="${idAnnuncio}">
+                <input type="hidden" th:name="pagina" th:value="${pagina +1}">
+
+                <button th:if="${pagineTotali -1 > pagina}" type="submit" value="Precedente" class="btn btn-primary">
+                    Successivo
+                </button>
+                <button th:unless="${pagineTotali -1 > pagina}" type="submit" value="Precedente" class="btn btn-primary"
+                        disabled>Successivo
+                </button>
+            </form>
+
         </div>
     </div>
-
 </div>
 
 <th:block th:include="fragments/footbar"></th:block>
 
 <th:block th:include="fragments/scripts"></th:block>
+
+<script>
+    $("#dateStandard").blur(function () {
+        $("#formdata").submit();
+    })
+</script>
+
 <script src="/js/navbar.js"></script>
 </body>
 
