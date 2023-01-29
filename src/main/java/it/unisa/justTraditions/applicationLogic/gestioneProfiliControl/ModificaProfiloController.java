@@ -20,7 +20,7 @@ public class ModificaProfiloController {
 
   private static final String modificaProfiloView = "gestioneProfiliView/modificaProfilo";
   private static final String visualizzazioneProfiloPersonaleController =
-      "/visualizzazioneProfiloPersonale";
+          "/visualizzazioneProfiloPersonale";
 
   @Autowired
   private SessionCliente sessionCliente;
@@ -50,9 +50,9 @@ public class ModificaProfiloController {
   public String post(@ModelAttribute @Valid RegistrazioneForm registrazioneForm,
                      BindingResult bindingResult) {
     if (bindingResult.hasFieldErrors("nome") || bindingResult.hasFieldErrors("cognome")
-        || bindingResult.hasFieldErrors("email") || bindingResult.hasFieldErrors("codiceFiscale")
-        || bindingResult.hasFieldErrors("artigiano") || bindingResult.hasFieldErrors("iban")
-        || bindingResult.hasGlobalErrors()) {
+            || bindingResult.hasFieldErrors("email") || bindingResult.hasFieldErrors("codiceFiscale")
+            || bindingResult.hasFieldErrors("artigiano") || bindingResult.hasFieldErrors("iban")
+            || bindingResult.hasGlobalErrors()) {
       return modificaProfiloView;
     }
 
