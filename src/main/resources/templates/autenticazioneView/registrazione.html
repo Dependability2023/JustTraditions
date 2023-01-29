@@ -21,7 +21,7 @@
                     <form th:action="@{/registrazione}" th:object="${registrazioneForm}" method="post">
                         <div class="form-group">
                             <input type="text" th:field="*{nome}" class="form-control" id="nome" placeholder="Nome" re
-                                   quired="required">
+                                   required>
                             <div class=" d-inline invalid-feedback " th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
                         </div>
 
@@ -60,12 +60,16 @@
 
                             </div>
 
-                        <div id="checkid" style="display:none">
+                        <div id="checkid" th:style="${registrazioneForm.isArtigiano() != null && registrazioneForm.isArtigiano() ? '' : 'display:none'}">
                             <h5 class="card-title">Iban</h5>
                             <div class="form-group">
                                 <input type="text" th:field="*{iban}" class="form-control"
                                        placeholder="Iban">
-                                <div class=" d-inline invalid-feedback  " th:if="true" th:errors="${registrazioneForm}"></div>
+                                <div class="d-inline invalid-feedback" th:if="${#fields.hasErrors('iban')}"
+                                     th:errors="*{iban}"></div>
+                                <div th:if="${#fields.hasGlobalErrors()}">
+                                    <p class="d-inline invalid-feedback" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+                                </div>
                             </div>
                         </div>
                         <button type="submit" class="col-md-12 btn btn-primary">Registrati</button>

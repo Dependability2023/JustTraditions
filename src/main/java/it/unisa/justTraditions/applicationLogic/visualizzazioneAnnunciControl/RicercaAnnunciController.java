@@ -3,6 +3,7 @@ package it.unisa.justTraditions.applicationLogic.visualizzazioneAnnunciControl;
 import it.unisa.justTraditions.applicationLogic.util.Province;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.dao.AnnuncioDao;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -56,12 +57,18 @@ public class RicercaAnnunciController {
         PageRequest.of(pagina, 20, Sort.by(Sort.Direction.ASC, "nomeAttivita"))
     );
 
+    List<Annuncio> annunci;
+
     int totalPages = annuncioPage.getTotalPages();
-    if (totalPages < pagina) {
+    if (totalPages == 0) {
+      annunci = List.of();
+    } else if (totalPages <= pagina) {
       throw new IllegalArgumentException();
+    } else {
+      annunci = annuncioPage.getContent();
     }
 
-    model.addAttribute("annunci", annuncioPage.getContent());
+    model.addAttribute("annunci", annunci);
     model.addAttribute("pagina", pagina);
     model.addAttribute("nomeAttivita", nomeAttivita);
     model.addAttribute("provincia", provincia);

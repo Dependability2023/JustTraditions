@@ -5,6 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AnnuncioDao
     extends JpaRepository<Annuncio, Long> {
-    Long countByStato(Annuncio.Stato stato);
-
+  long countByStato(Annuncio.Stato stato);
 }
