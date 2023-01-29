@@ -152,17 +152,17 @@
                 <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in">
                     <div class="tab-content">
                         <div class="tab-pane active show" id="tab-1">
-                                Data<br><input type="date" id="dateStandard" name="dateStandard"><br>
+                            Data<br><input type="date" id="dateStandard" name="dateStandard"><br>
 
                         </div>
                         <div class="tab-pane" id="tab-2">
                             Fascia oraria<br>
 
-                                <select>
-                                    <div th:each="fasceoraria : ${annuncio.visite}" >
+                            <select>
+                                <div th:each="fasceoraria : ${annuncio.visite}">
                                     <option th:text="${fasceoraria.orarioInizio}+'-'+${fasceoraria.orarioFine}"></option>
-                                    </div>
-                                </select>
+                                </div>
+                            </select>
 
 
                         </div>
@@ -234,29 +234,7 @@
 <script src="/carousel/js/main.js"></script>
 <script src="/assets/js/main.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script th:inline="javascript">
-    /*<![CDATA[*/
-
-
-        $(document).ready(function(){
-            $("#dateStandard").blur(function(){
-                var data=$("#dateStandard").val();
-                var  mydata={dataVisita:data,idAnnuncio:[[${annuncio.id}]]};
-                $.ajax({
-                    url: '/ricercaVisita',
-                    method:'Post',
-                    data:mydata,
-                    success:function(data){
-                        console.log(JSON.stringify(data));
-                    }
-                });
-            });
-        });
-
-
-
-    /*]]>*/
-</script>
+<script src="/js/AjaxVisite.js"></script>
 
 </body>
 

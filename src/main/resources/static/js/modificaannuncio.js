@@ -1,11 +1,11 @@
 $(document).ready(function () {
 
 
-$(".delete").click(function (){
+    $(".delete").click(function () {
 
-    $(this).parent().remove();
+        $(this).parent().remove();
 
-})
+    })
 
     var wrapper0 = $(".container0");
     var wrapper1 = $(".container1");
@@ -81,11 +81,13 @@ $(".delete").click(function (){
 
     });
 
-    $("#bottonSubmit").click(function (){
-        $(".inputGiorno").each(function (index){
-            $( this ).attr("name","visite[" + index + "].giorno").
-            next().attr("name","visite[" + index + "].orarioInizio").
-            next().attr("name","visite[" + index + "].orarioFine")
+    $("#bottonSubmit").click(function () {
+        $(".inputGiorno").each(function (index) {
+            $(this).attr("name", "visite[" + index + "].giorno")
+                .attr("id", "visite" + index + ".giorno").attr("disabled", false)
+                .next().attr("name", "visite[" + index + "].orarioInizio").attr("id", "visite" + index + ".orarioInizio").attr("disabled", false)
+                .next().attr("name", "visite[" + index + "].orarioFine").attr("id", "visite" + index + ".orarioFine").attr("disabled", false);
+
         })
     })
 

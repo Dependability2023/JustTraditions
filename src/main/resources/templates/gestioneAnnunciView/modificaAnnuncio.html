@@ -16,7 +16,7 @@
 
             <form th:action="@{/modificaAnnuncio}" enctype="multipart/form-data" th:method="post"
                   th:object="${annuncioForm}">
-
+                <input type="hidden" th:field="*{idAnnuncio}">
                 <div class="form-group">
 
                     <div class="form-row">

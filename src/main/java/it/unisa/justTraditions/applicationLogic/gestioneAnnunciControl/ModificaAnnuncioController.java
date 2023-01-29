@@ -61,6 +61,7 @@ public class ModificaAnnuncioController {
     }
 
     AnnuncioForm annuncioForm = new AnnuncioForm();
+    annuncioForm.setIdAnnuncio(annuncio.getId());
     annuncioForm.setNomeAttivita(annuncio.getNomeAttivita());
     annuncioForm.setProvinciaAttivita(annuncio.getProvinciaAttivita());
     annuncioForm.setIndirizzoAttivita(annuncio.getIndirizzoAttivita());
@@ -68,6 +69,7 @@ public class ModificaAnnuncioController {
     annuncioForm.setServiziOfferti(annuncio.getServiziOfferti());
     annuncioForm.setNumMaxPersonePerVisita(annuncio.getNumMaxPersonePerVisita());
     annuncioForm.setPrezzoVisita(annuncio.getPrezzoVisita());
+
 
     List<Long> idFoto = annuncio.getFoto().stream()
         .map(Foto::getId)
