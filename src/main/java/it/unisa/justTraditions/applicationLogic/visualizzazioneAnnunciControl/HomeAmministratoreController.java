@@ -28,10 +28,10 @@ public class HomeAmministratoreController {
         Sort.by(Sort.Direction.DESC, "id")
     )).getContent());
 
-    model.addAttribute("annuncirifiutati",annuncioDao.countByStato(Annuncio.Stato.RIFIUTATO));
-    model.addAttribute("annunciapprovati",annuncioDao.countByStato(Annuncio.Stato.APPROVATO));
-    model.addAttribute("annunciproposti",annuncioDao.countByStato(Annuncio.Stato.PROPOSTO));
-    model.addAttribute("annunciinrevisione",annuncioDao.countByStato(Annuncio.Stato.IN_REVISIONE));
+    model.addAttribute("annuncirifiutati", annuncioDao.countByStato(Annuncio.Stato.RIFIUTATO));
+    model.addAttribute("annunciapprovati", annuncioDao.countByStato(Annuncio.Stato.APPROVATO));
+    model.addAttribute("annunciproposti", annuncioDao.countByStato(Annuncio.Stato.PROPOSTO));
+    model.addAttribute("annunciinrevisione", annuncioDao.countByStato(Annuncio.Stato.IN_REVISIONE));
 
     return homeAmministratoreView;
   }

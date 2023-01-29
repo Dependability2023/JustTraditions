@@ -6,6 +6,7 @@ import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
 import it.unisa.justTraditions.storage.prenotazioniStorage.dao.PrenotazioneDao;
 import it.unisa.justTraditions.storage.prenotazioniStorage.entity.Prenotazione;
 import java.time.LocalDate;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -62,12 +63,18 @@ public class VisualizzazionePrenotazioniAnnuncioController {
         )
     );
 
+    List<Prenotazione> prenotazioni;
+
     int totalPages = prenotazionePage.getTotalPages();
-    if (totalPages < pagina) {
+    if (totalPages == 0) {
+      prenotazioni = List.of();
+    } else if (totalPages <= pagina) {
       throw new IllegalArgumentException();
+    } else {
+      prenotazioni = prenotazionePage.getContent();
     }
 
-    model.addAttribute("prenotazioni", prenotazionePage.getContent());
+    model.addAttribute("prenotazioni", prenotazioni);
     model.addAttribute("pagina", pagina);
     model.addAttribute("pagineTotali", totalPages);
     model.addAttribute("idAnnuncio", idAnnuncio);

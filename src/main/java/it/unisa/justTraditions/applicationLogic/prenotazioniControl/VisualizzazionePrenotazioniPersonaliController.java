@@ -4,6 +4,7 @@ package it.unisa.justTraditions.applicationLogic.prenotazioniControl;
 import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.SessionCliente;
 import it.unisa.justTraditions.storage.prenotazioniStorage.dao.PrenotazioneDao;
 import it.unisa.justTraditions.storage.prenotazioniStorage.entity.Prenotazione;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,13 +35,19 @@ public class VisualizzazionePrenotazioniPersonaliController {
         PageRequest.of(pagina, 20, Sort.by(Sort.Direction.DESC, "dataVisita"))
     );
 
+    List<Prenotazione> prenotazioni;
+
     int totalPages = prenotazionePage.getTotalPages();
-    if (totalPages < pagina) {
+    if (totalPages == 0) {
+      prenotazioni = List.of();
+    } else if (totalPages <= pagina) {
       throw new IllegalArgumentException();
+    } else {
+      prenotazioni = prenotazionePage.getContent();
     }
 
     return new ModelAndView(visualizzazionePrenotazioniPersonaliView)
-        .addObject("prenotazioni", prenotazionePage.getContent())
+        .addObject("prenotazioni", prenotazioni)
         .addObject("pagina", pagina)
         .addObject("pagineTotali", totalPages);
   }
