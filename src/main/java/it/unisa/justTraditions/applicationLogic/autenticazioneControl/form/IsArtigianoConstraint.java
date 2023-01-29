@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface IsArtigianoConstraint {
-  String message() default "Aggiungi l'Iban se vuoi essere un Artigiano";
+  String message() default "Aggiungi un iban valido se vuoi essere un Artigiano";
 
   Class<?>[] groups() default {};
 

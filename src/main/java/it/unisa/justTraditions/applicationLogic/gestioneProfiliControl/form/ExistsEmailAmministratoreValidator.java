@@ -5,14 +5,14 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class ExsistEmailAmministratoreValidator
-    implements ConstraintValidator<ExsistEmailAmministratoreConstraint, String> {
+public class ExistsEmailAmministratoreValidator
+    implements ConstraintValidator<ExistsEmailAmministratoreConstraint, String> {
 
   @Autowired
   private AmministratoreDao amministratoreDao;
 
   @Override
-  public void initialize(ExsistEmailAmministratoreConstraint constraintAnnotation) {
+  public void initialize(ExistsEmailAmministratoreConstraint constraintAnnotation) {
     ConstraintValidator.super.initialize(constraintAnnotation);
   }
 

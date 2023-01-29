@@ -4,12 +4,10 @@ import it.unisa.justTraditions.applicationLogic.prenotazioniControl.json.VisitaR
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.dao.AnnuncioDao;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.dao.VisitaDao;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
-import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Visita;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -37,12 +35,8 @@ public class RicercaVisitaController {
     }
     Annuncio annuncio = optionalAnnuncio.get();
 
-    Visita visita = new Visita();
-    visita.setAnnuncio(annuncio);
-    visita.setGiorno(dataVisita.getDayOfWeek());
-    visita.setValidita(true);
-
-    return visitaDao.findAll(Example.of(visita)).stream()
+    return visitaDao.findByAnnuncioAndGiornoAndValiditaTrue(annuncio, dataVisita.getDayOfWeek())
+        .stream()
         .map(v -> new VisitaResponse(v.getId(), v.getOrarioInizio(), v.getOrarioFine()))
         .toList();
   }
