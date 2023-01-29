@@ -32,7 +32,7 @@
                 <h5 class="title mb-4 mt-3 font-bold">Maggiori Informazioni</h5>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/visualizzazioneListaAnnunci">Annunci</a></li>
+                    <li><a href="/ricercaAnnunci">Annunci</a></li>
                     <li><a href="/chisiamo">Chi siamo?</a></li>
                 </ul>
             </div>
@@ -46,7 +46,12 @@
                 <ul>
                     <li><a href="documentogit">Manuele Installazione</a></li>
                     <li><a href="documentogit">Manuale Utente</a></li>
-                    <li><a href="mailto:justraditions@gmail.com">Inviaci una mail!</a></li>
+                    <li><a th:if="${cliente != null}"
+                           th:href="@{'mailto:justtraditions@gmail.com?subject=Domanda generale&body=Salve sono l utente, ' + ${cliente.Nome} +' '+ ${cliente.Cognome}+' il mio codice fiscale è il seguente: '+${cliente.CodiceFiscale}+' e vi scrivo per la seguente problematica:'}">Inviaci
+                        una mail</a></li>
+                    <li><a th:if="${cliente == null}"
+                           th:href="@{'mailto:justtraditions@gmail.com?subject=Domanda generale&body=Salve sono un utente non registrato e vi scrivo per la seguente problematica:'}">Inviaci
+                        una mail</a></li>
                     <li><a href="/loginAmministratore">Area Staff</a></li>
                 </ul>
             </div>
