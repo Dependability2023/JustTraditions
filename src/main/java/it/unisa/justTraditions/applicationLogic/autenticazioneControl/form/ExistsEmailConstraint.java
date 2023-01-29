@@ -1,4 +1,4 @@
-package it.unisa.justTraditions.applicationLogic.gestioneProfiliControl.form;
+package it.unisa.justTraditions.applicationLogic.autenticazioneControl.form;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -9,10 +9,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Documented
-@Constraint(validatedBy = ExsistEmailAmministratoreValidator.class)
+@Constraint(validatedBy = ExistsEmailValidator.class)
 @Target({ElementType.TYPE, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ExsistEmailAmministratoreConstraint {
+public @interface ExistsEmailConstraint {
 
   String message() default "Email già esistente";
 

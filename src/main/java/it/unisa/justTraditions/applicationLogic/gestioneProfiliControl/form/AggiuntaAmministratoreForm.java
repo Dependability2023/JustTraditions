@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class AggiuntaAmministratoreForm {
-  
+
   @NotBlank(message = "Nome vuoto")
   @Size(max = 30, message = "Nome troppo lungo")
   private String nome;
@@ -18,7 +18,7 @@ public class AggiuntaAmministratoreForm {
   @NotBlank(message = "Email vuota")
   @Email(message = "Formato email errato")
   @Size(max = 319, message = "Email troppo lunga")
-  @ExsistEmailAmministratoreConstraint
+  @ExistsEmailAmministratoreConstraint
   private String email;
 
   @NotBlank(message = "Password vuota")

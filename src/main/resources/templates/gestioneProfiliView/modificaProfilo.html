@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Nome</h5>
-                    <form th:action="@{/modificaprofilo}" th:object="${registrazioneForm}" method="post">
+                    <form action="/modificaProfilo" th:object="${registrazioneForm}" method="post">
                         <div class="form-group">
                             <input type="text" th:field="*{nome}" class="form-control" id="nome" placeholder="Nome" re
                                    quired="required">
@@ -55,11 +55,16 @@
                                  th:errors="*{email}"></div>
                         </div>
 
+                        <input type="hidden" th:field="*{artigiano}">
+
                         <div class="form-group" th:if="${registrazioneForm.isArtigiano()}">
                             <h5 class="card-title">Iban</h5>
                             <input type="text" th:field="*{iban}" class="form-control" name="iban" placeholder="Iban">
-                            <div class=" d-inline invalid-feedback  " th:if="true"
-                                 th:errors="${registrazioneForm}"></div>
+                            <div class="d-inline invalid-feedback" th:if="${#fields.hasErrors('iban')}"
+                                 th:errors="*{iban}"></div>
+                            <div th:if="${#fields.hasGlobalErrors()}">
+                                <p class="d-inline invalid-feedback" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+                            </div>
                         </div>
 
                         <button type="submit" class="col-md-12 btn btn-primary">Salva Modifiche</button>
