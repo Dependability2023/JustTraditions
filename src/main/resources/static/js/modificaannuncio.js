@@ -1,5 +1,12 @@
 $(document).ready(function () {
 
+
+$(".delete").click(function (){
+
+    $(this).parent().remove();
+
+})
+
     var wrapper0 = $(".container0");
     var wrapper1 = $(".container1");
     var wrapper2 = $(".container2");
@@ -7,7 +14,6 @@ $(document).ready(function () {
     var wrapper4 = $(".container4");
     var wrapper5 = $(".container5");
     var wrapper6 = $(".container6");
-
 
     var lunedi = $(".add_form_field0");
     var martedi = $(".add_form_field1");
@@ -113,3 +119,4 @@ $(document).ready(function () {
     })
 
 });
+
