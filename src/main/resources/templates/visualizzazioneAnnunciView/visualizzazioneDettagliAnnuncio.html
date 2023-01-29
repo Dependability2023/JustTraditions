@@ -4,11 +4,6 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-
     <th:block th:include="fragments/head"></th:block>
     <title>Just Traditions - Annuncio</title>
 
@@ -157,14 +152,19 @@
                 <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in">
                     <div class="tab-content">
                         <div class="tab-pane active show" id="tab-1">
-                            <form action="" method="get">
-                                Data<br><input type="date" name="mydatetime"><br>
-                            </form>
+                                Data<br><input type="date" id="dateStandard" name="dateStandard"><br>
+
                         </div>
                         <div class="tab-pane" id="tab-2">
-                            <form action="" method="get">
-                                Fascia oraria<br><input type="time" name="mydatetime"><br>
-                            </form>
+                            Fascia oraria<br>
+
+                                <select>
+                                    <div th:each="fasceoraria : ${annuncio.visite}" >
+                                    <option th:text="${fasceoraria.orarioInizio}+'-'+${fasceoraria.orarioFine}"></option>
+                                    </div>
+                                </select>
+
+
                         </div>
                         <div class="tab-pane" id="tab-3">
                             <form action="" method="get">
@@ -196,7 +196,10 @@
                         <div class="member-info">
                             <a th:text="${annuncio.artigiano.nome}"></a>
                             <a th:text="${annuncio.artigiano.cognome}"></a>
+
                             <span>L'Artigiano</span>
+                            <a th:href="@{/visualizzazioneProfiloArtigiano(id=${annuncio.artigiano.id})}">Profilo
+                                Artigiano</a>
                         </div>
                     </div>
                 </div>
@@ -230,7 +233,30 @@
 <script src="/carousel/js/owl.carousel.min.js"></script>
 <script src="/carousel/js/main.js"></script>
 <script src="/assets/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
 
+
+        $(document).ready(function(){
+            $("#dateStandard").blur(function(){
+                var data=$("#dateStandard").val();
+                var  mydata={dataVisita:data,idAnnuncio:[[${annuncio.id}]]};
+                $.ajax({
+                    url: '/ricercaVisita',
+                    method:'Post',
+                    data:mydata,
+                    success:function(data){
+                        console.log(JSON.stringify(data));
+                    }
+                });
+            });
+        });
+
+
+
+    /*]]>*/
+</script>
 
 </body>
 
