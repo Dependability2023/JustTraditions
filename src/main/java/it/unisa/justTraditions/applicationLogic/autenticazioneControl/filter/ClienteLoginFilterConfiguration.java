@@ -18,7 +18,7 @@ public class ClienteLoginFilterConfiguration {
 
     registrationBean.setFilter(clienteLoginFilter);
     registrationBean.addUrlPatterns("/modificaProfilo", "/visualizzazioneProfiloPersonale",
-        "/visualizzazionePrenotazioniPersonali", "/cancellazioneAccount");
+        "/visualizzazionePrenotazioniPersonali", "/cancellazioneAccount", "/effettuaPrenotazione");
 
     return registrationBean;
   }
