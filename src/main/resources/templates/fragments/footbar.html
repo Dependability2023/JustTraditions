@@ -44,8 +44,6 @@
             <div class="col-md-2 mx-auto">
                 <h5 class="title mb-4 mt-3 font-bold ">Support</h5>
                 <ul>
-                    <li><a href="documentogit">Manuale Installazione</a></li>
-                    <li><a href="documentogit">Manuale Utente</a></li>
                     <li><a th:if="${cliente != null}"
                            th:href="@{'mailto:justtraditions@gmail.com?subject=Domanda generale&body=Salve sono l utente, ' + ${cliente.nome} +' '+ ${cliente.cognome}+' il mio codice fiscale è il seguente: '+${cliente.codiceFiscale}+' e vi scrivo per la seguente problematica:'}">Inviaci
                         una mail</a></li>

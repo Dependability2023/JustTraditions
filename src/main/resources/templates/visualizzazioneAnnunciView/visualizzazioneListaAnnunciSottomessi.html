@@ -45,23 +45,33 @@
                         </div>
                     </td>
                     <td>
-                        <span th:if="${annuncio.getStato()} == ${annuncio.stato.PROPOSTO}" class="badge badge-primary rounded-pill d-inline">PROPOSTO</span>
-                        <span th:if="${annuncio.getStato()} == ${annuncio.stato.IN_REVISIONE}" class="badge badge-warning rounded-pill d-inline">IN REVISIONE</span>
-                        <span th:if="${annuncio.getStato()} == ${annuncio.stato.APPROVATO}" class="badge badge-success rounded-pill d-inline">APPROVATO</span>
-                        <span th:if="${annuncio.getStato()} == ${annuncio.stato.RIFIUTATO}" class="badge badge-danger rounded-pill d-inline">RIFIUTATO</span>
+                        <span th:if="${annuncio.getStato()} == ${annuncio.stato.PROPOSTO}"
+                              class="badge badge-primary rounded-pill d-inline">PROPOSTO</span>
+                        <span th:if="${annuncio.getStato()} == ${annuncio.stato.IN_REVISIONE}"
+                              class="badge badge-warning rounded-pill d-inline">IN REVISIONE</span>
+                        <span th:if="${annuncio.getStato()} == ${annuncio.stato.APPROVATO}"
+                              class="badge badge-success rounded-pill d-inline">APPROVATO</span>
+                        <span th:if="${annuncio.getStato()} == ${annuncio.stato.RIFIUTATO}"
+                              class="badge badge-danger rounded-pill d-inline">RIFIUTATO</span>
                     </td>
                     <td class="fw-bold mb-1" th:text="${annuncio.indirizzoAttivita}"></td>
                     <td>
-                        <a th:if="${annuncio.getStato()} == ${annuncio.stato.RIFIUTATO} or ${annuncio.getStato()} == ${annuncio.stato.APPROVATO}" th:href="@{/modificaAnnuncio(id=${annuncio.id})}" class="btn-ls"><em class="fa fa-pencil">Modifica
+                        <a th:if="${annuncio.getStato()} == ${annuncio.stato.RIFIUTATO} or ${annuncio.getStato()} == ${annuncio.stato.APPROVATO}"
+                           th:href="@{/modificaAnnuncio(id=${annuncio.id})}" class="btn-ls"><em class="fa fa-pencil">Modifica
                             Annuncio</em></a><br><br>
-                        <a th:if="${annuncio.getStato()}== ${annuncio.stato.APPROVATO}" th:href="@{/visualizzazionePrenotazioniAnnuncio(idAnnuncio=${annuncio.id})}" class="btn-ls"><em class="fa fa-user">Lista
+                        <a th:if="${annuncio.getStato()}== ${annuncio.stato.APPROVATO}"
+                           th:href="@{/visualizzazionePrenotazioniAnnuncio(idAnnuncio=${annuncio.id})}"
+                           class="btn-ls"><em class="fa fa-user">Lista
                             Prenotazioni</em></a><br><br>
-                        <a th:href="@{/visualizzazioneDettagliAnnuncio(id=${annuncio.id})}" class="btn-ls"><em class="fa fa-arrow-down">Dettagli
+                        <a th:href="@{/visualizzazioneDettagliAnnuncio(id=${annuncio.id})}" class="btn-ls"><em
+                                class="fa fa-arrow-down">Dettagli
                             Annuncio</em></a><br><br>
 
-                        <a th:href="@{/rimozioneAnnuncio(id=${annuncio.id})}"class="btn-ls btn-danger"><em class="fa fa-trash">Elimina Annuncio</em></a>
+                        <a th:href="@{/rimozioneAnnuncio(id=${annuncio.id})}" class="btn-ls btn-danger"><em
+                                class="fa fa-trash">Elimina Annuncio</em></a>
                     </td>
-                    <td th:if="${annuncio.getStato()} == ${annuncio.stato.RIFIUTATO}"><strong th:text="${annuncio.motivoDelRifiuto}"> </strong></td>
+                    <td th:if="${annuncio.getStato()} == ${annuncio.stato.RIFIUTATO}"><strong
+                            th:text="${annuncio.motivoDelRifiuto}"> </strong></td>
                 </tr>
 
                 </tbody>
@@ -70,7 +80,6 @@
         </div>
     </div>
 </div>
-
 
 
 <th:block th:include="fragments/footbar"></th:block>

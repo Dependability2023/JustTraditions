@@ -38,6 +38,7 @@
     <section id="about" class="about">
         <div class="container">
             <div class="content pt-4 pt-lg-0">
+                <input type="hidden" id="idAnnuncio" th:value="${annuncio.id}">
                 <h3>
                     <th:block th:text="${annuncio.nomeAttivita}"></th:block>
                 </h3>
@@ -96,9 +97,8 @@
                     <div class="col-lg-6 d-flex flex-column justify-contents-right" data-aos="fade-left">
                         <div class="content pt-4 pt-lg-0">
                             <h3>Descrizione</h3>
-                            <p class="fst-italic" th:text="${annuncio.descrizione}">
+                            <p class="fst-italic" th:text="${annuncio.descrizione}"></p>
 
-                            </p>
                             <ul>
                                 <li><img src="https://img.icons8.com/color/30/null/place-marker--v1.png"
                                          th:text="${annuncio.indirizzoAttivita}"/></li>
@@ -117,65 +117,70 @@
     </section><!-- End About Section -->
 
     <!-- ======= Features Section ======= -->
+
     <section id="features" class="features">
-        <div class="container">
+        <form id="formprenotazione" method="get" action="/effettuaPrenotazione" th:object="${prenotazioneForm}">
+            <div class="container">
 
-            <div class="row">
-                <div class="col-lg-6 mt-2 mb-tg-0 order-2 order-lg-1">
-                    <ul class="nav nav-tabs flex-column">
-                        <li class="nav-item" data-aos="fade-up">
-                            <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">
-                                <h4><img src="https://img.icons8.com/color/30/null/calendar--v3.png"/> Data</h4>
-                                <p></p>
-                            </a>
-                        </li>
-                        <li class="nav-item mt-2" data-aos="fade-up" data-aos-delay="200">
-                            <a class="nav-link" data-bs-toggle="tab" href="#tab-2">
-                                <h4><img src="https://img.icons8.com/office/30/null/clock--v1.png"/> Fascia oraria</h4>
-                                <p></p>
-                            </a>
-                        </li>
-                        <li class="nav-item mt-2" data-aos="fade-up" data-aos-delay="200">
-                            <a class="nav-link" data-bs-toggle="tab" href="#tab-3">
-                                <h4><img src="https://img.icons8.com/color/30/null/queue-skin-type-4.png"/> Numero
-                                    persone</h4>
-                            </a>
-                        </li>
-                        <button th:if="${cliente != null}" type="button" onclick="location.href='/effettuaPrenotazione'"
-                                class="btn btn-sm btn-primary btn-create">Prenota
-                        </button>
-                        <button th:if="${cliente == null}" type="button" onclick="location.href='/login'"
-                                class="btn btn-sm btn-primary btn-create">Prenota
-                        </button>
-                    </ul>
-                </div>
-                <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in">
-                    <div class="tab-content">
-                        <div class="tab-pane active show" id="tab-1">
-                            Data<br><input type="date" id="dateStandard" name="dateStandard"><br>
+                <div class="row">
+                    <div class="col-lg-6 mt-2 mb-tg-0 order-2 order-lg-1">
+                        <ul class="nav nav-tabs flex-column">
+                            <li class="nav-item" data-aos="fade-up">
+                                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">
+                                    <h4><img src="https://img.icons8.com/color/30/null/calendar--v3.png"/> Data</h4>
+                                    <p></p>
+                                </a>
+                            </li>
+                            <li class="nav-item mt-2" data-aos="fade-up" data-aos-delay="200">
+                                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">
+                                    <h4><img src="https://img.icons8.com/office/30/null/clock--v1.png"/> Fascia oraria
+                                    </h4>
+                                    <p></p>
+                                </a>
+                            </li>
+                            <li class="nav-item mt-2" data-aos="fade-up" data-aos-delay="200">
+                                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">
+                                    <h4><img src="https://img.icons8.com/color/30/null/queue-skin-type-4.png"/> Numero
+                                        persone</h4>
+                                </a>
+                            </li>
 
-                        </div>
-                        <div class="tab-pane" id="tab-2">
-                            Fascia oraria<br>
+                            <button type="submit"
+                                    class="btn btn-sm btn-primary btn-create">Prenota
+                            </button>
 
-                            <select>
-                                <div th:each="fasceoraria : ${annuncio.visite}">
-                                    <option th:text="${fasceoraria.orarioInizio}+'-'+${fasceoraria.orarioFine}"></option>
-                                </div>
-                            </select>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in">
+                        <div class="tab-content">
+                            <div class="tab-pane active show" id="tab-1">
+                                Data<br><input name="dataVisita" form="formprenotazione" type="date"
+                                               id="dataVisita"><br>
 
 
-                        </div>
-                        <div class="tab-pane" id="tab-3">
-                            <form action="" method="get">
-                                Numero persone<br><input type="number"/><br>
-                            </form>
+                            </div>
+                            <div class="tab-pane" id="tab-2">
+                                Fascia oraria<br>
+
+                                <select name="idVisita" form="formprenotazione" class="form-select" id="listavisite">
+
+                                </select>
+
+
+                            </div>
+                            <div class="tab-pane" id="tab-3">
+
+                                Numero persone<br><input name="numeroPersone" form="formprenotazione"
+                                                         type="number"/><br>
+
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
+        </form>
     </section><!-- End Features Section -->
 
 

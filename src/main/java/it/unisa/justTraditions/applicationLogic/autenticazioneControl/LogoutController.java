@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/logout")
 public class LogoutController {
 
-  private static final String homeController = "/";
+    private static final String homeController = "/";
 
-  @Autowired
-  private SessionCliente sessionCliente;
+    @Autowired
+    private SessionCliente sessionCliente;
 
-  @GetMapping
-  public String get() {
-    sessionCliente.setCliente(null);
-    return "redirect:" + homeController;
-  }
+    @GetMapping
+    public String get() {
+        sessionCliente.setCliente(null);
+        return "redirect:" + homeController;
+    }
 }

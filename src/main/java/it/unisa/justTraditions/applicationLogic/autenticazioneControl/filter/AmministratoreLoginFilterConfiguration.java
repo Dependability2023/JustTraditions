@@ -8,19 +8,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AmministratoreLoginFilterConfiguration {
 
-  @Autowired
-  private AmministratoreLoginFilter amministratoreLoginFilter;
+    @Autowired
+    private AmministratoreLoginFilter amministratoreLoginFilter;
 
-  @Bean
-  public FilterRegistrationBean<AmministratoreLoginFilter> filterRegistrationBeanAmministratore() {
-    FilterRegistrationBean<AmministratoreLoginFilter> registrationBean
-        = new FilterRegistrationBean<>();
+    @Bean
+    public FilterRegistrationBean<AmministratoreLoginFilter> filterRegistrationBeanAmministratore() {
+        FilterRegistrationBean<AmministratoreLoginFilter> registrationBean
+                = new FilterRegistrationBean<>();
 
-    registrationBean.setFilter(amministratoreLoginFilter);
-    registrationBean.addUrlPatterns("/modificaStatoAnnuncio", "/rimozioneAmministratore",
-        "/visualizzazioneAmministratori", "/visualizzazioneListaAnnunci", "/homeAmministratore",
-        "/aggiuntaAmministratore");
+        registrationBean.setFilter(amministratoreLoginFilter);
+        registrationBean.addUrlPatterns("/modificaStatoAnnuncio", "/rimozioneAmministratore",
+                "/visualizzazioneAmministratori", "/visualizzazioneListaAnnunci", "/homeAmministratore",
+                "/aggiuntaAmministratore");
 
-    return registrationBean;
-  }
+        return registrationBean;
+    }
 }

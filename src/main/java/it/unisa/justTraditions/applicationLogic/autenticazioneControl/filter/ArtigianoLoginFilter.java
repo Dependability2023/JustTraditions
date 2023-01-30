@@ -8,25 +8,27 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ArtigianoLoginFilter
-    implements Filter {
+        implements Filter {
 
-  @Autowired
-  private SessionCliente sessionCliente;
+    @Autowired
+    private SessionCliente sessionCliente;
 
-  @Override
-  public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
-                       FilterChain filterChain) throws IOException, ServletException {
-    if (sessionCliente.getCliente().isPresent()
-        && sessionCliente.getCliente().get().getClass() == Artigiano.class) {
-      filterChain.doFilter(servletRequest, servletResponse);
-    } else {
-      ((HttpServletResponse) servletResponse).sendRedirect("/login");
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
+                         FilterChain filterChain) throws IOException, ServletException {
+        if (sessionCliente.getCliente().isPresent()
+                && sessionCliente.getCliente().get().getClass() == Artigiano.class) {
+            filterChain.doFilter(servletRequest, servletResponse);
+        } else {
+            ((HttpServletResponse) servletResponse).sendRedirect("/login");
+        }
     }
-  }
 }

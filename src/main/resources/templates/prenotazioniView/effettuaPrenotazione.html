@@ -24,26 +24,30 @@
         <div class="col-md-4">
 
             <div class="card card-blue p-3 bg-dark text-white mb-3">
+                <form action="/effettuaPrenotazione" th:object="${prenotazioneForm}" method="post">
+                    <input type="hidden" th:field="*{dataVisita}">
+                    <input type="hidden" th:field="*{idVisita}">
+                    <input type="hidden" th:field="*{numeroPersone}">
 
-                <span>Data selezionata : </span>
-                <span>Orario selezionato:</span>
-                <span>Numero di persone selezionato:</span>
-                <span>-------------------------------</span>
+                    <span th:text="'Data selezionata : ' + ${prenotazioneForm.dataVisita} "> </span>
+                    <br><br>
+                    <span th:text="'Orario selezionato: ' + ${orarioinizio} + '-' + ${orariofine} "></span>
+                    <br><br>
+                    <span th:text="'Numero di persone selezionato: ' + ${prenotazioneForm.numeroPersone}"></span>
+                    <br><br>
+                    <span>-------------------------------</span>
 
 
-                <span>Costi di iva  : 5€</span>
+                    <div class="mt-4 mb-4">
 
-                <div class="mt-4 mb-4">
+                        <button type="submit" class="btn btn-outline-success  px-3" th:text="'Pay ' + ${prezzo}">
+                        </button>
 
-                    <button class="btn btn-outline-warning  px-3">
-                        Pay €50
-                    </button>
-
-                    <button class="btn btn-outline-warning  px-3">
-                        Torna indietro
-                    </button>
-                </div>
-
+                        <button class="btn btn-outline-success px-3">
+                            <a th:href="@{/visualizzazioneDettagliAnnuncio(id=${idAnnuncio})}">Torna indietro</a>
+                        </button>
+                    </div>
+                </form>
 
             </div>
         </div>
