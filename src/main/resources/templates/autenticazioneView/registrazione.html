@@ -22,45 +22,55 @@
                         <div class="form-group">
                             <input type="text" th:field="*{nome}" class="form-control" id="nome" placeholder="Nome" re
                                    required>
-                            <div class=" d-inline invalid-feedback " th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+                            <div class=" d-inline invalid-feedback " th:if="${#fields.hasErrors('nome')}"
+                                 th:errors="*{nome}"></div>
                         </div>
 
-                    <h5 class="card-title"></i>Cognome</h5>
+                        <h5 class="card-title"></i>Cognome</h5>
 
                         <div class="form-group">
-                            <input type="text" th:field="*{cognome}"  class="form-control" id="cognome" placeholder="Cognome" required="required">
-                            <div class=" d-inline invalid-feedback  " th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></div>
+                            <input type="text" th:field="*{cognome}" class="form-control" id="cognome"
+                                   placeholder="Cognome" required="required">
+                            <div class=" d-inline invalid-feedback  " th:if="${#fields.hasErrors('cognome')}"
+                                 th:errors="*{cognome}"></div>
                         </div>
 
-                    <h5 class="card-title">Codice Fiscale</h5>
+                        <h5 class="card-title">Codice Fiscale</h5>
 
                         <div class="form-group">
-                            <input type="text" th:field="*{codiceFiscale}" pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$"
-                                   class="form-control" id="codfiscale" placeholder="Codice Fiscale" required="required">
-                            <div class=" d-inline invalid-feedback  " th:if="${#fields.hasErrors('codiceFiscale')}" th:errors="*{codiceFiscale}"></div>
+                            <input type="text" th:field="*{codiceFiscale}"
+                                   pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$"
+                                   class="form-control" id="codfiscale" placeholder="Codice Fiscale"
+                                   required="required">
+                            <div class=" d-inline invalid-feedback  " th:if="${#fields.hasErrors('codiceFiscale')}"
+                                 th:errors="*{codiceFiscale}"></div>
                         </div>
 
-                    <h5 class="card-title">E-mail</h5>
+                        <h5 class="card-title">E-mail</h5>
 
                         <div class="form-group">
                             <input type="email" th:field="*{email}" class="form-control" id="exampleInputEmail1"
                                    aria-describedby="emailHelp" placeholder="Enter email" required="required">
-                            <div class=" d-inline invalid-feedback  " th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                            <div class=" d-inline invalid-feedback  " th:if="${#fields.hasErrors('email')}"
+                                 th:errors="*{email}"></div>
                         </div>
                         <h5 class="card-title">Password</h5>
                         <div class="form-group">
-                            <input type="password" th:field="*{password}" class="form-control" id="exampleInputPassword1"
+                            <input type="password" th:field="*{password}" class="form-control"
+                                   id="exampleInputPassword1"
                                    placeholder="Password" required="required">
-                            <div class=" d-inline invalid-feedback  " th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                            <div class=" d-inline invalid-feedback  " th:if="${#fields.hasErrors('password')}"
+                                 th:errors="*{password}"></div>
                         </div>
                         <h5 class="card-title"><i class="iconinput fa fa-user"></i>Sei un Artigiano?</h5>
 
-                            <div class="form-group">
-                                <p>Si<input type="checkbox"  th:field="*{artigiano}"  id="check" ></p>
+                        <div class="form-group">
+                            <p>Si<input type="checkbox" th:field="*{artigiano}" id="check"></p>
 
-                            </div>
+                        </div>
 
-                        <div id="checkid" th:style="${registrazioneForm.isArtigiano() != null && registrazioneForm.isArtigiano() ? '' : 'display:none'}">
+                        <div id="checkid"
+                             th:style="${registrazioneForm.isArtigiano() != null && registrazioneForm.isArtigiano() ? '' : 'display:none'}">
                             <h5 class="card-title">Iban</h5>
                             <div class="form-group">
                                 <input type="text" th:field="*{iban}" class="form-control"
@@ -68,7 +78,8 @@
                                 <div class="d-inline invalid-feedback" th:if="${#fields.hasErrors('iban')}"
                                      th:errors="*{iban}"></div>
                                 <div th:if="${#fields.hasGlobalErrors()}">
-                                    <p class="d-inline invalid-feedback" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+                                    <p class="d-inline invalid-feedback" th:each="err : ${#fields.globalErrors()}"
+                                       th:text="${err}"></p>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +104,7 @@
 <th:block th:include="fragments/scripts"></th:block>
 <script src="/js/navbar.js"></script>
 <script type="text/javascript">
-    $( "#check" ).click(function() {
+    $("#check").click(function () {
         $("#checkid").toggle();
     });
 </script>

@@ -28,6 +28,7 @@ public class VisualizzazioneListaAnnunciController {
   public String get(@RequestParam(required = false) Annuncio.Stato stato,
                     @RequestParam(defaultValue = "0", required = false) Integer pagina,
                     Model model) {
+
     Annuncio annuncio = new Annuncio();
     annuncio.setStato(stato);
 

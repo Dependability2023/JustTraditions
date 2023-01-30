@@ -2,54 +2,61 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="it">
 
 <head>
-  <th:block th:include="fragments/head"></th:block>
-  <title>Just Traditions - HomePage</title>
+    <th:block th:include="fragments/head"></th:block>
+    <title>Just Traditions - HomePage</title>
 </head>
 
 <body>
 <th:block th:include="fragments/navbar"></th:block>
 
-  <br> <br>
-  <!--  Lista annunci  -->
-  <center><h1> Lista Annunci</h1></center>
-  <div class="d-flex flex-wrap justify-content-center mt-3">
+<br> <br>
+<!--  Lista annunci  -->
+<center><h1> Lista Annunci</h1></center>
+<div class="d-flex flex-wrap justify-content-center mt-3">
     <!--   Annunci   -->
     <div th:each="annuncio :${annunci}" class="card m-3" style="width: 15rem;">
 
-      <img th:src="@{/img(id=${annuncio.getFoto().get(0).id})}"
-           class="card-img-top" style="width: 240px; height: 225px;">
-      <div class="card-body  d-flex flex-column align-items-center ">
-        <h5 th:text="${annuncio.nomeAttivita}" class="card-title"></h5>
-        <a th:href="@{/visualizzazioneDettagliAnnuncio(id=${annuncio.id})}"  class="btn btn-outline-success">Vai alla scheda</a>
-      </div>
+        <img th:src="@{/img(id=${annuncio.getFoto().get(0).id})}"
+             class="card-img-top" style="width: 240px; height: 225px;">
+        <div class="card-body  d-flex flex-column align-items-center ">
+            <h5 th:text="${annuncio.nomeAttivita}" class="card-title"></h5>
+            <a th:href="@{/visualizzazioneDettagliAnnuncio(id=${annuncio.id})}" class="btn btn-outline-success">Vai alla
+                scheda</a>
+        </div>
     </div>
 
-  </div>
+</div>
 
-  <!-- Page navigation -->
+<!-- Page navigation -->
 
 <div class="paging-wrapper d-flex flex-wrap justify-content-center mt-3">
-  <form th:method="get" th:action="@{/ricercaAnnunci}">
-    <input type="hidden" th:name="nomeAttivita" th:value="${nomeAttivita}">
-    <input type="hidden" th:name="pagina" th:value="${pagina -1}">
-    <input type="hidden" th:name="provincia" th:value="${provincia}">
+    <form th:method="get" th:action="@{/ricercaAnnunci}">
+        <input type="hidden" th:name="nomeAttivita" th:value="${nomeAttivita}">
+        <input type="hidden" th:name="pagina" th:value="${pagina -1}">
+        <input type="hidden" th:name="provincia" th:value="${provincia}">
 
 
-    <button th:if="${pagina > 0}"  type="submit" value="Precedente" class="btn btn-success">Precedente</button>
-    <button th:unless="${pagina > 0}"  type="submit" value="Precedente" class="btn btn-success" disabled>Precedente</button>
+        <button th:if="${pagina > 0}" type="submit" value="Precedente" class="btn btn-success">Precedente</button>
+        <button th:unless="${pagina > 0}" type="submit" value="Precedente" class="btn btn-success" disabled>Precedente
+        </button>
 
-  </form>
+    </form>
 
-  <strong class="paging-wrapper d-flex flex-wrap justify-content-center mt-3" th:text="'Pagina:'+${pagina+1}"></strong>
+    <strong class="paging-wrapper d-flex flex-wrap justify-content-center mt-3"
+            th:text="'Pagina:'+${pagina+1}"></strong>
 
-  <form th:method="get" th:action="@{/ricercaAnnunci}">
-    <input type="hidden" th:name="nomeAttivita" th:value="${nomeAttivita}">
-    <input type="hidden" th:name="pagina" th:value="${pagina +1}">
-    <input type="hidden" th:name="provincia" th:value="${provincia}">
+    <form th:method="get" th:action="@{/ricercaAnnunci}">
+        <input type="hidden" th:name="nomeAttivita" th:value="${nomeAttivita}">
+        <input type="hidden" th:name="pagina" th:value="${pagina +1}">
+        <input type="hidden" th:name="provincia" th:value="${provincia}">
 
-    <button th:if="${pagineTotali -1 > pagina}"  type="submit" value="Precedente" class="btn btn-success">Successivo</button>
-    <button th:unless="${pagineTotali -1 > pagina}"  type="submit" value="Precedente" class="btn btn-success" disabled>Successivo</button>
-  </form>
+        <button th:if="${pagineTotali -1 > pagina}" type="submit" value="Precedente" class="btn btn-success">
+            Successivo
+        </button>
+        <button th:unless="${pagineTotali -1 > pagina}" type="submit" value="Precedente" class="btn btn-success"
+                disabled>Successivo
+        </button>
+    </form>
 
 
 </div>

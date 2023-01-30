@@ -1,15 +1,46 @@
 $(document).ready(function () {
-    $("#dateStandard").blur(function () {
-        var data = $("#dateStandard").val();
-        var mydata = {dataVisita: data, idAnnuncio: 86};
+    $("#dataVisita").blur(function () {
+        var data = $("#dataVisita").val();
+        var today = new Date();
+        var day = today.getDate();
+        var month = today.getMonth() + 1;
+        var year = today.getFullYear();
+        var dataodierna = year+'-'+month+'-'+day;
+
+        $("#listavisite").empty();
+
+        if(data == ""){
+            return;
+        }
+
+        if(dataodierna >= data){
+            $("#listavisite").append('<option>Data nel passato</option>');
+            return
+        }
+
+        var mydata = {dataVisita: data, idAnnuncio: $("#idAnnuncio").val()};
+        $("#listavisite").empty();
         $.ajax({
             url: '/ricercaVisita',
             method: 'Post',
             data: mydata,
             success: function (data) {
-                console.log(JSON.stringify(data));
+
+
+                if(data.length == 0){
+                    $("#listavisite").append('<option>Nessuna visita</option>');
+                }else{
+                    data.map(visita =>{
+                        $("#listavisite").append('<option value="'+visita.id+'">'+visita.orarioInizio+'-'+visita.orarioFine+'</option>');
+
+                    })
+                }
             }
         });
     });
-});
+}
 
+
+
+
+);
