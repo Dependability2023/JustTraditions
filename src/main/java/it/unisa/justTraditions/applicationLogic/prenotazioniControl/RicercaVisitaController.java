@@ -10,6 +10,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,18 +27,23 @@ public class RicercaVisitaController {
   private AnnuncioDao annuncioDao;
 
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  private List<VisitaResponse> post(@RequestParam Long idAnnuncio,
-                                    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-                                    LocalDate dataVisita) {
+  private ResponseEntity<?> post(@RequestParam Long idAnnuncio,
+                                 @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+                                 LocalDate dataVisita) {
     Optional<Annuncio> optionalAnnuncio = annuncioDao.findById(idAnnuncio);
     if (optionalAnnuncio.isEmpty()) {
-      return List.of();
+      return ResponseEntity.ok(List.of());
+    }
+    if (dataVisita.isAfter(LocalDate.now())) {
+      return ResponseEntity.ok(List.of());
     }
     Annuncio annuncio = optionalAnnuncio.get();
+    List<VisitaResponse> visitaResponses =
+        visitaDao.findByAnnuncioAndGiornoAndValiditaTrue(annuncio, dataVisita.getDayOfWeek())
+            .stream()
+            .map(v -> new VisitaResponse(v.getId(), v.getOrarioInizio(), v.getOrarioFine()))
+            .toList();
 
-    return visitaDao.findByAnnuncioAndGiornoAndValiditaTrue(annuncio, dataVisita.getDayOfWeek())
-        .stream()
-        .map(v -> new VisitaResponse(v.getId(), v.getOrarioInizio(), v.getOrarioFine()))
-        .toList();
+    return ResponseEntity.ok(visitaResponses);
   }
 }
