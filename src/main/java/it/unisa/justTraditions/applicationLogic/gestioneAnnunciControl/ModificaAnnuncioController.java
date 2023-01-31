@@ -100,7 +100,8 @@ public class ModificaAnnuncioController {
       }
     }
 
-    if (idFoto == null && annuncioForm.getFoto() == null) {
+    if (idFoto == null
+        && (annuncioForm.getFoto() == null || annuncioForm.getFoto().get(0).isEmpty())) {
       model.addAttribute("nessunaFoto", true);
       return modificaAnnuncioView;
     }
@@ -163,7 +164,7 @@ public class ModificaAnnuncioController {
     }
 
     List<MultipartFile> annuncioFormFoto = annuncioForm.getFoto();
-    if (annuncioFormFoto != null) {
+    if (annuncioFormFoto != null && !annuncioFormFoto.get(0).isEmpty()) {
       for (MultipartFile file : annuncioFormFoto) {
         if (foto.size() >= 3) {
           break;
