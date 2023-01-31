@@ -39,6 +39,7 @@
         <div class="container">
             <div class="content pt-4 pt-lg-0">
                 <input type="hidden" id="idAnnuncio" th:value="${annuncio.id}">
+
                 <h3>
                     <th:block th:text="${annuncio.nomeAttivita}"></th:block>
                 </h3>
@@ -166,11 +167,10 @@
 
                                 </select>
 
-
                             </div>
                             <div class="tab-pane" id="tab-3">
 
-                                Numero persone<br><input name="numeroPersone" form="formprenotazione"
+                                Numero persone<br><input id="numpersone" name="numeroPersone" form="formprenotazione"
                                                          type="number"/><br>
 
 
@@ -240,6 +240,7 @@
 <script src="/assets/js/main.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="/js/AjaxVisite.js"></script>
+<script src="/js/AjaxNumMax.js"></script>
 
 </body>
 
