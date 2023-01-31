@@ -22,7 +22,9 @@ public class VisualizzazioneDettagliAnnuncioController {
   @GetMapping
   public ModelAndView get(@RequestParam Long id) {
     Annuncio annuncio = annuncioDao.findById(id).orElseThrow(IllegalArgumentException::new);
-
+    if (!annuncio.getStato().equals(Annuncio.Stato.APPROVATO)) {
+      throw new IllegalArgumentException();
+    }
 
     return new ModelAndView(visualizzazioneDettagliAnnuncioView)
         .addObject("totalFoto", annuncio.getFoto().size())
