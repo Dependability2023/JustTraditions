@@ -5,6 +5,12 @@ $(document).ready(function () {
         var day = today.getDate();
         var month = today.getMonth() + 1;
         var year = today.getFullYear();
+        if(day> 0 && day<= 9){
+            day="0"+day;
+        }
+        if(month> 0 && month<= 9){
+            month="0"+month;
+        }
         var dataodierna = year+'-'+month+'-'+day;
 
         $("#listavisite").empty();
