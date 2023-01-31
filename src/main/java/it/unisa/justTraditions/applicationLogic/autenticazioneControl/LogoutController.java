@@ -15,6 +15,11 @@ public class LogoutController {
   @Autowired
   private SessionCliente sessionCliente;
 
+  /**
+   * Implementa la funzionalità di logout di un Cliente.
+   *
+   * @return redirect:
+   */
   @GetMapping
   public String get() {
     sessionCliente.setCliente(null);

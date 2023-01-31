@@ -31,11 +31,25 @@ public class RegistrazioneController {
   @Autowired
   private PasswordEncryptor passwordEncryptor;
 
+  /**
+   * Implementa la funzionalità di  smistare l'Amministratore sulla view di  autenticazioneView/registrazione.
+   *
+   * @param registrazioneForm Utilizzato per mappare il Form della view.
+   * @return autenticazioneView/registrazione.
+   */
   @GetMapping
   public String get(@ModelAttribute RegistrazioneForm registrazioneForm) {
     return registrazioneView;
   }
 
+  /**
+   * Implementa la funzionalità di Registrazione di un Cliente.
+   *
+   * @param registrazioneForm Utilizzato per mappare il Form della view.
+   * @param bindingResult     Utilizzato per mappare gli errori dei dati di RegistrazioneForm
+   * @return autenticazioneView/registrazione se i dati di loginForm sono errati.
+   * redirect: login la Registrazione ha avuto successo.
+   */
   @PostMapping
   public String post(@ModelAttribute @Valid RegistrazioneForm registrazioneForm,
                      BindingResult bindingResult) {

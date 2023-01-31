@@ -15,6 +15,11 @@ public class LogoutAmministratoreController {
   @Autowired
   private SessionAmministratore sessionAmministratore;
 
+  /**
+   * Implementa la funzionalità di logout di un amministratore.
+   *
+   * @return redirect: loginAmministratore
+   */
   @GetMapping
   public String get() {
     sessionAmministratore.setAmministratore(null);
