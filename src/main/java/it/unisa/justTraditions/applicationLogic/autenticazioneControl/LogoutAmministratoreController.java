@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/logoutAmministratore")
 public class LogoutAmministratoreController {
 
-    private static final String loginAmministratoreController = "/loginAmministratore";
+  private static final String loginAmministratoreController = "/loginAmministratore";
 
-    @Autowired
-    private SessionAmministratore sessionAmministratore;
+  @Autowired
+  private SessionAmministratore sessionAmministratore;
 
-    @GetMapping
-    public String get() {
-        sessionAmministratore.setAmministratore(null);
-        return "redirect:" + loginAmministratoreController;
-    }
+  @GetMapping
+  public String get() {
+    sessionAmministratore.setAmministratore(null);
+    return "redirect:" + loginAmministratoreController;
+  }
 }

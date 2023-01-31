@@ -27,7 +27,7 @@ public class AggiuntaAmministratoreController {
   private PasswordEncryptor passwordEncryptor;
 
   @Autowired
-  AmministratoreDao amministratoreDao;
+  private AmministratoreDao amministratoreDao;
 
 
   @GetMapping

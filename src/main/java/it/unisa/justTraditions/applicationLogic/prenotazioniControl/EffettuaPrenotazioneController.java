@@ -22,55 +22,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/effettuaPrenotazione")
 public class EffettuaPrenotazioneController {
 
-    private static final String effettuaPrenotazioneView = "prenotazioniView/effettuaPrenotazione";
-    private static final String esitoPrenotazioneView = "prenotazioniView/esitoPrenotazione";
+  private static final String effettuaPrenotazioneView = "prenotazioniView/effettuaPrenotazione";
+  private static final String esitoPrenotazioneView = "prenotazioniView/esitoPrenotazione";
 
-    @Autowired
-    private VisitaDao visitaDao;
+  @Autowired
+  private VisitaDao visitaDao;
 
 
-    @Autowired
-    private SessionCliente sessionCliente;
+  @Autowired
+  private SessionCliente sessionCliente;
 
-    @Autowired
-    private ClienteDao clienteDao;
+  @Autowired
+  private ClienteDao clienteDao;
 
-    @GetMapping
-    public String get(@ModelAttribute @Valid PrenotazioneForm prenotazioneForm,
-                      BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            throw new IllegalArgumentException();
-        }
-        Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita()).get();
-        Annuncio annuncio = visita.getAnnuncio();
-        model.addAttribute("prezzo", annuncio.getPrezzoVisita());
-        model.addAttribute("orarioinizio", visita.getOrarioInizio());
-        model.addAttribute("orariofine", visita.getOrarioFine());
-        model.addAttribute("idAnnuncio", annuncio.getId());
-        return effettuaPrenotazioneView;
+  @GetMapping
+  public String get(@ModelAttribute @Valid PrenotazioneForm prenotazioneForm,
+                    BindingResult bindingResult, Model model) {
+    if (bindingResult.hasErrors()) {
+      throw new IllegalArgumentException();
+    }
+    Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita()).get();
+    Annuncio annuncio = visita.getAnnuncio();
+    model.addAttribute("prezzo", annuncio.getPrezzoVisita());
+    model.addAttribute("orarioinizio", visita.getOrarioInizio());
+    model.addAttribute("orariofine", visita.getOrarioFine());
+    model.addAttribute("idAnnuncio", annuncio.getId());
+    return effettuaPrenotazioneView;
+  }
+
+  @PostMapping
+  public String post(@ModelAttribute @Valid PrenotazioneForm prenotazioneForm,
+                     BindingResult bindingResult) {
+    if (bindingResult.hasErrors()) {
+      throw new IllegalArgumentException();
     }
 
-    @PostMapping
-    public String post(@ModelAttribute @Valid PrenotazioneForm prenotazioneForm,
-                       BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            throw new IllegalArgumentException();
-        }
+    Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita()).get();
 
-        Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita()).get();
+    Prenotazione prenotazione =
+        new Prenotazione(visita.getAnnuncio().getPrezzoVisita(), prenotazioneForm.getDataVisita(),
+            prenotazioneForm.getNumeroPersone());
 
-        Prenotazione prenotazione =
-                new Prenotazione(visita.getAnnuncio().getPrezzoVisita(), prenotazioneForm.getDataVisita(),
-                        prenotazioneForm.getNumeroPersone());
+    Cliente cliente = sessionCliente.getCliente().get();
+    cliente.addPrenotazione(prenotazione);
 
-        Cliente cliente = sessionCliente.getCliente().get();
-        cliente.addPrenotazione(prenotazione);
+    visita.addPrenotazione(prenotazione);
 
-        visita.addPrenotazione(prenotazione);
+    clienteDao.save(cliente);
+    visitaDao.save(visita);
 
-        clienteDao.save(cliente);
-        visitaDao.save(visita);
-
-        return esitoPrenotazioneView;
-    }
+    return esitoPrenotazioneView;
+  }
 }

@@ -15,7 +15,7 @@ public class VisualizzazioneAmministratoriController {
       "gestioneProfiliView/visualizzazioneAmministratori";
 
   @Autowired
-  AmministratoreDao amministratoreDao;
+  private AmministratoreDao amministratoreDao;
 
   @GetMapping
   public ModelAndView get() {

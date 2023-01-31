@@ -2,7 +2,6 @@ package it.unisa.justTraditions.applicationLogic.visualizzazioneAnnunciControl;
 
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.dao.AnnuncioDao;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -28,10 +27,9 @@ public class HomeController {
     annuncio.setStato(Annuncio.Stato.APPROVATO);
 
     Page<Annuncio> annunci = annuncioDao.findAll(
-            Example.of(annuncio),
-            PageRequest.of(0, 8, Sort.by(Sort.Direction.DESC, "id"))
+        Example.of(annuncio),
+        PageRequest.of(0, 8, Sort.by(Sort.Direction.DESC, "id"))
     );
-
 
 
     return new ModelAndView(homeView)

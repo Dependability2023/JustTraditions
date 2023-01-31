@@ -5,20 +5,20 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 public class MotivoDelRifiutoIsValidValidator
-        implements ConstraintValidator<MotivoDelRifiutoIsValidConstraint, ModificaStatoAnnuncioForm> {
+    implements ConstraintValidator<MotivoDelRifiutoIsValidConstraint, ModificaStatoAnnuncioForm> {
 
-    @Override
-    public boolean isValid(ModificaStatoAnnuncioForm modificaStatoAnnuncioForm,
-                           ConstraintValidatorContext constraintValidatorContext) {
-        Annuncio.Stato nuovoStato = modificaStatoAnnuncioForm.getNuovoStato();
-        boolean motivoDelRifiutoBlank = modificaStatoAnnuncioForm.getMotivoDelRifiuto() == null
-                || modificaStatoAnnuncioForm.getMotivoDelRifiuto().isBlank();
+  @Override
+  public boolean isValid(ModificaStatoAnnuncioForm modificaStatoAnnuncioForm,
+                         ConstraintValidatorContext constraintValidatorContext) {
+    Annuncio.Stato nuovoStato = modificaStatoAnnuncioForm.getNuovoStato();
+    boolean motivoDelRifiutoBlank = modificaStatoAnnuncioForm.getMotivoDelRifiuto() == null
+        || modificaStatoAnnuncioForm.getMotivoDelRifiuto().isBlank();
 
-        return nuovoStato != Annuncio.Stato.RIFIUTATO || !motivoDelRifiutoBlank;
-    }
+    return nuovoStato != Annuncio.Stato.RIFIUTATO || !motivoDelRifiutoBlank;
+  }
 
-    @Override
-    public void initialize(MotivoDelRifiutoIsValidConstraint constraintAnnotation) {
-        ConstraintValidator.super.initialize(constraintAnnotation);
-    }
+  @Override
+  public void initialize(MotivoDelRifiutoIsValidConstraint constraintAnnotation) {
+    ConstraintValidator.super.initialize(constraintAnnotation);
+  }
 }
