@@ -8,19 +8,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ArtigianoLoginFilterConfiguration {
 
-    @Autowired
-    private ArtigianoLoginFilter artigianoLoginFilter;
+  @Autowired
+  private ArtigianoLoginFilter artigianoLoginFilter;
 
-    @Bean
-    public FilterRegistrationBean<ArtigianoLoginFilter> filterRegistrationBeanArtigianoLogin() {
-        FilterRegistrationBean<ArtigianoLoginFilter> registrationBean
-                = new FilterRegistrationBean<>();
+  @Bean
+  public FilterRegistrationBean<ArtigianoLoginFilter> filterRegistrationBeanArtigianoLogin() {
+    FilterRegistrationBean<ArtigianoLoginFilter> registrationBean
+        = new FilterRegistrationBean<>();
 
-        registrationBean.setFilter(artigianoLoginFilter);
-        registrationBean.addUrlPatterns("/sottomissioneAnnuncio", "/rimozioneAnnuncio",
-                "/modificaAnnuncio", "/visualizzazioneListaAnnunciSottomessi",
-                "/visualizzazionePrenotazioniAnnuncio");
+    registrationBean.setFilter(artigianoLoginFilter);
+    registrationBean.addUrlPatterns("/sottomissioneAnnuncio", "/rimozioneAnnuncio",
+        "/modificaAnnuncio", "/visualizzazioneListaAnnunciSottomessi",
+        "/visualizzazionePrenotazioniAnnuncio");
 
-        return registrationBean;
-    }
+    return registrationBean;
+  }
 }

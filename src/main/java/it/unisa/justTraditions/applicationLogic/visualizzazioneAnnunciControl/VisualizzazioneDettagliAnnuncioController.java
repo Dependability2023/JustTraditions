@@ -24,7 +24,6 @@ public class VisualizzazioneDettagliAnnuncioController {
     Annuncio annuncio = annuncioDao.findById(id).orElseThrow(IllegalArgumentException::new);
 
 
-
     return new ModelAndView(visualizzazioneDettagliAnnuncioView)
         .addObject("totalFoto", annuncio.getFoto().size())
         .addObject("annuncio", annuncio);

@@ -19,51 +19,51 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/registrazione")
 public class RegistrazioneController {
 
-    private static final String registrazioneView = "autenticazioneView/registrazione";
-    private static final String loginController = "/login";
+  private static final String registrazioneView = "autenticazioneView/registrazione";
+  private static final String loginController = "/login";
 
-    @Autowired
-    private ClienteDao clienteDao;
+  @Autowired
+  private ClienteDao clienteDao;
 
-    @Autowired
-    private ArtigianoDao artigianoDao;
+  @Autowired
+  private ArtigianoDao artigianoDao;
 
-    @Autowired
-    private PasswordEncryptor passwordEncryptor;
+  @Autowired
+  private PasswordEncryptor passwordEncryptor;
 
-    @GetMapping
-    public String get(@ModelAttribute RegistrazioneForm registrazioneForm) {
-        return registrazioneView;
+  @GetMapping
+  public String get(@ModelAttribute RegistrazioneForm registrazioneForm) {
+    return registrazioneView;
+  }
+
+  @PostMapping
+  public String post(@ModelAttribute @Valid RegistrazioneForm registrazioneForm,
+                     BindingResult bindingResult) {
+    if (bindingResult.hasErrors()) {
+      return registrazioneView;
     }
 
-    @PostMapping
-    public String post(@ModelAttribute @Valid RegistrazioneForm registrazioneForm,
-                       BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return registrazioneView;
-        }
-
-        if (registrazioneForm.isArtigiano()) {
-            Artigiano artigiano = new Artigiano(
-                    registrazioneForm.getEmail(),
-                    passwordEncryptor.encryptPassword(registrazioneForm.getPassword()),
-                    registrazioneForm.getNome(),
-                    registrazioneForm.getCognome(),
-                    registrazioneForm.getCodiceFiscale(),
-                    registrazioneForm.getIban()
-            );
-            artigianoDao.save(artigiano);
-        } else {
-            Cliente cliente = new Cliente(
-                    registrazioneForm.getEmail(),
-                    passwordEncryptor.encryptPassword(registrazioneForm.getPassword()),
-                    registrazioneForm.getNome(),
-                    registrazioneForm.getCognome(),
-                    registrazioneForm.getCodiceFiscale()
-            );
-            clienteDao.save(cliente);
-        }
-
-        return "redirect:" + loginController;
+    if (registrazioneForm.isArtigiano()) {
+      Artigiano artigiano = new Artigiano(
+          registrazioneForm.getEmail(),
+          passwordEncryptor.encryptPassword(registrazioneForm.getPassword()),
+          registrazioneForm.getNome(),
+          registrazioneForm.getCognome(),
+          registrazioneForm.getCodiceFiscale(),
+          registrazioneForm.getIban()
+      );
+      artigianoDao.save(artigiano);
+    } else {
+      Cliente cliente = new Cliente(
+          registrazioneForm.getEmail(),
+          passwordEncryptor.encryptPassword(registrazioneForm.getPassword()),
+          registrazioneForm.getNome(),
+          registrazioneForm.getCognome(),
+          registrazioneForm.getCodiceFiscale()
+      );
+      clienteDao.save(cliente);
     }
+
+    return "redirect:" + loginController;
+  }
 }
