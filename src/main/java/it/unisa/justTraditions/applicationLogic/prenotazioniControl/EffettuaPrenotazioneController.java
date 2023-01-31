@@ -7,6 +7,7 @@ import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Visita;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.ClienteDao;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Cliente;
+import it.unisa.justTraditions.storage.prenotazioniStorage.dao.PrenotazioneDao;
 import it.unisa.justTraditions.storage.prenotazioniStorage.entity.Prenotazione;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class EffettuaPrenotazioneController {
 
   @Autowired
   private ClienteDao clienteDao;
+
+  @Autowired
+  private PrenotazioneDao prenotazioneDao;
 
   @GetMapping
   public String get(@ModelAttribute @Valid PrenotazioneForm prenotazioneForm,
@@ -68,8 +72,7 @@ public class EffettuaPrenotazioneController {
 
     visita.addPrenotazione(prenotazione);
 
-    clienteDao.save(cliente);
-    visitaDao.save(visita);
+    prenotazioneDao.save(prenotazione);
 
     return esitoPrenotazioneView;
   }
