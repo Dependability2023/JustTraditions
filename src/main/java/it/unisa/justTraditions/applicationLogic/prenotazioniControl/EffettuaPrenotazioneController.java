@@ -5,7 +5,6 @@ import it.unisa.justTraditions.applicationLogic.prenotazioniControl.form.Prenota
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.dao.VisitaDao;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Visita;
-import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.ClienteDao;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Cliente;
 import it.unisa.justTraditions.storage.prenotazioniStorage.dao.PrenotazioneDao;
 import it.unisa.justTraditions.storage.prenotazioniStorage.entity.Prenotazione;
@@ -29,12 +28,8 @@ public class EffettuaPrenotazioneController {
   @Autowired
   private VisitaDao visitaDao;
 
-
   @Autowired
   private SessionCliente sessionCliente;
-
-  @Autowired
-  private ClienteDao clienteDao;
 
   @Autowired
   private PrenotazioneDao prenotazioneDao;
@@ -45,7 +40,10 @@ public class EffettuaPrenotazioneController {
     if (bindingResult.hasErrors()) {
       throw new IllegalArgumentException();
     }
-    Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita()).get();
+
+    Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita())
+        .orElseThrow(IllegalArgumentException::new);
+
     Annuncio annuncio = visita.getAnnuncio();
     model.addAttribute("prezzo", annuncio.getPrezzoVisita());
     model.addAttribute("orarioinizio", visita.getOrarioInizio());
@@ -61,7 +59,8 @@ public class EffettuaPrenotazioneController {
       throw new IllegalArgumentException();
     }
 
-    Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita()).get();
+    Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita())
+        .orElseThrow(IllegalArgumentException::new);
 
     Prenotazione prenotazione =
         new Prenotazione(visita.getAnnuncio().getPrezzoVisita(), prenotazioneForm.getDataVisita(),
