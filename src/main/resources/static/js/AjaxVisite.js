@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     $("#dataVisita").blur(function () {
         var data = $("#dataVisita").val();
         var today = new Date();
@@ -14,6 +15,7 @@ $(document).ready(function () {
         var dataodierna = year+'-'+month+'-'+day;
 
         $("#listavisite").empty();
+
 
         if(data == ""){
             return;
@@ -36,6 +38,7 @@ $(document).ready(function () {
                 if(data.length == 0){
                     $("#listavisite").append('<option>Nessuna visita</option>');
                 }else{
+                    $("#listavisite").append('<option>Seleziona una visita</option>');
                     data.map(visita =>{
                         $("#listavisite").append('<option value="'+visita.id+'">'+visita.orarioInizio+'-'+visita.orarioFine+'</option>');
 
