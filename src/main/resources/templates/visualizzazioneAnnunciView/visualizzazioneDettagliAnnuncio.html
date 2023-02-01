@@ -146,8 +146,8 @@
                                 </a>
                             </li>
 
-                            <button type="submit"
-                                    class="btn btn-sm btn-primary btn-create">Prenota
+                            <button id="prenota" type="submit"
+                                    class="btn btn-sm btn-primary btn-create" disabled>Prenota
                             </button>
 
                         </ul>
@@ -156,14 +156,15 @@
                         <div class="tab-content">
                             <div class="tab-pane active show" id="tab-1">
                                 Data<br><input name="dataVisita" form="formprenotazione" type="date"
-                                               id="dataVisita"><br>
+                                               id="dataVisita" required><br>
 
 
                             </div>
                             <div class="tab-pane" id="tab-2">
                                 Fascia oraria<br>
 
-                                <select name="idVisita" form="formprenotazione" class="form-select" id="listavisite">
+                                <select name="idVisita" form="formprenotazione" class="form-select" id="listavisite"
+                                        required>
 
                                 </select>
 
@@ -171,7 +172,7 @@
                             <div class="tab-pane" id="tab-3">
 
                                 Numero persone<br><input id="numpersone" name="numeroPersone" form="formprenotazione"
-                                                         type="number"/><br>
+                                                         type="number" min="0" required/><br>
 
 
                             </div>
@@ -241,6 +242,7 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="/js/AjaxVisite.js"></script>
 <script src="/js/AjaxNumMax.js"></script>
+
 
 </body>
 
