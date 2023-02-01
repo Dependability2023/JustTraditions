@@ -43,6 +43,15 @@ public class ModificaAnnuncioController {
   @Autowired
   private SessionCliente sessionCliente;
 
+  /**
+   * Implementa la funzionalità di smistare l'Artigiano sulla view di gestioneAnnunciView/modificaAnnuncio.
+   *
+   * @param id    Utilizzato per la ricerca dell Annuncio nel database.
+   * @param model Utilizzato per passare degli attributi alla view.
+   * @return gestioneAnnunciView/modificaAnnuncio se i parametri sono giusti.
+   * IllegalArgumentException se l'id non corrisponde a un annuncio
+   * se l'annuncio non e dell'artigiano loggato o lo stato dell'annuncio e Proposto o In_Revisione.
+   */
   @GetMapping
   public String get(@RequestParam Long id, Model model) {
     Optional<Annuncio> optionalAnnuncio = annuncioDao.findById(id);
@@ -87,6 +96,19 @@ public class ModificaAnnuncioController {
     return modificaAnnuncioView;
   }
 
+  /**
+   * Implementa la funzionalità di Modifica di un annuncio.
+   *
+   * @param annuncioForm  Utilizzato per mappare il Form della view.
+   * @param bindingResult Utilizzato per mappare gli errori dei dati di loginForm.
+   * @param idFoto        Utilizzato per segnare le foto dell annuncio che non sono state eliminate
+   *                      nella modifica.
+   * @param model         Utilizzato per passare degli attributi alla view.
+   * @return gestioneAnnunciView/modificaAnnuncio se ci sono errori sui dati del Form.
+   * IllegalArgumentException se i dati del form sono mancanti o l'annuncio non è dell'artigiano
+   * loggato o lo stato dell'annuncio è Proposto o In_Revisione.
+   * gestioneAnnunciView/modificaAnnuncioSuccess se la modifica ha avuto successo.
+   */
   @PostMapping
   public String post(@ModelAttribute @Valid AnnuncioForm annuncioForm, BindingResult bindingResult,
                      @RequestParam(required = false) List<Long> idFoto, Model model) {

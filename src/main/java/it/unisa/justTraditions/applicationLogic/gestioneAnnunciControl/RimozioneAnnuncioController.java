@@ -28,6 +28,14 @@ public class RimozioneAnnuncioController {
   @Autowired
   private SessionCliente sessionCliente;
 
+  /**
+   * Implementa la funzionalità di Rimozione di un annuncio.
+   *
+   * @param id Utilizzato per la ricerca dell Annuncio nel database.
+   * @return IllegalArgumentException se l'id non corrisponde a un annuncio se l'annuncio
+   * non e dell'artigiano loggato.
+   * gestioneAnnunciView/modificaAnnuncioSuccess se la Rimozione ha avuto successo.
+   */
   @GetMapping
   public String get(@RequestParam Long id) {
     Optional<Annuncio> optionalAnnuncio = annuncioDao.findById(id);

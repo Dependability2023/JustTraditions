@@ -36,7 +36,7 @@ public class SottomissioneAnnuncioController {
   ArtigianoDao artigianoDao;
 
   /**
-   * Implementa la funzionalità di  smistare l'Artigiano sulla view di  sottomissioneAnnuncio.
+   * Implementa la funzionalità di smistare l'Artigiano sulla view di sottomissioneAnnuncio.
    *
    * @param annuncioForm Utilizzato per mappare il Form della view.
    * @return "gestioneAnnunciView/sottomissioneAnnuncio"".
@@ -52,7 +52,8 @@ public class SottomissioneAnnuncioController {
    * @param annuncioForm  Utilizzato per mappare il Form della view.
    * @param bindingResult Utilizzato per mappare gli errori dei dati di annuncioForm.
    * @param model         Utilizzato per passare degli attributi alla view.
-   * @return gestioneAnnunciView/sottomissioneAnnuncio se i dati di annuncioForm sono errati o i file delle foto creano una IOException.
+   * @return gestioneAnnunciView/sottomissioneAnnuncio se i dati di annuncioForm sono errati o
+   * i file delle foto creano una IOException.
    * gestioneAnnunciView/modificaAnnuncioSuccess se la sottomissione ha avuto successo.
    */
   @PostMapping

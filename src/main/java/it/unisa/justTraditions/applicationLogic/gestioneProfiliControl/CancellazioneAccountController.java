@@ -22,6 +22,11 @@ public class CancellazioneAccountController {
   @Autowired
   private SessionCliente sessionCliente;
 
+  /**
+   * Implementa la funzionalità di eliminare l'account di un Cliente.
+   *
+   * @return redirect:/.
+   */
   @GetMapping
   public String get() {
     Cliente cliente = sessionCliente.getCliente().get();

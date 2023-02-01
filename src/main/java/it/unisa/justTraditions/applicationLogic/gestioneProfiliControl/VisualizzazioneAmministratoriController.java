@@ -17,6 +17,13 @@ public class VisualizzazioneAmministratoriController {
   @Autowired
   private AmministratoreDao amministratoreDao;
 
+  /**
+   * Implementa la funzionalità di smistare l Amministratore
+   * su la view di gestioneProfiliView/visualizzazioneAmministratori.
+   *
+   * @return ModelAndView(gestioneProfiliView / visualizzazioneAmministratori)
+   * con la lista degli Amministratori.
+   */
   @GetMapping
   public ModelAndView get() {
     return new ModelAndView(visualizzazioneAmministratoriView)
