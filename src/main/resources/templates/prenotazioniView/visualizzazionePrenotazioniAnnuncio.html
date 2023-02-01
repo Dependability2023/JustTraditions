@@ -100,7 +100,8 @@
 
 <script>
     $("#dateStandard").blur(function () {
-        $("#formdata").submit();
+        if ($("#dataVisita").val() != "")
+            $("#formdata").submit();
     })
 </script>
 

@@ -34,7 +34,7 @@ public class RicercaAnnunciController {
                     @RequestParam(defaultValue = "0", required = false) Integer pagina,
                     Model model) {
     if (!nomeAttivita.isBlank() && nomeAttivita.length() > 40) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("La ricerca degli annunci non va a buon fine poiché il nome inserito dall’utente è troppo lungo.");
     }
     if (!provincia.isBlank() && !province.getProvince().contains(provincia)) {
       throw new IllegalArgumentException();

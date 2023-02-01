@@ -208,8 +208,12 @@
                                                     th:value="${annuncio.stato.RIFIUTATO}">RIFIUTATO
                                             </option>
                                         </select>
-                                        <div id="divMotivo">Motivo del rifiuto<br><textarea type="text-area"
+                                        <div th:style="${modificaStatoAnnuncioForm.nuovoStato != null and modificaStatoAnnuncioForm.nuovoStato == modificaStatoAnnuncioForm.nuovoStato.RIFIUTATO ? '' : 'display:none'}"
+                                             id="divMotivo">Motivo del rifiuto<br><textarea type="text-area"
                                                                                             th:field="*{motivoDelRifiuto}"></textarea>
+                                            <div class=" d-inline invalid-feedback "
+                                                 th:if="${#fields.hasErrors('motivoDelRifiuto')}"
+                                                 th:errors="*{motivoDelRifiuto}"></div>
                                         </div>
                                         <input type="hidden" th:field="*{idAnnuncio}">
                                     </form>
