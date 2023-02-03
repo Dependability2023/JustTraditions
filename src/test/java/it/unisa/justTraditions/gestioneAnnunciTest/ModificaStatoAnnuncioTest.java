@@ -1,7 +1,9 @@
 package it.unisa.justTraditions.gestioneAnnunciTest;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.SessionAmministratore;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.dao.AnnuncioDao;
@@ -18,13 +20,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ModificaStatoAnnuncioTest {
 
-  private static final Long id = 1L;
   private static final String modificaStatoAnnuncioView =
       "gestioneAnnunciView/modificaStatoAnnuncio";
   private static final String modificaAnnuncioSuccessView =
@@ -45,14 +45,14 @@ public class ModificaStatoAnnuncioTest {
   @Test
   public void inRevisioneVersoPropostoNonConsentito()
       throws Exception {
-    test(Annuncio.Stato.PROPOSTO, "", MockMvcResultMatchers.view().name(modificaStatoAnnuncioView));
+    test(Annuncio.Stato.PROPOSTO, "", view().name(modificaStatoAnnuncioView));
   }
 
   @Test
   public void rifiutatoConMotivoDelRifiutoVuotoNonConsentito()
       throws Exception {
     test(Annuncio.Stato.RIFIUTATO, "",
-        MockMvcResultMatchers.view().name(modificaStatoAnnuncioView));
+        view().name(modificaStatoAnnuncioView));
   }
 
   @Test
@@ -63,7 +63,7 @@ public class ModificaStatoAnnuncioTest {
             + "iohgkjnkjnvjdfnasònaaoegferjafpeir94t547685yghdknfvfkjn0392’23058485345t74tghfviev"
             + "nerhgihsosnfdiohfregfdfsodoehrbvvxcn,msdpofjerhgurvdfls ojferfgeuldfiurhrigishs"
             + "jldhf8efnvjkfndvvoòghneog",
-        MockMvcResultMatchers.view().name(modificaStatoAnnuncioView));
+        view().name(modificaStatoAnnuncioView));
   }
 
   @Test
@@ -71,7 +71,7 @@ public class ModificaStatoAnnuncioTest {
       throws Exception {
     test(Annuncio.Stato.RIFIUTATO,
         "L’annuncio è stato rifiutato perché non conforme agli standard della piattaforma",
-        MockMvcResultMatchers.view().name(modificaAnnuncioSuccessView));
+        view().name(modificaAnnuncioSuccessView));
   }
 
   private void test(Annuncio.Stato nuovoStato, String motivoDelRifiuto, ResultMatcher resultMatcher)
@@ -81,13 +81,13 @@ public class ModificaStatoAnnuncioTest {
     annuncio.addFoto(new Foto());
     Artigiano artigiano = new Artigiano();
     artigiano.addAnnuncio(annuncio);
-    when(annuncioDao.findById(id)).thenReturn(Optional.of(annuncio));
 
+    when(annuncioDao.findById(any())).thenReturn(Optional.of(annuncio));
     when(sessionAmministratore.getAmministratore())
         .thenReturn(Optional.of(new Amministratore()));
 
     mockMvc.perform(post("/modificaStatoAnnuncio")
-        .param("idAnnuncio", String.valueOf(id))
+        .param("idAnnuncio", String.valueOf(1L))
         .param("nuovoStato", String.valueOf(nuovoStato))
         .param("motivoDelRifiuto", motivoDelRifiuto)
     ).andExpect(resultMatcher);
