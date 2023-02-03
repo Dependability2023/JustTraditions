@@ -112,7 +112,7 @@
                                     </div>
                                     <div class="item">
                                         <div class="work">
-                                            <div th:if="${totalFoto >= 2}"
+                                            <div th:if="${annuncio.foto.size() >= 2}"
                                                  class="img d-flex align-items-center justify-content-left"
                                                  th:style="'background-image: url('+@{/img(id=${annuncio.getFoto().get(1).id})}+');'">
 
@@ -121,7 +121,7 @@
                                     </div>
                                     <div class="item">
                                         <div class="work">
-                                            <div th:if="${totalFoto == 3}"
+                                            <div th:if="${annuncio.foto.size() == 3}"
                                                  class="img d-flex align-items-center justify-content-left"
                                                  th:style="'background-image: url('+@{/img(id=${annuncio.getFoto().get(2).id})}+');'">
 
@@ -135,11 +135,11 @@
                                         <li class="active img"><a href="#"><img
                                                 th:src="@{/img(id=${annuncio.getFoto().get(0).id})}" alt="Image"
                                                 class="img-fluid"></a></li>
-                                        <li><a href="#"><img th:if="${totalFoto >= 2}"
+                                        <li><a href="#"><img th:if="${annuncio.foto.size() >= 2}"
                                                              th:src="@{/img(id=${annuncio.getFoto().get(1).id})}"
                                                              alt="Image"
                                                              class="img-fluid"></a></li>
-                                        <li><a href="#"><img th:if="${totalFoto == 3}"
+                                        <li><a href="#"><img th:if="${annuncio.foto.size() == 3}"
                                                              th:src="@{/img(id=${annuncio.getFoto().get(2).id})}"
                                                              alt="Image"
                                                              class="img-fluid"></a></li>
@@ -208,8 +208,12 @@
                                                     th:value="${annuncio.stato.RIFIUTATO}">RIFIUTATO
                                             </option>
                                         </select>
-                                        <div id="divMotivo">Motivo del rifiuto<br><textarea type="text-area"
+                                        <div th:style="${modificaStatoAnnuncioForm.nuovoStato != null and modificaStatoAnnuncioForm.nuovoStato == modificaStatoAnnuncioForm.nuovoStato.RIFIUTATO ? '' : 'display:none'}"
+                                             id="divMotivo">Motivo del rifiuto<br><textarea type="text-area"
                                                                                             th:field="*{motivoDelRifiuto}"></textarea>
+                                            <div class=" d-inline invalid-feedback "
+                                                 th:if="${#fields.hasErrors('motivoDelRifiuto')}"
+                                                 th:errors="*{motivoDelRifiuto}"></div>
                                         </div>
                                         <input type="hidden" th:field="*{idAnnuncio}">
                                     </form>
