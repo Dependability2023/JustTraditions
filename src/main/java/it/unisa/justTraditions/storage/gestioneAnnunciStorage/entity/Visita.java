@@ -25,6 +25,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Questa classe rappresenta una visita di un annuncio.
+ * Una visita e associata a piu prenotazioni.
+ */
 @Entity
 @Table(uniqueConstraints = {
     @UniqueConstraint(columnNames = {"annuncio", "giorno", "orarioInizio", "orarioFine"})
@@ -51,6 +55,14 @@ public class Visita {
   public Visita() {
   }
 
+  /**
+   * Costruttore di una visita.
+   *
+   * @param giorno       Giorno della settimana di una visita.
+   * @param orarioInizio Orario d' inizio di una visita.
+   * @param orarioFine   Orario di fine di una visita.
+   * @param validita     Validita della visita.
+   */
   public Visita(DayOfWeek giorno, LocalTime orarioInizio, LocalTime orarioFine, Boolean validita) {
     this.giorno = giorno;
     this.orarioInizio = orarioInizio;

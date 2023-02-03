@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+/**
+ * Classe che rappresenta il form per il login di un Cliente.
+ */
 public class LoginForm {
 
   @NotBlank(message = "email vuota")

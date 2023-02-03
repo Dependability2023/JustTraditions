@@ -8,6 +8,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Annotazione per la convalida di un email, se essa è presente all'interno di un database.
+ */
 @Documented
 @Constraint(validatedBy = ExistsEmailValidator.class)
 @Target({ElementType.TYPE, ElementType.FIELD})

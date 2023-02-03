@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
+/**
+ * Implementa il controller per la concellazione di un account.
+ */
 @Controller
 @RequestMapping("/cancellazioneAccount")
 public class CancellazioneAccountController {
@@ -22,6 +25,11 @@ public class CancellazioneAccountController {
   @Autowired
   private SessionCliente sessionCliente;
 
+  /**
+   * Implementa la funzionalità di eliminare l'account di un Cliente.
+   *
+   * @return redirect:/.
+   */
   @GetMapping
   public String get() {
     Cliente cliente = sessionCliente.getCliente().get();

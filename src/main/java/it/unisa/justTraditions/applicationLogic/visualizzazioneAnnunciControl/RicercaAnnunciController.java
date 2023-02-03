@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Implementa il controller per la ricerca di un annuncio.
+ */
 @Controller
 @RequestMapping("/ricercaAnnunci")
 public class RicercaAnnunciController {
@@ -28,6 +31,16 @@ public class RicercaAnnunciController {
   @Autowired
   private Province province;
 
+  /**
+   * Implementa la funzionalita della ricerca di un annuncio con o senza filtro province.
+   *
+   * @param nomeAttivita Utilizzato per la ricerca degli annunci.
+   * @param provincia    Utilizzato per il filtro per provincie per gli annunci.
+   * @param pagina       Utilizzata per la paginazione della lista di annunci.
+   * @param model        Utilizzato per passare degli attributi alla view.
+   * @return IllegalArgumentException se il nomeAttivita e troppo lungo o la provincia non esiste.
+   * visualizzazioneAnnunciView/ricercaAnnunci se la ricerca ha avuto successo.
+   */
   @GetMapping
   public String get(@RequestParam(defaultValue = "", required = false) String nomeAttivita,
                     @RequestParam(defaultValue = "", required = false) String provincia,
@@ -35,9 +48,8 @@ public class RicercaAnnunciController {
                     Model model) {
     if (!nomeAttivita.isBlank() && nomeAttivita.length() > 40) {
       throw new IllegalArgumentException(
-          "La ricerca degli annunci non va a buon fine poiché"
-              + " il nome inserito dall’utente è troppo lungo."
-      );
+          "La ricerca degli annunci non va a buon fine poiché" +
+              " il nome inserito dall’utente è troppo lungo.");
     }
     if (!provincia.isBlank() && !province.getProvince().contains(provincia)) {
       throw new IllegalArgumentException();

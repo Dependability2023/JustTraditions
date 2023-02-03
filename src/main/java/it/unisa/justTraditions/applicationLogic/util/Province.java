@@ -3,6 +3,9 @@ package it.unisa.justTraditions.applicationLogic.util;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
+/**
+ * Classe per la creazione di un componente che contiene una lista con tutte le provincie Italiane.
+ */
 @Component
 public class Province {
 

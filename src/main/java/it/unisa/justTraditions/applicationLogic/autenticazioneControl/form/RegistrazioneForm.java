@@ -6,6 +6,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+/**
+ * Classe che rappresenta il form per la Registrazione di un Cliente.
+ */
 @IsArtigianoConstraint
 public class RegistrazioneForm {
   @NotBlank(message = "Nome vuoto")

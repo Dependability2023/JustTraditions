@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Controller per il trasferimento del dato Numero Max di Persone
+ * che gia partecipano a una determinata visita in una specifica data.
+ */
 @Controller
 @RequestMapping("/numMaxPersone")
 public class NumMaxPersoneController {
@@ -24,6 +28,15 @@ public class NumMaxPersoneController {
   @Autowired
   private VisitaDao visitaDao;
 
+  /**
+   * Implementa la logica per il calcolo di persone che gia partecipano
+   * a una visita in una specifica data.
+   *
+   * @param idVisita   Utilizzato per la ricerca di tutte le prenotazione della visita.
+   * @param dataVisita Utilizzato per la ricerca di tutte le prenotazioni di una specifica data
+   * @return IllegalArgumentException se la visita non esiste, ResponseEntity che racchiude
+   * il numero di persone che gia partecipano a una visita in una specifica data.
+   */
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   private ResponseEntity<?> post(@RequestParam Long idVisita,
                                  @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

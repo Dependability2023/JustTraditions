@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+/**
+ * Classe che rappresenta il form l'aggiunta di un amministratore.
+ */
 public class AggiuntaAmministratoreForm {
 
   @NotBlank(message = "Nome vuoto")
@@ -34,6 +37,14 @@ public class AggiuntaAmministratoreForm {
   public AggiuntaAmministratoreForm() {
   }
 
+  /**
+   * Costruttore di un amministratore.
+   *
+   * @param nome     Nome dell amministratore.
+   * @param cognome  cognome dell amministratore.
+   * @param email    email dell amministratore.
+   * @param password password dell amministratore.
+   */
   public AggiuntaAmministratoreForm(String nome, String cognome, String email, String password) {
     this.nome = nome;
     this.cognome = cognome;

@@ -2,6 +2,9 @@ package it.unisa.justTraditions.applicationLogic.prenotazioniControl.json;
 
 import java.time.LocalTime;
 
+/**
+ * Classe wrapper per l invio di una visita tramite Ajax.
+ */
 public class VisitaResponse {
 
   private Long id;

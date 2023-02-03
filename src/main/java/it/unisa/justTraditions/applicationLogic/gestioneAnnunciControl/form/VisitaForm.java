@@ -5,6 +5,9 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
+/**
+ * Classe che rappresenta il form di una Visita del Annuncio.
+ */
 @OrarioIsValidConstraint
 public class VisitaForm {
 

@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Questa classe rappresenta un Amministratore.
+ * Un amministratore puo approvare o rifiutare uno o piu annunci.
+ */
 @Entity
 public class Amministratore
     extends Utente {

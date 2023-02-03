@@ -14,6 +14,11 @@ import jakarta.persistence.ManyToOne;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * Questa classe rappresenta una Prenotazione.
+ * Una prenotazione è effettuata da un cliente.
+ * Una prenotazione è associata a una visita.
+ */
 @Entity
 public class Prenotazione {
   @Id

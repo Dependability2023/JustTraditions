@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * Implementa il controller per la sottomissione Di un Annuncio.
+ */
 @Controller
 @RequestMapping("/sottomissioneAnnuncio")
 public class SottomissioneAnnuncioController {
@@ -35,11 +38,27 @@ public class SottomissioneAnnuncioController {
   @Autowired
   ArtigianoDao artigianoDao;
 
+  /**
+   * Implementa la funzionalità di smistare l'Artigiano sulla view di sottomissioneAnnuncio.
+   *
+   * @param annuncioForm Utilizzato per mappare il Form della view.
+   * @return "gestioneAnnunciView/sottomissioneAnnuncio"".
+   */
   @GetMapping
   public String get(@ModelAttribute AnnuncioForm annuncioForm) {
     return sottomissioneAnnuncioView;
   }
 
+  /**
+   * Implementa la funzionalità di Sottomissione di un annuncio.
+   *
+   * @param annuncioForm  Utilizzato per mappare il Form della view.
+   * @param bindingResult Utilizzato per mappare gli errori dei dati di annuncioForm.
+   * @param model         Utilizzato per passare degli attributi alla view.
+   * @return gestioneAnnunciView/sottomissioneAnnuncio se i dati di annuncioForm sono errati o
+   * i file delle foto creano una IOException.
+   * gestioneAnnunciView/modificaAnnuncioSuccess se la sottomissione ha avuto successo.
+   */
   @PostMapping
   public String post(@ModelAttribute @Valid AnnuncioForm annuncioForm,
                      BindingResult bindingResult, Model model) {
