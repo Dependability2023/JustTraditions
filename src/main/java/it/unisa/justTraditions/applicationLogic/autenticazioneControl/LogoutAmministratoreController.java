@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Implementa il controller per il logout dell amministratore.
+ */
 @Controller
 @RequestMapping("/logoutAmministratore")
 public class LogoutAmministratoreController {
@@ -15,6 +18,11 @@ public class LogoutAmministratoreController {
   @Autowired
   private SessionAmministratore sessionAmministratore;
 
+  /**
+   * Implementa la funzionalità di logout di un amministratore.
+   *
+   * @return redirect: loginAmministratore
+   */
   @GetMapping
   public String get() {
     sessionAmministratore.setAmministratore(null);

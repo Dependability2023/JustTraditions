@@ -12,6 +12,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Questa classe rappresenta un Cliente.
+ * Un puo prenotarsi a uno o piu visite.
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo", length = 9)

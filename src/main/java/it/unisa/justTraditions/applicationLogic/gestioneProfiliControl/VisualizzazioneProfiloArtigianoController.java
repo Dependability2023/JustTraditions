@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Implementa il controller per lq visualizzazione di un profilo di un artigiano.
+ */
 @Controller
 @RequestMapping("/visualizzazioneProfiloArtigiano")
 public class VisualizzazioneProfiloArtigianoController {
@@ -28,6 +31,17 @@ public class VisualizzazioneProfiloArtigianoController {
   @Autowired
   private AnnuncioDao annuncioDao;
 
+  /**
+   * Implementa la funzionalità di smistare l'Utente
+   * su la view di gestioneProfiliView/visualizzazioneProfiloArtigiano.
+   * Per la visualizzazione del profilo dell Artigiano.
+   *
+   * @param id     Utilizzato per la ricerca di un Artigiano nell database.
+   * @param pagina Utilizzato per la paginazione della lista degli annunci dell Artigiano.
+   * @param model  Utilizzato per passare degli attributi alla view.
+   * @return IllegalArgumentException se l'id dell Artigiano non esiste nel database.
+   * gestioneProfiliView/visualizzazioneProfiloArtigiano se trova corrispondenza nel database.
+   */
   @GetMapping
   public String get(@RequestParam Long id,
                     @RequestParam(defaultValue = "0", required = false) Integer pagina,

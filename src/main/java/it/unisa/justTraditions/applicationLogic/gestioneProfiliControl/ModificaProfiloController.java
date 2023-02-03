@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Implementa il controller per la modifica di un profilo.
+ */
 @Controller
 @RequestMapping("/modificaProfilo")
 public class ModificaProfiloController {
@@ -28,6 +31,13 @@ public class ModificaProfiloController {
   @Autowired
   private ClienteDao clienteDao;
 
+  /**
+   * Implementa la funzionalità di smistare il Cliente
+   * su la view di gestioneProfiliView/modificaProfilo.
+   *
+   * @param registrazioneForm Utilizzato per mappare il Form della view.
+   * @return gestioneProfiliView/modificaProfilo.
+   */
   @GetMapping
   public String get(@ModelAttribute RegistrazioneForm registrazioneForm) {
     Cliente cliente = sessionCliente.getCliente().get();
@@ -46,6 +56,14 @@ public class ModificaProfiloController {
     return modificaProfiloView;
   }
 
+  /**
+   * Implementa la funzionalità di Modifica profilo di un Cliente.
+   *
+   * @param registrazioneForm Utilizzato per mappare il Form della view.
+   * @param bindingResult     Utilizzato per mappare gli errori dei dati di registrazioneForm.
+   * @return gestioneProfiliView/modificaProfilo se ci sono errori sui dati del Form.
+   * redirect:visualizzazioneProfiloPersonale se la modifica ha avuto successo.
+   */
   @PostMapping
   public String post(@ModelAttribute @Valid RegistrazioneForm registrazioneForm,
                      BindingResult bindingResult) {

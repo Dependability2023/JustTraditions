@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
+/**
+ * Implementa il controller per l'aggiunta di un amministratore.
+ */
 @Controller
 @RequestMapping("/aggiuntaAmministratore")
 public class AggiuntaAmministratoreController {
@@ -30,11 +33,27 @@ public class AggiuntaAmministratoreController {
   private AmministratoreDao amministratoreDao;
 
 
+  /**
+   * Implementa la funzionalità di smistare l'Amministratore
+   * sulla view di gestioneAnnunciView/modificaAnnuncio.
+   *
+   * @param aggiuntaAmministratoreForm Utilizzato per mappare il Form della view.
+   * @return gestioneProfiliView/aggiuntaAmministratore.
+   */
   @GetMapping
   public String get(@ModelAttribute AggiuntaAmministratoreForm aggiuntaAmministratoreForm) {
     return aggiuntaAmministratoreView;
   }
 
+  /**
+   * Implementa la funzionalità di aggiunta di un l'Amministratore.
+   *
+   * @param aggiuntaAmministratoreForm Utilizzato per mappare il Form della view.
+   * @param bindingResult              Utilizzato per mappare gli errori dei dati di
+   *                                   aggiuntaAmministratoreForm.
+   * @return gestioneProfiliView/aggiuntaAmministratore se ci sono errori sui dati del Form.
+   * redirect: visualizzazioneAmministratori se l'aggiunta ha avuto successo.
+   */
   @PostMapping
   public String post(@ModelAttribute @Valid AggiuntaAmministratoreForm aggiuntaAmministratoreForm,
                      BindingResult bindingResult) {

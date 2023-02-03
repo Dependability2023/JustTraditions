@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * Implementa il controller la visualizzazione della home del sito.
+ */
 @Controller
 @RequestMapping("/")
 public class HomeController {
@@ -21,6 +24,11 @@ public class HomeController {
   @Autowired
   private AnnuncioDao annuncioDao;
 
+  /**
+   * Implementa la funzionalità di smistare l utente nella view di visualizzazioneAnnunciView/home.
+   *
+   * @return visualizzazioneAnnunciView/home
+   */
   @GetMapping
   public ModelAndView get() {
     Annuncio annuncio = new Annuncio();

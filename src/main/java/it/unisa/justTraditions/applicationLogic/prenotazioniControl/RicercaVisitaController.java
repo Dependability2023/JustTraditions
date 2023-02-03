@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Implementa il controller per la ricerca della visita.
+ */
 @Controller
 @RequestMapping("/ricercaVisita")
 public class RicercaVisitaController {
@@ -26,6 +29,15 @@ public class RicercaVisitaController {
   @Autowired
   private AnnuncioDao annuncioDao;
 
+  /**
+   * Implementa la logica per la ricerca delle visite di un annuncio un una determinata data.
+   *
+   * @param idAnnuncio Utilizzata per la ricerca delle visite.
+   * @param dataVisita Utilizzata per la ricerca della visita.
+   * @return ResponseEntity con una lista vuota se l annuncio non esiste,
+   * se la data e uguale o minore della data odierna o non ci sono visite per quella data.
+   * ResponseEntity con una lista di visite se la ricerca ha avuto successo.
+   */
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   private ResponseEntity<?> post(@RequestParam Long idAnnuncio,
                                  @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

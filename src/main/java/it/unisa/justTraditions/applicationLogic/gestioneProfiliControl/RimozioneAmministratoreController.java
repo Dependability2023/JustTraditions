@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+/**
+ * Implementa il controller per la rimozione di un amministratore.
+ */
 @Controller
 @RequestMapping("/rimozioneAmministratore")
 public class RimozioneAmministratoreController {
@@ -22,6 +25,14 @@ public class RimozioneAmministratoreController {
   @Autowired
   private SessionAmministratore sessionAmministratore;
 
+  /**
+   * Implementa la funzionalità di rimozione di un Amministratore.
+   *
+   * @param id Utilizzato per la ricerca dell Amministratore nel database.
+   * @return IllegalArgumentException se l'Amministratore si auto elimina o
+   * se l id non ha corrispondenza nel database.
+   * Redirect:visualizzazioneAmministratori se l'eliminazione ha avuto successo.
+   */
   @GetMapping
   public String get(@RequestParam Long id) {
     if (sessionAmministratore.getAmministratore().get().getId().equals(id)) {

@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Implementa il controller per la modifica di uno stato dell Annuncio.
+ */
 @Controller
 @RequestMapping("/modificaStatoAnnuncio")
 public class ModificaStatoAnnuncioController {
@@ -36,6 +39,16 @@ public class ModificaStatoAnnuncioController {
   @Autowired
   private SessionAmministratore sessionAmministratore;
 
+  /**
+   * Implementa la funzionalità di smistare l'Amministratore
+   * sulla view di gestioneAnnunciView/modificaStatoAnnuncio.
+   *
+   * @param idAnnuncio                Utilizzato per la ricerca dell Annuncio.
+   * @param modificaStatoAnnuncioForm Utilizzato per mappare il Form della view.
+   * @param model                     Utilizzato per passare degli attributi alla view.
+   * @return IllegalArgumentException se l'id non esiste all interno del database.
+   * gestioneAnnunciView/modificaStatoAnnuncio se id esiste all interno del database.
+   */
   @GetMapping
   public String get(@RequestParam Long idAnnuncio,
                     @ModelAttribute ModificaStatoAnnuncioForm modificaStatoAnnuncioForm,
@@ -49,6 +62,15 @@ public class ModificaStatoAnnuncioController {
     return modificaStatoAnnuncioView;
   }
 
+  /**
+   * Implementa la funzionalità di Modifica dello stato di un annuncio.
+   *
+   * @param modificaStatoAnnuncioForm Utilizzato per mappare il Form della view.
+   * @param bindingResult             Utilizzato per mappare gli errori dei dati di loginForm.
+   * @param model                     Utilizzato per passare degli attributi alla view.
+   * @return gestioneAnnunciView/modificaStatoAnnuncio se ci sono errori sui dati del Form.
+   * gestioneAnnunciView/modificaAnnuncioSuccess se la modifica ha avuto successo.
+   */
   @PostMapping
   public String post(@ModelAttribute @Valid ModificaStatoAnnuncioForm modificaStatoAnnuncioForm,
                      BindingResult bindingResult, Model model) {

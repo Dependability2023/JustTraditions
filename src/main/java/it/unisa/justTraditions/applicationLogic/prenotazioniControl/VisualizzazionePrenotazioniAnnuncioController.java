@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * Implementa il controller per la visualizzazione delle prenotazioni di un annuncio.
+ */
 @Controller
 @RequestMapping("/visualizzazionePrenotazioniAnnuncio")
 public class VisualizzazionePrenotazioniAnnuncioController {
@@ -36,12 +39,33 @@ public class VisualizzazionePrenotazioniAnnuncioController {
   @Autowired
   private AnnuncioDao annuncioDao;
 
+  /**
+   * Implementa la funzionalità di smistare
+   * l artigliano sulla view di prenotazioniView/visualizzazionePrenotazioniAnnuncio.
+   *
+   * @param idAnnuncio Utilizzato per passare alla view l id dell annuncio.
+   * @return prenotazioniView/visualizzazionePrenotazioniAnnuncio
+   */
   @GetMapping
   public ModelAndView get(@RequestParam Long idAnnuncio) {
     return new ModelAndView(visualizzazionePrenotazioniAnnuncioView)
         .addObject("idAnnuncio", idAnnuncio);
   }
 
+  /**
+   * Implementa la funzionalità di visualizzazione
+   * delle prenotazioni dell annuncio in una precisa data.
+   *
+   * @param idAnnuncio Utilizzato per la ricerca delle prenotazioni.
+   * @param dataVisita Utilizzato per la ricerca delle prenotazioni.
+   * @param pagina     Utilizzato per la paginazione della lista delle prenotazioni.
+   * @param model      Utilizzato per passare degli attributi alla view.
+   * @return IllegalArgumentException se id Annuncio non corrisponde a
+   * un annuncio creato dall artigiano loggato o,
+   * se la pagina è maggiore o uguale alla numero di pagine totali.
+   * prenotazioniView/visualizzazionePrenotazioniAnnuncio se la ricerca
+   * e i dati non presentano errori.
+   */
   @PostMapping
   public String post(@RequestParam Long idAnnuncio,
                      @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

@@ -5,12 +5,21 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Implementa la creazione di un FilterRegistrationBean
+ * per configurare il filtro AmministratoreLoginFilter.
+ */
 @Configuration
 public class AmministratoreLoginFilterConfiguration {
 
   @Autowired
   private AmministratoreLoginFilter amministratoreLoginFilter;
 
+  /**
+   * Creazione di un FilterRegistrationBean con gli URL accessibili solo dal Amministratore.
+   *
+   * @return FilterRegistrationBean AmministratoreLoginFilter
+   */
   @Bean
   public FilterRegistrationBean<AmministratoreLoginFilter> filterRegistrationBeanAmministratore() {
     FilterRegistrationBean<AmministratoreLoginFilter> registrationBean

@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Implementa il controller per Effettuare una prenotazione a un annuncio.
+ */
 @Controller
 @RequestMapping("/effettuaPrenotazione")
 public class EffettuaPrenotazioneController {
@@ -34,6 +37,17 @@ public class EffettuaPrenotazioneController {
   @Autowired
   private PrenotazioneDao prenotazioneDao;
 
+  /**
+   * Implementa la funzionalità di smistare il Cliente sulla view
+   * di prenotazioniView/effettuaPrenotazione.
+   *
+   * @param prenotazioneForm Utilizzato per mappare il Form della view.
+   * @param bindingResult    Utilizzato per mappare gli errori dei dati di annuncioForm.
+   * @param model            Utilizzato per passare degli attributi alla view.
+   * @return IllegalArgumentException() se i dati di PrenotazioneForm sono errati o
+   * la visita non esiste.
+   * prenotazioniView/effettuaPrenotazione se non ci sono errori.
+   */
   @GetMapping
   public String get(@ModelAttribute @Valid PrenotazioneForm prenotazioneForm,
                     BindingResult bindingResult, Model model) {
@@ -52,6 +66,15 @@ public class EffettuaPrenotazioneController {
     return effettuaPrenotazioneView;
   }
 
+  /**
+   * Implementa la funzionalità di prenotazione a un annuncio.
+   *
+   * @param prenotazioneForm Utilizzato per mappare il Form della view.
+   * @param bindingResult    Utilizzato per mappare gli errori dei dati di prenotazioneForm.
+   * @return IllegalArgumentException se i dati di prenotazioneForm sono errati o
+   * la visita non esiste.
+   * prenotazioniView/esitoPrenotazione se la prenotazione ha avuto successo.
+   */
   @PostMapping
   public String post(@ModelAttribute @Valid PrenotazioneForm prenotazioneForm,
                      BindingResult bindingResult) {

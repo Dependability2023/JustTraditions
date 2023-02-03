@@ -8,6 +8,10 @@ import jakarta.validation.ConstraintValidatorContext;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Implementa la logica per convalidare l'email
+ * se essa è presente all'interno del database.
+ */
 public class ExistsEmailValidator
     implements ConstraintValidator<ExistsEmailConstraint, String> {
 
@@ -17,11 +21,24 @@ public class ExistsEmailValidator
   @Autowired
   private SessionCliente sessionCliente;
 
+  /**
+   * Inizializza il validatore in preparazione per le
+   * isValid(String email, ConstraintValidatorContext).
+   *
+   * @param constraintAnnotation istanza di annotazione per una data dichiarazione di vincolo
+   */
   @Override
   public void initialize(ExistsEmailConstraint constraintAnnotation) {
     ConstraintValidator.super.initialize(constraintAnnotation);
   }
 
+  /**
+   * Implementa la logica di convalida.
+   *
+   * @param email                      oggetto da convalidare.
+   * @param constraintValidatorContext contesto in cui viene valutato il vincolo.
+   * @return true se l'email esiste , false se non esiste nel database.
+   */
   @Override
   public boolean isValid(String email, ConstraintValidatorContext constraintValidatorContext) {
     Optional<Cliente> optionalCliente = sessionCliente.getCliente();

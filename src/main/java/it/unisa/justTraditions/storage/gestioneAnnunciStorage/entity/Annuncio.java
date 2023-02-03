@@ -20,6 +20,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Questa classe rappresenta un annuncio.
+ * L annuncio è pubblicato da un artigiano.
+ * l annuncio contiene una o piu visite.
+ * l annuncio contiene uno o fino a tre foto.
+ * l annuncio viene approvato o rifiutato da un amministratore.
+ */
 @Entity
 public class Annuncio {
   @Id
@@ -57,6 +64,18 @@ public class Annuncio {
   public Annuncio() {
   }
 
+  /**
+   * Costruttore di un annuncio.
+   *
+   * @param nomeAttivita           Nome dell'attività
+   * @param provinciaAttivita      Provincia dell' Attività.
+   * @param indirizzoAttivita      Indirizzo dell' Attività.
+   * @param descrizione            Descrizione della attività.
+   * @param serviziOfferti         Breve descrizione dei servizi offerti dalla attività.
+   * @param numMaxPersonePerVisita Numero massimo di persone che possono partecipare all' attività.
+   * @param prezzoVisita           Prezzo della visita.
+   * @param stato                  Strato dell' Annuncio.
+   */
   public Annuncio(String nomeAttivita, String provinciaAttivita, String indirizzoAttivita,
                   String descrizione, String serviziOfferti, Integer numMaxPersonePerVisita,
                   BigDecimal prezzoVisita, Stato stato) {
