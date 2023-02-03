@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Implementa il controller per la registrazione del Cliente.
+ */
 @Controller
 @RequestMapping("/registrazione")
 public class RegistrazioneController {
@@ -32,7 +35,8 @@ public class RegistrazioneController {
   private PasswordEncryptor passwordEncryptor;
 
   /**
-   * Implementa la funzionalità di  smistare l'Amministratore sulla view di  autenticazioneView/registrazione.
+   * Implementa la funzionalità di smistare
+   * l'Amministratore sulla view di autenticazioneView/registrazione.
    *
    * @param registrazioneForm Utilizzato per mappare il Form della view.
    * @return autenticazioneView/registrazione.

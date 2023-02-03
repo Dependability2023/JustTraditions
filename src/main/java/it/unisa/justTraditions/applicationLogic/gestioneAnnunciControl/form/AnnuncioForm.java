@@ -11,6 +11,9 @@ import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * Classe che rappresenta il form per la Sottomissione di un Annuncio.
+ */
 public class AnnuncioForm {
 
   private Long idAnnuncio;
@@ -57,6 +60,18 @@ public class AnnuncioForm {
   public AnnuncioForm() {
   }
 
+  /**
+   * Costruttore di un annuncio.
+   *
+   * @param nomeAttivita           Nome dell'attività
+   * @param provinciaAttivita      Provincia dell' Attività.
+   * @param indirizzoAttivita      Indirizzo dell' Attività.
+   * @param descrizione            Descrizione della attività.
+   * @param serviziOfferti         Breve descrizione dei servizi offerti dalla attività.
+   * @param numMaxPersonePerVisita Numero massimo di persone che possono partecipare all' attività.
+   * @param prezzoVisita           Prezzo della visita.
+   * @param visite                 Lista delle visite del Annuncio.
+   */
   public AnnuncioForm(Long idAnnuncio, String nomeAttivita, String provinciaAttivita,
                       String indirizzoAttivita, String descrizione, String serviziOfferti,
                       Integer numMaxPersonePerVisita, BigDecimal prezzoVisita,

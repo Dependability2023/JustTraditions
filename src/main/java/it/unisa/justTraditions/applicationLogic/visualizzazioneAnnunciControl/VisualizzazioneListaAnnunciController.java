@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Implementa il controller per la visualizzazione della lista degli annunci.
+ */
 @Controller
 @RequestMapping("/visualizzazioneListaAnnunci")
 public class VisualizzazioneListaAnnunciController {
@@ -24,6 +27,16 @@ public class VisualizzazioneListaAnnunciController {
   @Autowired
   AnnuncioDao annuncioDao;
 
+  /**
+   * Implementa la funzionalità ricerca di liste di annunci è di smistare
+   * l'amministratore nella view di visualizzazioneAnnunciView/visualizzazioneListaAnnunci.
+   *
+   * @param stato  Utilizzato per filtrare gli annunci per Stato.
+   * @param pagina Utilizzata per l'impaginazione della lista di annunci.
+   * @param model  Utilizzato per passare degli attributi alla view.
+   * @return IllegalArgumentException se la pagina supera o e uguale al numero di pagine totali,
+   * visualizzazioneAnnunciView/visualizzazioneListaAnnunci se la ricerca va a buon fine.
+   */
   @GetMapping
   public String get(@RequestParam(required = false) Annuncio.Stato stato,
                     @RequestParam(defaultValue = "0", required = false) Integer pagina,

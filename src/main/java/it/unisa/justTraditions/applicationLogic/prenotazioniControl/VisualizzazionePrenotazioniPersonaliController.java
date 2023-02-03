@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * Implementa il controller per la visualizzazione delle prenotazioni personali.
+ */
 @Controller
 @RequestMapping("/visualizzazionePrenotazioniPersonali")
 public class VisualizzazionePrenotazioniPersonaliController {
@@ -28,6 +31,14 @@ public class VisualizzazionePrenotazioniPersonaliController {
   @Autowired
   private PrenotazioneDao prenotazioneDao;
 
+  /**
+   * Implementa la funzionalità di smistare il Cliente
+   * sulla view di prenotazioniView/visualizzazionePrenotazioniPersonali.
+   *
+   * @param pagina Utilizzata per la paginazione della lista delle prenotazioni.
+   * @return IllegalArgumentException se la pagina è maggiore o uguale alla numero di pagine totali.
+   * prenotazioniView/visualizzazionePrenotazioniPersonali se la ricerca ha avuto successo.
+   */
   @GetMapping
   public ModelAndView get(@RequestParam(defaultValue = "0", required = false) Integer pagina) {
     Page<Prenotazione> prenotazionePage = prenotazioneDao.findByCliente(

@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
+/**
+ * Implementa la funzionalità che permette
+ * di aggiungere un Cliente alla sessione.
+ */
 @Component
 @SessionScope
 public class SessionCliente {

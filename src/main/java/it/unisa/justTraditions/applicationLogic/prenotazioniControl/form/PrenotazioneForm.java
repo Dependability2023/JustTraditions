@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
+/**
+ * Classe che rappresenta il form per la prenotazione di un Cliente a un annuncio.
+ */
 @PrenotazioneIsValidConstraint
 public class PrenotazioneForm {
 

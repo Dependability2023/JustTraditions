@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Implementa il controller la visualizzazione della home degli amministratori.
+ */
 @Controller
 @RequestMapping("/homeAmministratore")
 public class HomeAmministratoreController {
@@ -20,6 +23,13 @@ public class HomeAmministratoreController {
   @Autowired
   private AnnuncioDao annuncioDao;
 
+  /**
+   * Implementa la funzionalità di smistare
+   * l Amministratore alle view di visualizzazioneAnnunciView/homeAmministratore.
+   *
+   * @param model Utilizzato per passare degli attributi alla view.
+   * @return visualizzazioneAnnunciView/homeAmministratore.
+   */
   @GetMapping
   public String get(Model model) {
     model.addAttribute("annunci", annuncioDao.findAll(PageRequest.of(

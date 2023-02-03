@@ -8,6 +8,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Annotazione per la convalida di un oggetto RegistrazioneForm se l'utente
+ * registrato si e dichiarato Artigiano controllare.
+ * * l'aggiunta dell attributo RegistrazioneForm.iban è la sua correttezza.
+ */
 @Documented
 @Constraint(validatedBy = IsArtigianoValidator.class)
 @Target({ElementType.TYPE, ElementType.FIELD})

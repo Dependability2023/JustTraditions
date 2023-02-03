@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * Implementa il controller per la sottomissione Di un Annuncio.
+ */
 @Controller
 @RequestMapping("/sottomissioneAnnuncio")
 public class SottomissioneAnnuncioController {

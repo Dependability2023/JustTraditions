@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
+/**
+ * Implementa il controller per il login per L'Amministratore.
+ */
 @Controller
 @RequestMapping("/loginAmministratore")
 public class LoginAmministratoreController {

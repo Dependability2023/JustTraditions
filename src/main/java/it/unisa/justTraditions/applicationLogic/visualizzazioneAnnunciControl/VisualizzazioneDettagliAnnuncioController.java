@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * Implementa il controller per la visualizzazione dei dettagli di un annuncio.
+ */
 @Controller
 @RequestMapping("/visualizzazioneDettagliAnnuncio")
 public class VisualizzazioneDettagliAnnuncioController {
@@ -19,6 +22,13 @@ public class VisualizzazioneDettagliAnnuncioController {
   @Autowired
   private AnnuncioDao annuncioDao;
 
+  /**
+   * Implementa la funzionalità di smistate l utente nella view di visualizzazioneAnnunciView/visualizzazioneDettagliAnnuncio
+   *
+   * @param id Utilizzato per la ricerca dell annuncio nel database.
+   * @return IllegalArgumentException se l annuncio non e stato approvato.
+   * visualizzazioneAnnunciView/visualizzazioneDettagliAnnuncio se la ricerca va a buon fine.
+   */
   @GetMapping
   public ModelAndView get(@RequestParam Long id) {
     Annuncio annuncio = annuncioDao.findById(id).orElseThrow(IllegalArgumentException::new);

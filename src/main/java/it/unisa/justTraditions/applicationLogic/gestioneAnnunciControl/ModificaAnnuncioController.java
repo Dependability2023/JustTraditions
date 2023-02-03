@@ -25,6 +25,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * Implementa il controller per la modifica di un annuncio.
+ */
 @Controller
 @RequestMapping("/modificaAnnuncio")
 public class ModificaAnnuncioController {
@@ -44,7 +47,8 @@ public class ModificaAnnuncioController {
   private SessionCliente sessionCliente;
 
   /**
-   * Implementa la funzionalità di smistare l'Artigiano sulla view di gestioneAnnunciView/modificaAnnuncio.
+   * Implementa la funzionalità di smistare l'Artigiano
+   * sulla view di gestioneAnnunciView/modificaAnnuncio.
    *
    * @param id    Utilizzato per la ricerca dell Annuncio nel database.
    * @param model Utilizzato per passare degli attributi alla view.

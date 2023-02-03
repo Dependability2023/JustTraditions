@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
+/**
+ * Implementa la funzionalità che permette
+ * di aggiungere un Amministratore alla sessione.
+ */
 @Component
 @SessionScope
 public class SessionAmministratore {
@@ -16,12 +20,14 @@ public class SessionAmministratore {
   @Autowired
   private AmministratoreDao amministratoreDao;
 
+  
   public Optional<Amministratore> getAmministratore() {
     if (idAmministratore != null) {
       return amministratoreDao.findById(idAmministratore);
     }
     return Optional.empty();
   }
+
 
   public void setAmministratore(Amministratore amministratore) {
     if (amministratore == null) {

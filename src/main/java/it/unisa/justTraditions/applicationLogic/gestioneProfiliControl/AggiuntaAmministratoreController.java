@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
+/**
+ * Implementa il controller per l'aggiunta di un amministratore.
+ */
 @Controller
 @RequestMapping("/aggiuntaAmministratore")
 public class AggiuntaAmministratoreController {

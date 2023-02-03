@@ -12,6 +12,9 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Implementa il filtro per le pagine riservate all Artigiano.
+ */
 @Component
 public class ArtigianoLoginFilter
     implements Filter {
@@ -19,6 +22,18 @@ public class ArtigianoLoginFilter
   @Autowired
   private SessionCliente sessionCliente;
 
+  /**
+   * Fa sì che venga richiamato il filtro successivo nella catena o,
+   * se il filtro chiamante è l'ultimo filtro nella catena,
+   * che venga richiamata la risorsa alla fine della catena o,
+   * se l utente loggato non e un artigiano viene reindirizzato alla control login.
+   *
+   * @param servletRequest  la richiesta da passaggio lungo la catena.
+   * @param servletResponse la risposta da passare lungo la catena.
+   * @param filterChain     Utilizzato per richiamare il filtro successivo.
+   * @throws IOException
+   * @throws ServletException
+   */
   @Override
   public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
                        FilterChain filterChain) throws IOException, ServletException {

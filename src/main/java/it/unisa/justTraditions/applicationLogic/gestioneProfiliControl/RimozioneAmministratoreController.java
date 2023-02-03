@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+/**
+ * Implementa il controller per la rimozione di un amministratore.
+ */
 @Controller
 @RequestMapping("/rimozioneAmministratore")
 public class RimozioneAmministratoreController {

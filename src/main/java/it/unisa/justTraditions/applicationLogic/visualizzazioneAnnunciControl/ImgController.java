@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Implementa il controller per la visualizzazione delle foto.
+ */
 @Controller
 @RequestMapping("/img")
 public class ImgController {
@@ -18,6 +21,14 @@ public class ImgController {
   @Autowired
   private FotoDao fotoDao;
 
+  /**
+   * Implementa la visualizzazione delle immagini.
+   *
+   * @param id       Utilizzato per la ricerca del immagine nel database.
+   * @param response Utilizzato per l invio dell immagine.
+   * @throws ServletException
+   * @throws IOException
+   */
   @GetMapping
   public void get(@RequestParam Long id, HttpServletResponse response)
       throws ServletException, IOException {

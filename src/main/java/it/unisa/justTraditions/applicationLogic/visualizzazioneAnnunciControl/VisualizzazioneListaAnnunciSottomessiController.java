@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * Implementa il controller per la visualizzazione di una lista di Annunci sottomessi.
+ */
 @Controller
 @RequestMapping("/visualizzazioneListaAnnunciSottomessi")
 public class VisualizzazioneListaAnnunciSottomessiController {
@@ -18,6 +21,12 @@ public class VisualizzazioneListaAnnunciSottomessiController {
   @Autowired
   private SessionCliente sessionCliente;
 
+  /**
+   * Implementa la funzionalità di smistare l Artigiano
+   * nella view di visualizzazioneAnnunciView/visualizzazioneListaAnnunciSottomessi.
+   *
+   * @return visualizzazioneAnnunciView/visualizzazioneListaAnnunciSottomessi.
+   */
   @GetMapping
   public ModelAndView get() {
     Artigiano artigiano = (Artigiano) sessionCliente.getCliente().get();

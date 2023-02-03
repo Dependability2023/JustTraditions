@@ -4,6 +4,9 @@ import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+/**
+ * Classe che rappresenta il form per la Modifica di un Annuncio.
+ */
 @NuovoStatoIsValidConstraint
 @MotivoDelRifiutoIsValidConstraint
 public class ModificaStatoAnnuncioForm {
@@ -20,6 +23,13 @@ public class ModificaStatoAnnuncioForm {
   public ModificaStatoAnnuncioForm() {
   }
 
+  /**
+   * Costruttore di ModificaStatoAnnuncioForm.
+   *
+   * @param idAnnuncio       id del annuncio da modificare.
+   * @param nuovoStato       nuovo stato dell annuncio.
+   * @param motivoDelRifiuto motivo del rifiuto del annuncio.
+   */
   public ModificaStatoAnnuncioForm(Long idAnnuncio, Annuncio.Stato nuovoStato,
                                    String motivoDelRifiuto) {
     this.idAnnuncio = idAnnuncio;

@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Questa classe rappresenta un Artigiano.
+ * Un artigiano puo pubblicare uno o piu annunci.
+ */
 @Entity
 public class Artigiano
     extends Cliente {

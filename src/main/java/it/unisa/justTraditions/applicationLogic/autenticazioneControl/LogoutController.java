@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Implementa il controller per il logout del Cliente.
+ */
 @Controller
 @RequestMapping("/logout")
 public class LogoutController {
@@ -18,7 +21,7 @@ public class LogoutController {
   /**
    * Implementa la funzionalità di logout di un Cliente.
    *
-   * @return redirect:
+   * @return redirect:/
    */
   @GetMapping
   public String get() {

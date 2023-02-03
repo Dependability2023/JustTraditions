@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
+/**
+ * Implementa il controller per la concellazione di un account.
+ */
 @Controller
 @RequestMapping("/cancellazioneAccount")
 public class CancellazioneAccountController {

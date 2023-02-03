@@ -12,6 +12,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 
+/**
+ * Questa classe rappresenta una foto di un annuncio.
+ */
 @Entity
 public class Foto {
   @Id
