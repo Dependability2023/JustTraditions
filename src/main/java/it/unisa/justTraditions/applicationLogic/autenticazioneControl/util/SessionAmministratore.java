@@ -20,7 +20,12 @@ public class SessionAmministratore {
   @Autowired
   private AmministratoreDao amministratoreDao;
 
-  
+
+  /**
+   * Implementa la funzionalità di restituire l amministratore loggato nella sessione.
+   *
+   * @return Amministratore.
+   */
   public Optional<Amministratore> getAmministratore() {
     if (idAmministratore != null) {
       return amministratoreDao.findById(idAmministratore);
@@ -29,6 +34,11 @@ public class SessionAmministratore {
   }
 
 
+  /**
+   * Implemmenta la funzionalita di settate l amministratore loggato nella sessione.
+   *
+   * @param amministratore Oggetto amministratore identifica l amministratore loggato.
+   */
   public void setAmministratore(Amministratore amministratore) {
     if (amministratore == null) {
       this.idAmministratore = null;

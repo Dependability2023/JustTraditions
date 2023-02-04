@@ -25,6 +25,13 @@ public class PrenotazioneForm {
   public PrenotazioneForm() {
   }
 
+  /**
+   * Costruttore per Prenotazioneform.
+   *
+   * @param idVisita      Id corrispondente alla visita selezionata dal cliente.
+   * @param numeroPersone Numero di persone prenotate alla visita
+   * @param dataVisita    Dato della visita.
+   */
   public PrenotazioneForm(Long idVisita, Integer numeroPersone, LocalDate dataVisita) {
     this.idVisita = idVisita;
     this.numeroPersone = numeroPersone;

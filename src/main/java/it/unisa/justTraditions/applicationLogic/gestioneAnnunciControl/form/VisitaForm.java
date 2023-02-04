@@ -27,6 +27,14 @@ public class VisitaForm {
   public VisitaForm() {
   }
 
+  /**
+   * Costruttore per l ogggetto visitaForm.
+   *
+   * @param idVisita     Id della visita.
+   * @param giorno       Giorno della settimana della visita.
+   * @param orarioInizio Orario d'inizio della visita.
+   * @param orarioFine   Orario di fine della visita.
+   */
   public VisitaForm(Long idVisita, DayOfWeek giorno, LocalTime orarioInizio, LocalTime orarioFine) {
     this.idVisita = idVisita;
     this.giorno = giorno;

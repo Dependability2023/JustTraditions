@@ -244,6 +244,9 @@ public class Annuncio {
     return sb.toString();
   }
 
+  /**
+   * Enumerator che mappa gli stati di un oggetto Annuncio.
+   */
   public enum Stato {
     PROPOSTO,
     IN_REVISIONE,
