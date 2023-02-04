@@ -14,6 +14,13 @@ public class VisitaResponse {
   public VisitaResponse() {
   }
 
+  /**
+   * Costruttore per un oggetto VisitaResponse.
+   *
+   * @param id           Id della visita.
+   * @param orarioInizio Orario d'inizio della visita.
+   * @param orarioFine   Orario di fine della visita.
+   */
   public VisitaResponse(Long id, LocalTime orarioInizio, LocalTime orarioFine) {
     this.id = id;
     this.orarioInizio = orarioInizio;

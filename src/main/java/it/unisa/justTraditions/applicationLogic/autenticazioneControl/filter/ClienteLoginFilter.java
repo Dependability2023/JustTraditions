@@ -30,8 +30,9 @@ public class ClienteLoginFilter
    * @param servletRequest  La richiesta da passaggio lungo la catena.
    * @param servletResponse La risposta da passare lungo la catena.
    * @param filterChain     Utilizzato per richiamare il filtro successivo.
-   * @throws IOException
-   * @throws ServletException
+   * @throws IOException      se si è verificato un errore relativo all'I/O durante l'elaborazione.
+   * @throws ServletException se si verifica un'eccezione che interferisce con il
+   *                          normale funzionamento del filtro.
    */
   @Override
   public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,

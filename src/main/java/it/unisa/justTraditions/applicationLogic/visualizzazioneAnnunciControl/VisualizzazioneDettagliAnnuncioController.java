@@ -23,7 +23,8 @@ public class VisualizzazioneDettagliAnnuncioController {
   private AnnuncioDao annuncioDao;
 
   /**
-   * Implementa la funzionalità di smistate l utente nella view di visualizzazioneAnnunciView/visualizzazioneDettagliAnnuncio
+   * Implementa la funzionalità di smistate l utente
+   * nella view di visualizzazioneAnnunciView/visualizzazioneDettagliAnnuncio.
    *
    * @param id Utilizzato per la ricerca dell annuncio nel database.
    * @return IllegalArgumentException se l annuncio non e stato approvato.

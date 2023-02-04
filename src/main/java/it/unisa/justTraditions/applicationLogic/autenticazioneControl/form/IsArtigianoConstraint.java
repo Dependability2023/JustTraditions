@@ -18,9 +18,25 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface IsArtigianoConstraint {
+  /**
+   * Permette di specificare il messaggio di errore.
+   *
+   * @return Aggiungi un iban valido se vuoi essere un Artigiano.
+   */
   String message() default "Aggiungi un iban valido se vuoi essere un Artigiano";
 
+  /**
+   * Permetti di specificare la gruppo di validazione.
+   *
+   * @return default.
+   */
   Class<?>[] groups() default {};
 
+  /**
+   * ermette di specificare un payload per trasportare le informazioni sui metadati
+   * utilizzate da un client di convalida.
+   *
+   * @return default.
+   */
   Class<? extends Payload>[] payload() default {};
 }

@@ -8,14 +8,39 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+
+/**
+ * Implementa l annotazione per convalidare di un oggetto Prenotazioneform.
+ * Controlla l'esistenza e la validità della visita.
+ * Controlla se la data della prenotazione si trova dopo la data corrente e
+ * corrisponda al giorno della settimana della visita.
+ * Controlla che il numero di persone non sia maggiore dei posti disponibili.
+ */
+
 @Documented
 @Constraint(validatedBy = PrenotazioneIsValidValidator.class)
 @Target({ElementType.TYPE, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PrenotazioneIsValidConstraint {
+  /**
+   * Permette di specificare il messaggio di errore.
+   *
+   * @return Prenotazione non valida.
+   */
   String message() default "Prenotazione non valida";
 
+  /**
+   * Permetti di specificare la gruppo di validazione.
+   *
+   * @return default
+   */
   Class<?>[] groups() default {};
 
+  /**
+   * Permette di specificare un payload per trasportare le informazioni sui metadati
+   * utilizzate da un client di convalida.
+   *
+   * @return default.
+   */
   Class<? extends Payload>[] payload() default {};
 }

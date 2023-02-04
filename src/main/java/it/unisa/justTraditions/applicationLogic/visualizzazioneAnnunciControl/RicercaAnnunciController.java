@@ -52,7 +52,7 @@ public class RicercaAnnunciController {
               + " il nome inserito dall’utente è troppo lungo.");
     }
     if (!provincia.isBlank() && !province.getProvince().contains(provincia)) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Provincia non esistente");
     }
 
     Annuncio annuncio = new Annuncio();

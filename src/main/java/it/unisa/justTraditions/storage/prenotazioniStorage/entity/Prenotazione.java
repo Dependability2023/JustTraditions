@@ -40,6 +40,13 @@ public class Prenotazione {
   public Prenotazione() {
   }
 
+  /**
+   * Costruttore per una Prenotazione.
+   *
+   * @param prezzoVisita        Prezzo della visita al momento della prenotazione.
+   * @param dataVisita          Data della prenotazione.
+   * @param numPersonePrenotate Numero di persone prenotate.
+   */
   public Prenotazione(BigDecimal prezzoVisita, LocalDate dataVisita, Integer numPersonePrenotate) {
     this.prezzoVisita = prezzoVisita;
     this.dataVisita = dataVisita;
