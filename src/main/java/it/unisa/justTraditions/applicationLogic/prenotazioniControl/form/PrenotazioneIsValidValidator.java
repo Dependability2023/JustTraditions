@@ -40,7 +40,8 @@ public class PrenotazioneIsValidValidator
       return false;
     }
 
-    if (!prenotazioneForm.getDataVisita().isAfter(LocalDate.now())) {
+    if (prenotazioneForm.getDataVisita() == null
+        || !prenotazioneForm.getDataVisita().isAfter(LocalDate.now())) {
       return false;
     }
 
