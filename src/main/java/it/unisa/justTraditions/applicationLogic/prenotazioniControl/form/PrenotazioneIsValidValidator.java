@@ -9,6 +9,13 @@ import jakarta.validation.ConstraintValidatorContext;
 import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Implementa la logica per convalidare di un oggetto Prenotazioneform.
+ * Controlla l'esistenza e la validità della visita.
+ * Controlla se la data della prenotazione si trova dopo la data corrente e
+ * corrisponda al giorno della settimana della visita.
+ * Controlla che il numero di persone non sia maggiore dei posti disponibili.
+ */
 public class PrenotazioneIsValidValidator
     implements ConstraintValidator<PrenotazioneIsValidConstraint, PrenotazioneForm> {
 

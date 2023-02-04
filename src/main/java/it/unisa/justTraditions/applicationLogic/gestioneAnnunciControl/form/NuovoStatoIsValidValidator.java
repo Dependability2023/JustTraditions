@@ -6,6 +6,9 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Implementa la logica per convalidare  orarioInizio e orarioFine in .
+ */
 public class NuovoStatoIsValidValidator
     implements ConstraintValidator<NuovoStatoIsValidConstraint, ModificaStatoAnnuncioForm> {
 

@@ -20,6 +20,11 @@ public class SessionCliente {
   @Autowired
   private ClienteDao clienteDao;
 
+  /**
+   * Implementa la funzionalità di restituire il Cliente loggato nella sessione.
+   *
+   * @return Cliente.
+   */
   public Optional<Cliente> getCliente() {
     if (idCliente != null) {
       return clienteDao.findById(idCliente);
@@ -27,6 +32,11 @@ public class SessionCliente {
     return Optional.empty();
   }
 
+  /**
+   * Implemmenta la funzionalita di settate il Cliente loggato nella sessione.
+   *
+   * @param cliente Oggetto amministratore identifica il Cliente loggato.
+   */
   public void setCliente(Cliente cliente) {
     if (cliente == null) {
       this.idCliente = null;

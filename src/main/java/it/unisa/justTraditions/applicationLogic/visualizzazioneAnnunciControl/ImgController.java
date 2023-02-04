@@ -26,8 +26,9 @@ public class ImgController {
    *
    * @param id       Utilizzato per la ricerca del immagine nel database.
    * @param response Utilizzato per l invio dell immagine.
-   * @throws ServletException
-   * @throws IOException
+   * @throws IOException      se si è verificato un errore relativo all'I/O durante l'elaborazione.
+   * @throws ServletException se si verifica un'eccezione che interferisce con il
+   *                          normale funzionamento del filtro.
    */
   @GetMapping
   public void get(@RequestParam Long id, HttpServletResponse response)

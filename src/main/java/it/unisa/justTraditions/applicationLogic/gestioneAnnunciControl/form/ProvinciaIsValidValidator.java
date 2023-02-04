@@ -5,6 +5,10 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Implementa la logica per convalidare la provincia.
+ * Controlla che la provincia esista.
+ */
 public class ProvinciaIsValidValidator
     implements ConstraintValidator<ProvinciaIsValidConstraint, String> {
 

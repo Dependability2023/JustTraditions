@@ -10,14 +10,33 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 
+/**
+ * Implementa l annotazione per convalidare il motivo del rifiuto.
+ */
 @Documented
 @Constraint(validatedBy = MotivoDelRifiutoIsValidValidator.class)
 @Target({ElementType.TYPE, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MotivoDelRifiutoIsValidConstraint {
+  /**
+   * Permette di specificare il messaggio di errore.
+   *
+   * @return Motivo del rifiuto vuoto.
+   */
   String message() default "Motivo del rifiuto vuoto";
 
+  /**
+   * Permetti di specificare la gruppo di validazione.
+   *
+   * @return default
+   */
   Class<?>[] groups() default {};
 
+  /**
+   * ermette di specificare un payload per trasportare le informazioni sui metadati
+   * utilizzate da un client di convalida.
+   *
+   * @return default.
+   */
   Class<? extends Payload>[] payload() default {};
 }

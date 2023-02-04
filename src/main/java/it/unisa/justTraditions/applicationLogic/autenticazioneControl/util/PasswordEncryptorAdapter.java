@@ -3,6 +3,9 @@ package it.unisa.justTraditions.applicationLogic.autenticazioneControl.util;
 import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.stereotype.Component;
 
+/**
+ * Adapter per la classe PasswordEncryptor.
+ */
 @Component
 public class PasswordEncryptorAdapter
     implements PasswordEncryptor {

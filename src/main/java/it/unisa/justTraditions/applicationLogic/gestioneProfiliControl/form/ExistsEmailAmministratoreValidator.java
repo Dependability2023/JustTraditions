@@ -5,6 +5,9 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Implementa la logica per convalidare l email dell amministratore.
+ */
 public class ExistsEmailAmministratoreValidator
     implements ConstraintValidator<ExistsEmailAmministratoreConstraint, String> {
 
