@@ -41,7 +41,7 @@ public class RicercaAnnunciTest {
   public void provinciaNonValida() {
     assertThatThrownBy(
         () -> test("Cantine Santoro", "Bassoni", null)
-    ).hasCause(new IllegalArgumentException());
+    ).hasCause(new IllegalArgumentException("Provincia non esistente"));
   }
 
   @Test
