@@ -13,6 +13,9 @@ public class OrarioIsValidValidator
   @Override
   public boolean isValid(VisitaForm visitaForm,
                          ConstraintValidatorContext constraintValidatorContext) {
+    if (visitaForm.getOrarioFine() == null || visitaForm.getOrarioInizio() == null) {
+      return false;
+    }
     return !visitaForm.getOrarioFine().isBefore(visitaForm.getOrarioInizio());
   }
 

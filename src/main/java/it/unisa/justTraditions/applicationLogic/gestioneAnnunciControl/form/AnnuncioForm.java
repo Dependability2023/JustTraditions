@@ -51,6 +51,7 @@ public class AnnuncioForm {
 
   @NotNull(message = "Nessuna foto inserita")
   @Size(min = 1, max = 3, message = "Almeno una, massimo 3 foto")
+  @FotoListIsValidConstraint
   private List<MultipartFile> foto;
 
   @NotNull(message = "Nessuna visita inserita")
