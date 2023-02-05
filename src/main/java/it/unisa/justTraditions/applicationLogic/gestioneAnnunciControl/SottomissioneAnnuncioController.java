@@ -33,10 +33,10 @@ public class SottomissioneAnnuncioController {
       "gestioneAnnunciView/modificaAnnuncioSuccess";
 
   @Autowired
-  SessionCliente sessionCliente;
+  private SessionCliente sessionCliente;
 
   @Autowired
-  ArtigianoDao artigianoDao;
+  private ArtigianoDao artigianoDao;
 
   /**
    * Implementa la funzionalità di smistare l'Artigiano sulla view di sottomissioneAnnuncio.
