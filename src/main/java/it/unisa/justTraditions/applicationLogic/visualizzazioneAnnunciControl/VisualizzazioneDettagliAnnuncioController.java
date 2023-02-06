@@ -27,8 +27,10 @@ public class VisualizzazioneDettagliAnnuncioController {
    * nella view di visualizzazioneAnnunciView/visualizzazioneDettagliAnnuncio.
    *
    * @param id Utilizzato per la ricerca dell annuncio nel database.
-   * @return IllegalArgumentException se l annuncio non e stato approvato.
-   * visualizzazioneAnnunciView/visualizzazioneDettagliAnnuncio se la ricerca va a buon fine.
+   * @return ModelAndView(visualizzazioneAnnunciView / visualizzazioneDettagliAnnuncio)
+   *     .addObject("totalFoto", annuncio.getFoto().size())
+   *     .addObject("annuncio", annuncio);
+   * @throws IllegalArgumentException se i dati non sono previsti dal sistema.
    */
   @GetMapping
   public ModelAndView get(@RequestParam Long id) {

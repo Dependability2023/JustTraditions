@@ -34,8 +34,8 @@ public class NumMaxPersoneController {
    *
    * @param idVisita   Utilizzato per la ricerca di tutte le prenotazione della visita.
    * @param dataVisita Utilizzato per la ricerca di tutte le prenotazioni di una specifica data
-   * @return IllegalArgumentException se la visita non esiste, ResponseEntity che racchiude
-   * il numero di persone che gia partecipano a una visita in una specifica data.
+   * @return Restituisce la view da reindirizzare.
+   * @throws IllegalArgumentException se i dati non sono previsti dal sistema.
    */
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   private ResponseEntity<?> post(@RequestParam Long idVisita,

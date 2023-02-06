@@ -46,8 +46,8 @@ public class ModificaStatoAnnuncioController {
    * @param idAnnuncio                Utilizzato per la ricerca dell Annuncio.
    * @param modificaStatoAnnuncioForm Utilizzato per mappare il Form della view.
    * @param model                     Utilizzato per passare degli attributi alla view.
-   * @return IllegalArgumentException se l'id non esiste all interno del database.
-   * gestioneAnnunciView/modificaStatoAnnuncio se id esiste all interno del database.
+   * @return Restituisce la view da reindirizzare.
+   * @throws IllegalArgumentException se i dati non sono previsti dal sistema.
    */
   @GetMapping
   public String get(@RequestParam Long idAnnuncio,
@@ -68,8 +68,8 @@ public class ModificaStatoAnnuncioController {
    * @param modificaStatoAnnuncioForm Utilizzato per mappare il Form della view.
    * @param bindingResult             Utilizzato per mappare gli errori dei dati di loginForm.
    * @param model                     Utilizzato per passare degli attributi alla view.
-   * @return gestioneAnnunciView/modificaStatoAnnuncio se ci sono errori sui dati del Form.
-   * gestioneAnnunciView/modificaAnnuncioSuccess se la modifica ha avuto successo.
+   * @return Restituisce la view da reindirizzare.
+   * @throws IllegalArgumentException se i dati non sono previsti dal sistema.
    */
   @PostMapping
   public String post(@ModelAttribute @Valid ModificaStatoAnnuncioForm modificaStatoAnnuncioForm,

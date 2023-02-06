@@ -34,8 +34,8 @@ public class VisualizzazioneListaAnnunciController {
    * @param stato  Utilizzato per filtrare gli annunci per Stato.
    * @param pagina Utilizzata per l'impaginazione della lista di annunci.
    * @param model  Utilizzato per passare degli attributi alla view.
-   * @return IllegalArgumentException se la pagina supera o e uguale al numero di pagine totali,
-   * visualizzazioneAnnunciView/visualizzazioneListaAnnunci se la ricerca va a buon fine.
+   * @return Restituisce la view da reindirizzare.
+   * @throws IllegalArgumentException se i dati non sono previsti dal sistema.
    */
   @GetMapping
   public String get(@RequestParam(required = false) Annuncio.Stato stato,

@@ -35,9 +35,8 @@ public class RimozioneAnnuncioController {
    * Implementa la funzionalità di Rimozione di un annuncio.
    *
    * @param id Utilizzato per la ricerca dell Annuncio nel database.
-   * @return IllegalArgumentException se l'id non corrisponde a un annuncio se l'annuncio
-   * non e dell'artigiano loggato.
-   * gestioneAnnunciView/modificaAnnuncioSuccess se la Rimozione ha avuto successo.
+   * @return Restituisce la view da reindirizzare.
+   * @throws IllegalArgumentException se i dati non sono previsti dal sistema.
    */
   @GetMapping
   public String get(@RequestParam Long id) {

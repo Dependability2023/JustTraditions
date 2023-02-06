@@ -28,7 +28,7 @@ public @interface ExistsEmailConstraint {
   /**
    * Permetti di specificare il gruppo di validazione.
    *
-   * @return default.
+   * @return restituisce le classi del gruppo di validazione.
    */
   Class<?>[] groups() default {};
 
@@ -36,7 +36,7 @@ public @interface ExistsEmailConstraint {
    * ermette di specificare un payload per trasportare le informazioni sui metadati
    * utilizzate da un client di convalida.
    *
-   * @return default.
+   * @return restituisce le classi che rappresentano il payload.
    */
   Class<? extends Payload>[] payload() default {};
 

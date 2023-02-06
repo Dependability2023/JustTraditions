@@ -39,10 +39,10 @@ public class SottomissioneAnnuncioController {
   private ArtigianoDao artigianoDao;
 
   /**
-   * Implementa la funzionalità di smistare l'Artigiano sulla view di sottomissioneAnnuncio.
+   * Implementa la funzionalità di smistare l'Artigiano sulla view di gestioneAnnunciView/sottomissioneAnnuncio.
    *
    * @param annuncioForm Utilizzato per mappare il Form della view.
-   * @return "gestioneAnnunciView/sottomissioneAnnuncio"".
+   * @return Restituisce la view da reindirizzare.
    */
   @GetMapping
   public String get(@ModelAttribute AnnuncioForm annuncioForm) {
@@ -55,9 +55,7 @@ public class SottomissioneAnnuncioController {
    * @param annuncioForm  Utilizzato per mappare il Form della view.
    * @param bindingResult Utilizzato per mappare gli errori dei dati di annuncioForm.
    * @param model         Utilizzato per passare degli attributi alla view.
-   * @return gestioneAnnunciView/sottomissioneAnnuncio se i dati di annuncioForm sono errati o
-   * i file delle foto creano una IOException.
-   * gestioneAnnunciView/modificaAnnuncioSuccess se la sottomissione ha avuto successo.
+   * @return Restituisce la view da reindirizzare.
    */
   @PostMapping
   public String post(@ModelAttribute @Valid AnnuncioForm annuncioForm,
