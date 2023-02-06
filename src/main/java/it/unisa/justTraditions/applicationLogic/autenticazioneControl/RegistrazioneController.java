@@ -39,7 +39,7 @@ public class RegistrazioneController {
    * l'Amministratore sulla view di autenticazioneView/registrazione.
    *
    * @param registrazioneForm Utilizzato per mappare il Form della view.
-   * @return autenticazioneView/registrazione.
+   * @return Restituisce la view da reindirizzare.
    */
   @GetMapping
   public String get(@ModelAttribute RegistrazioneForm registrazioneForm) {
@@ -51,8 +51,7 @@ public class RegistrazioneController {
    *
    * @param registrazioneForm Utilizzato per mappare il Form della view.
    * @param bindingResult     Utilizzato per mappare gli errori dei dati di RegistrazioneForm
-   * @return autenticazioneView/registrazione se i dati di loginForm sono errati.
-   * redirect: login la Registrazione ha avuto successo.
+   * @return Restituisce la view da reindirizzare.
    */
   @PostMapping
   public String post(@ModelAttribute @Valid RegistrazioneForm registrazioneForm,

@@ -29,9 +29,8 @@ public class RimozioneAmministratoreController {
    * Implementa la funzionalità di rimozione di un Amministratore.
    *
    * @param id Utilizzato per la ricerca dell Amministratore nel database.
-   * @return IllegalArgumentException se l'Amministratore si auto elimina o
-   * se l id non ha corrispondenza nel database.
-   * Redirect:visualizzazioneAmministratori se l'eliminazione ha avuto successo.
+   * @return Restituisce la view da reindirizzare.
+   * @throws IllegalArgumentException se i dati non sono previsti dal sistema.
    */
   @GetMapping
   public String get(@RequestParam Long id) {

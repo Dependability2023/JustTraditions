@@ -28,7 +28,7 @@ public class HomeAmministratoreController {
    * l Amministratore alle view di visualizzazioneAnnunciView/homeAmministratore.
    *
    * @param model Utilizzato per passare degli attributi alla view.
-   * @return visualizzazioneAnnunciView/homeAmministratore.
+   * @return Restituisce la view da reindirizzare.
    */
   @GetMapping
   public String get(Model model) {

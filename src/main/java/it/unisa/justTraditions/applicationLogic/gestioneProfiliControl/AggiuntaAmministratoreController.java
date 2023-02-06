@@ -38,7 +38,7 @@ public class AggiuntaAmministratoreController {
    * sulla view di gestioneAnnunciView/modificaAnnuncio.
    *
    * @param aggiuntaAmministratoreForm Utilizzato per mappare il Form della view.
-   * @return gestioneProfiliView/aggiuntaAmministratore.
+   * @return Restituisce la view da reindirizzare.
    */
   @GetMapping
   public String get(@ModelAttribute AggiuntaAmministratoreForm aggiuntaAmministratoreForm) {
@@ -51,8 +51,7 @@ public class AggiuntaAmministratoreController {
    * @param aggiuntaAmministratoreForm Utilizzato per mappare il Form della view.
    * @param bindingResult              Utilizzato per mappare gli errori dei dati di
    *                                   aggiuntaAmministratoreForm.
-   * @return gestioneProfiliView/aggiuntaAmministratore se ci sono errori sui dati del Form.
-   * redirect: visualizzazioneAmministratori se l'aggiunta ha avuto successo.
+   * @return Restituisce la view da reindirizzare.
    */
   @PostMapping
   public String post(@ModelAttribute @Valid AggiuntaAmministratoreForm aggiuntaAmministratoreForm,

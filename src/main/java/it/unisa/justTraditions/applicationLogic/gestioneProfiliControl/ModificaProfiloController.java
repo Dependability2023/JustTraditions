@@ -36,7 +36,7 @@ public class ModificaProfiloController {
    * su la view di gestioneProfiliView/modificaProfilo.
    *
    * @param registrazioneForm Utilizzato per mappare il Form della view.
-   * @return gestioneProfiliView/modificaProfilo.
+   * @return Restituisce la view da reindirizzare.
    */
   @GetMapping
   public String get(@ModelAttribute RegistrazioneForm registrazioneForm) {
@@ -61,8 +61,7 @@ public class ModificaProfiloController {
    *
    * @param registrazioneForm Utilizzato per mappare il Form della view.
    * @param bindingResult     Utilizzato per mappare gli errori dei dati di registrazioneForm.
-   * @return gestioneProfiliView/modificaProfilo se ci sono errori sui dati del Form.
-   * redirect:visualizzazioneProfiloPersonale se la modifica ha avuto successo.
+   * @return Restituisce la view da reindirizzare.
    */
   @PostMapping
   public String post(@ModelAttribute @Valid RegistrazioneForm registrazioneForm,

@@ -25,12 +25,14 @@ public class VisualizzazioneListaAnnunciSottomessiController {
    * Implementa la funzionalità di smistare l Artigiano
    * nella view di visualizzazioneAnnunciView/visualizzazioneListaAnnunciSottomessi.
    *
-   * @return visualizzazioneAnnunciView/visualizzazioneListaAnnunciSottomessi.
+   * @return ModelAndView(visualizzazioneAnnunciView / visualizzazioneListaAnnunciSottomessi)
+   *     .addObject(lista di annunci);
    */
   @GetMapping
   public ModelAndView get() {
     Artigiano artigiano = (Artigiano) sessionCliente.getCliente().get();
     return new ModelAndView(visualizzazioneListaAnnunciSottomessiView)
         .addObject("annunci", artigiano.getAnnunci());
+    
   }
 }

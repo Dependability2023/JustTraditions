@@ -38,8 +38,8 @@ public class RicercaAnnunciController {
    * @param provincia    Utilizzato per il filtro per provincie per gli annunci.
    * @param pagina       Utilizzata per la paginazione della lista di annunci.
    * @param model        Utilizzato per passare degli attributi alla view.
-   * @return IllegalArgumentException se il nomeAttivita e troppo lungo o la provincia non esiste.
-   * visualizzazioneAnnunciView/ricercaAnnunci se la ricerca ha avuto successo.
+   * @return Restituisce la view da reindirizzare.
+   * @throws IllegalArgumentException se i dati non sono previsti dal sistema.
    */
   @GetMapping
   public String get(@RequestParam(defaultValue = "", required = false) String nomeAttivita,
