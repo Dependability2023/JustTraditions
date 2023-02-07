@@ -24,7 +24,7 @@
                                 <label for="nomeAttivita">Nome Attività:</label>
                                 <input type="text" th:field="*{nomeAttivita}" id="nomeAttivita" class="form-control"
                                        placeholder="Nome dell'attività"
-                                       required="required" autofocus="autofocus">
+                                       autofocus="autofocus">
                                 <div class=" d-inline invalid-feedback " th:if="${#fields.hasErrors('nomeAttivita')}"
                                      th:errors="*{nomeAttivita}"></div>
                             </div>
@@ -120,7 +120,7 @@
                         <div class="col-md-6">
                             <div class="form-label-group">
                                 <label for="nMax">Numero massimo di persone:</label>
-                                <input type="number" min="1" th:field="*{numMaxPersonePerVisita}" value="1" id="nMax"
+                                <input type="number" th:field="*{numMaxPersonePerVisita}" value="1" id="nMax"
                                        class="form-control"
                                        placeholder="Inserisci il numero max" required="required">
                                 <div class=" d-inline invalid-feedback "

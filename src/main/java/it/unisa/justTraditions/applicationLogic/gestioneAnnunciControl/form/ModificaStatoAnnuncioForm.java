@@ -17,7 +17,8 @@ public class ModificaStatoAnnuncioForm {
   @NotNull(message = "Nuovo stato non presente")
   private Annuncio.Stato nuovoStato;
 
-  @Size(max = 255, message = "Motivo del rifiuto troppo lungo")
+
+  @Size(max = 255, message = "Motivo del rifiuto deve essere compreso tra 1 e 255")
   private String motivoDelRifiuto;
 
   public ModificaStatoAnnuncioForm() {

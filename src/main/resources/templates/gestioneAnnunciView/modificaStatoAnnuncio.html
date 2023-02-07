@@ -214,7 +214,13 @@
                                             <div class=" d-inline invalid-feedback "
                                                  th:if="${#fields.hasErrors('motivoDelRifiuto')}"
                                                  th:errors="*{motivoDelRifiuto}"></div>
+                                            <div th:if="${#fields.hasGlobalErrors()}">
+                                                <p class="d-inline invalid-feedback"
+                                                   th:each="err : ${#fields.globalErrors()}"
+                                                   th:text="${err}"></p>
+                                            </div>
                                         </div>
+
                                         <input type="hidden" th:field="*{idAnnuncio}">
                                     </form>
                                 </div>
