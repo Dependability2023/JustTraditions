@@ -51,7 +51,7 @@ public class EffettuaPrenotazioneController {
   public String get(@ModelAttribute @Valid PrenotazioneForm prenotazioneForm,
                     BindingResult bindingResult, Model model) {
     if (bindingResult.hasErrors()) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Errore nella sottomissione della prenotazione");
     }
 
     Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita())
