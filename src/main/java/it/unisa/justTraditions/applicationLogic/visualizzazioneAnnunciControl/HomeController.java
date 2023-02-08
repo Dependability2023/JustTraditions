@@ -27,7 +27,7 @@ public class HomeController {
   /**
    * Implementa la funzionalità di smistare l utente nella view di visualizzazioneAnnunciView/home.
    *
-   * @return visualizzazioneAnnunciView/home
+   * @return ModelAndView(visualizzazioneAnnunciView / home).addObject(lista di annunci).
    */
   @GetMapping
   public ModelAndView get() {

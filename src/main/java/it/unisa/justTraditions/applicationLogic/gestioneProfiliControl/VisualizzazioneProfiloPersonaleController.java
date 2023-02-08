@@ -19,7 +19,7 @@ public class VisualizzazioneProfiloPersonaleController {
    * Implementa la funzionalità di smistare il Cliente
    * su la view di gestioneProfiliView/visualizzazioneProfiloPersonale.
    *
-   * @return gestioneProfiliView/visualizzazioneProfiloPersonale.
+   * @return Restituisce la view da reindirizzare.
    */
   @GetMapping
   public String get() {

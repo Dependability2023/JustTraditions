@@ -44,7 +44,7 @@ public class VisualizzazionePrenotazioniAnnuncioController {
    * l artigliano sulla view di prenotazioniView/visualizzazionePrenotazioniAnnuncio.
    *
    * @param idAnnuncio Utilizzato per passare alla view l id dell annuncio.
-   * @return prenotazioniView/visualizzazionePrenotazioniAnnuncio
+   * @return Restituisce la view da reindirizzare.
    */
   @GetMapping
   public ModelAndView get(@RequestParam Long idAnnuncio) {
@@ -60,11 +60,8 @@ public class VisualizzazionePrenotazioniAnnuncioController {
    * @param dataVisita Utilizzato per la ricerca delle prenotazioni.
    * @param pagina     Utilizzato per la paginazione della lista delle prenotazioni.
    * @param model      Utilizzato per passare degli attributi alla view.
-   * @return IllegalArgumentException se id Annuncio non corrisponde a
-   * un annuncio creato dall artigiano loggato o,
-   * se la pagina è maggiore o uguale alla numero di pagine totali.
-   * prenotazioniView/visualizzazionePrenotazioniAnnuncio se la ricerca
-   * e i dati non presentano errori.
+   * @return Restituisce la view da reindirizzare.
+   * @throws IllegalArgumentException se i dati non sono previsti dal sistema.
    */
   @PostMapping
   public String post(@RequestParam Long idAnnuncio,

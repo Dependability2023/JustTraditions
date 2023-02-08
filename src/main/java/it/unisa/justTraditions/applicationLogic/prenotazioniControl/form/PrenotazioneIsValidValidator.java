@@ -7,6 +7,7 @@ import it.unisa.justTraditions.storage.prenotazioniStorage.entity.Prenotazione;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import java.time.LocalDate;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -33,8 +34,11 @@ public class PrenotazioneIsValidValidator
   @Override
   public boolean isValid(PrenotazioneForm prenotazioneForm,
                          ConstraintValidatorContext constraintValidatorContext) {
-    Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita())
-        .orElseThrow(IllegalArgumentException::new);
+    Optional<Visita> optionalVisita = visitaDao.findById(prenotazioneForm.getIdVisita());
+    if (optionalVisita.isEmpty()) {
+      return false;
+    }
+    Visita visita = optionalVisita.get();
 
     if (!visita.getValidita()) {
       return false;

@@ -40,7 +40,7 @@ public class LoginController {
    *
    * @param loginForm utilizzato per mappare il Form della view.
    * @param model     Utilizzato per passare degli attributi alla view.
-   * @return autenticazioneView/login
+   * @return Restituisce la view da reindirizzare.
    */
   @GetMapping
   public String get(@ModelAttribute LoginForm loginForm, Model model) {
@@ -54,9 +54,7 @@ public class LoginController {
    * @param loginForm     Utilizzato per mappare il Form della view.
    * @param bindingResult Utilizzato per mappare gli errori dei dati di loginForm.
    * @param model         Utilizzato per passare degli attributi alla view.
-   * @return autenticazioneView/login se i dati di loginForm sono errati
-   * o l email e inesistente o la password è errata.
-   * redirect: se il login ha avuto successo.
+   * @return Restituisce la view da reindirizzare.
    */
   @PostMapping
   public String post(@ModelAttribute @Valid LoginForm loginForm,

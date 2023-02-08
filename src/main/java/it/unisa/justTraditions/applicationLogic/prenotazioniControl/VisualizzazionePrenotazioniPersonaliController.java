@@ -36,8 +36,8 @@ public class VisualizzazionePrenotazioniPersonaliController {
    * sulla view di prenotazioniView/visualizzazionePrenotazioniPersonali.
    *
    * @param pagina Utilizzata per la paginazione della lista delle prenotazioni.
-   * @return IllegalArgumentException se la pagina è maggiore o uguale alla numero di pagine totali.
-   * prenotazioniView/visualizzazionePrenotazioniPersonali se la ricerca ha avuto successo.
+   * @return Restituisce la view da reindirizzare.
+   * @throws IllegalArgumentException se i dati non sono previsti dal sistema.
    */
   @GetMapping
   public ModelAndView get(@RequestParam(defaultValue = "0", required = false) Integer pagina) {

@@ -35,8 +35,8 @@ public class RicercaVisitaController {
    * @param idAnnuncio Utilizzata per la ricerca delle visite.
    * @param dataVisita Utilizzata per la ricerca della visita.
    * @return ResponseEntity con una lista vuota se l annuncio non esiste,
-   * se la data e uguale o minore della data odierna o non ci sono visite per quella data.
-   * ResponseEntity con una lista di visite se la ricerca ha avuto successo.
+   *     se la data e uguale o minore della data odierna o non ci sono visite per quella data.
+   *     ResponseEntity con una lista di visite se la ricerca ha avuto successo.
    */
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   private ResponseEntity<?> post(@RequestParam Long idAnnuncio,

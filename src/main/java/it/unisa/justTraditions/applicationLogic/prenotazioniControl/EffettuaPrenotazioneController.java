@@ -44,9 +44,8 @@ public class EffettuaPrenotazioneController {
    * @param prenotazioneForm Utilizzato per mappare il Form della view.
    * @param bindingResult    Utilizzato per mappare gli errori dei dati di annuncioForm.
    * @param model            Utilizzato per passare degli attributi alla view.
-   * @return IllegalArgumentException() se i dati di PrenotazioneForm sono errati o
-   * la visita non esiste.
-   * prenotazioniView/effettuaPrenotazione se non ci sono errori.
+   * @return Restituisce la view da reindirizzare.
+   * @throws IllegalArgumentException se i dati non sono previsti dal sistema.
    */
   @GetMapping
   public String get(@ModelAttribute @Valid PrenotazioneForm prenotazioneForm,
@@ -55,8 +54,7 @@ public class EffettuaPrenotazioneController {
       throw new IllegalArgumentException("Errore nella sottomissione della prenotazione");
     }
 
-    Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita())
-        .orElseThrow(IllegalArgumentException::new);
+    Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita()).get();
 
     Annuncio annuncio = visita.getAnnuncio();
     model.addAttribute("prezzo", annuncio.getPrezzoVisita());
@@ -71,9 +69,8 @@ public class EffettuaPrenotazioneController {
    *
    * @param prenotazioneForm Utilizzato per mappare il Form della view.
    * @param bindingResult    Utilizzato per mappare gli errori dei dati di prenotazioneForm.
-   * @return IllegalArgumentException se i dati di prenotazioneForm sono errati o
-   * la visita non esiste.
-   * prenotazioniView/esitoPrenotazione se la prenotazione ha avuto successo.
+   * @return Restituisce la view da reindirizzare.
+   * @throws IllegalArgumentException se i dati non sono previsti dal sistema.
    */
   @PostMapping
   public String post(@ModelAttribute @Valid PrenotazioneForm prenotazioneForm,
@@ -82,8 +79,7 @@ public class EffettuaPrenotazioneController {
       throw new IllegalArgumentException();
     }
 
-    Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita())
-        .orElseThrow(IllegalArgumentException::new);
+    Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita()).get();
 
     Prenotazione prenotazione =
         new Prenotazione(visita.getAnnuncio().getPrezzoVisita(), prenotazioneForm.getDataVisita(),

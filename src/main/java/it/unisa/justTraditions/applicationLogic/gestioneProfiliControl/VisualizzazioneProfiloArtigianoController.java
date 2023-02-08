@@ -39,8 +39,8 @@ public class VisualizzazioneProfiloArtigianoController {
    * @param id     Utilizzato per la ricerca di un Artigiano nell database.
    * @param pagina Utilizzato per la paginazione della lista degli annunci dell Artigiano.
    * @param model  Utilizzato per passare degli attributi alla view.
-   * @return IllegalArgumentException se l'id dell Artigiano non esiste nel database.
-   * gestioneProfiliView/visualizzazioneProfiloArtigiano se trova corrispondenza nel database.
+   * @return Restituisce la view da reindirizzare.
+   * @throws IllegalArgumentException se i dati non sono previsti dal sistema.
    */
   @GetMapping
   public String get(@RequestParam Long id,

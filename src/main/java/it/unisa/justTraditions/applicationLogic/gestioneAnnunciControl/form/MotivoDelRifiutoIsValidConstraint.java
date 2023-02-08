@@ -28,15 +28,15 @@ public @interface MotivoDelRifiutoIsValidConstraint {
   /**
    * Permetti di specificare la gruppo di validazione.
    *
-   * @return default
+   * @return restituisce le classi del gruppo di validazione.
    */
   Class<?>[] groups() default {};
 
   /**
-   * ermette di specificare un payload per trasportare le informazioni sui metadati
+   * Permette di specificare un payload per trasportare le informazioni sui metadati
    * utilizzate da un client di convalida.
    *
-   * @return default.
+   * @return restituisce le classi che rappresentano il payload.
    */
   Class<? extends Payload>[] payload() default {};
 }
