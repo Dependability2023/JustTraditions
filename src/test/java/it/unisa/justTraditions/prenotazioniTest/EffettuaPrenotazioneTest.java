@@ -70,7 +70,7 @@ public class EffettuaPrenotazioneTest {
   public void idVisitaNonValido() {
     assertThatThrownBy(
         () -> test(dataVisitaValida.toString(), 0L, 5, null)
-    ).cause().hasCause(new IllegalArgumentException());
+    ).hasCause(new IllegalArgumentException());
   }
 
   @Test

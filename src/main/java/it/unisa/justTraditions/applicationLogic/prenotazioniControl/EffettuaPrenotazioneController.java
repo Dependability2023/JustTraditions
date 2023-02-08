@@ -54,8 +54,7 @@ public class EffettuaPrenotazioneController {
       throw new IllegalArgumentException("Errore nella sottomissione della prenotazione");
     }
 
-    Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita())
-        .orElseThrow(IllegalArgumentException::new);
+    Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita()).get();
 
     Annuncio annuncio = visita.getAnnuncio();
     model.addAttribute("prezzo", annuncio.getPrezzoVisita());
@@ -80,8 +79,7 @@ public class EffettuaPrenotazioneController {
       throw new IllegalArgumentException();
     }
 
-    Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita())
-        .orElseThrow(IllegalArgumentException::new);
+    Visita visita = visitaDao.findById(prenotazioneForm.getIdVisita()).get();
 
     Prenotazione prenotazione =
         new Prenotazione(visita.getAnnuncio().getPrezzoVisita(), prenotazioneForm.getDataVisita(),
