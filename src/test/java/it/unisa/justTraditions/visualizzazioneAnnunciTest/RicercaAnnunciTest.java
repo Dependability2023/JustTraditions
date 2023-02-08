@@ -17,6 +17,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 
+/**
+ * Implementa il test di unità per RicercaAnnunciController.
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 public class RicercaAnnunciTest {

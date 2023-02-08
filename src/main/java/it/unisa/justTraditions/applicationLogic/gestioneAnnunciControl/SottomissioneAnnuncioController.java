@@ -39,7 +39,8 @@ public class SottomissioneAnnuncioController {
   private ArtigianoDao artigianoDao;
 
   /**
-   * Implementa la funzionalità di smistare l'Artigiano sulla view di gestioneAnnunciView/sottomissioneAnnuncio.
+   * Implementa la funzionalità di smistare l'Artigiano sulla view di
+   * gestioneAnnunciView/sottomissioneAnnuncio.
    *
    * @param annuncioForm Utilizzato per mappare il Form della view.
    * @return Restituisce la view da reindirizzare.

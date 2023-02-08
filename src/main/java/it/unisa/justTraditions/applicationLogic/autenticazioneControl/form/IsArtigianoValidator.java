@@ -27,8 +27,8 @@ public class IsArtigianoValidator
    * @param registrazioneForm          oggetto da convalidare.
    * @param constraintValidatorContext contesto in cui viene valutato il vincolo.
    * @return true se si dichiara Artigiano e ha inserito un coretto iban
-   * o se non si e dichiarato Artigiano,
-   * false se non si dichiara Artigiano e non ha inserito un iban o l' iban non e corretto.
+   *     o se non si e dichiarato Artigiano,
+   *     false se non si dichiara Artigiano e non ha inserito un iban o l' iban non e corretto.
    */
   @Override
   public boolean isValid(RegistrazioneForm registrazioneForm,

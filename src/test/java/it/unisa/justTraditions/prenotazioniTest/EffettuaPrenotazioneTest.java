@@ -24,6 +24,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 
+/**
+ * Implementa il test di unità per EffettuaPrenotazioneController.
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 public class EffettuaPrenotazioneTest {
