@@ -25,7 +25,7 @@ public class VisualizzazioneAmministratoriController {
    * su la view di gestioneProfiliView/visualizzazioneAmministratori.
    *
    * @return ModelAndView(gestioneProfiliView / visualizzazioneAmministratori)
-   * con la lista degli Amministratori.
+   *     con la lista degli Amministratori.
    */
   @GetMapping
   public ModelAndView get() {

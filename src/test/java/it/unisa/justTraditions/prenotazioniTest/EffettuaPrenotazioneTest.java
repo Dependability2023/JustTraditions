@@ -24,6 +24,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 
+/**
+ * Implementa il test di unità per EffettuaPrenotazioneController.
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 public class EffettuaPrenotazioneTest {
@@ -70,7 +73,7 @@ public class EffettuaPrenotazioneTest {
   public void idVisitaNonValido() {
     assertThatThrownBy(
         () -> test(dataVisitaValida.toString(), 0L, 5, null)
-    ).cause().hasCause(new IllegalArgumentException());
+    ).hasCause(new IllegalArgumentException());
   }
 
   @Test

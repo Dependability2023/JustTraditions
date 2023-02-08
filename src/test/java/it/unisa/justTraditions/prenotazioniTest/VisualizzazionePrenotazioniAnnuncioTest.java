@@ -22,6 +22,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 
+/**
+ * Implementa il test di unità per VisualizzazionePrenotazioniAnnuncioController.
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 public class VisualizzazionePrenotazioniAnnuncioTest {
