@@ -57,9 +57,6 @@ public class VisualizzazionePrenotazioniAnnuncioTest {
   private void test(String data, ResultMatcher resultMatcher)
       throws Exception {
     Artigiano artigiano = new Artigiano();
-    Field field = Utente.class.getDeclaredField("id");
-    field.setAccessible(true);
-    field.set(artigiano, 1L);
     Annuncio annuncio = new Annuncio();
     artigiano.addAnnuncio(annuncio);
 
@@ -101,12 +98,8 @@ public class VisualizzazionePrenotazioniAnnuncioTest {
   }
 
   @Test
-  public void paginaNonValida()
-      throws Exception {
+  public void paginaNonValida() {
     Artigiano artigiano = new Artigiano();
-    Field field = Utente.class.getDeclaredField("id");
-    field.setAccessible(true);
-    field.set(artigiano, 1L);
     Annuncio annuncio = new Annuncio();
     artigiano.addAnnuncio(annuncio);
 
