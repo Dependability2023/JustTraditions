@@ -77,6 +77,12 @@ public class ModificaStatoAnnuncioTest {
         view().name(modificaAnnuncioSuccessView));
   }
 
+  @Test
+  public void nuovoStatoApprovato()
+      throws Exception {
+    test(Annuncio.Stato.APPROVATO, "", view().name(modificaAnnuncioSuccessView));
+  }
+
   private void test(Annuncio.Stato nuovoStato, String motivoDelRifiuto, ResultMatcher resultMatcher)
       throws Exception {
     Annuncio annuncio = new Annuncio();

@@ -1,5 +1,6 @@
 package it.unisa.justTraditions.prenotazioniTest;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -71,5 +72,31 @@ public class VisualizzazionePrenotazioniAnnuncioTest {
         .param("idAnnuncio", String.valueOf(1L))
         .param("dataVisita", data)
     ).andExpect(resultMatcher);
+  }
+
+  @Test
+  public void annuncioNonAppartieneAdArtigianoLoggato()
+      throws Exception {
+    Artigiano artigiano = new Artigiano();
+    Field field = Utente.class.getDeclaredField("id");
+    field.setAccessible(true);
+    field.set(artigiano, 1L);
+    Annuncio annuncio = new Annuncio();
+    artigiano.addAnnuncio(annuncio);
+
+    Artigiano artigiano1 = new Artigiano();
+    field.set(artigiano1, 2L);
+
+    when(annuncioDao.findById(any())).thenReturn(Optional.of(annuncio));
+    when(sessionCliente.getCliente()).thenReturn(Optional.of(artigiano1));
+    when(prenotazioneDao.findByVisitaAnnuncioAndDataVisita(any(), any(), any())).thenReturn(
+        Page.empty());
+
+    assertThatThrownBy(
+        () -> mockMvc.perform(post("/visualizzazionePrenotazioniAnnuncio")
+            .param("idAnnuncio", String.valueOf(1L))
+            .param("dataVisita", "2023-02-13")
+        )
+    ).hasCause(new IllegalArgumentException());
   }
 }

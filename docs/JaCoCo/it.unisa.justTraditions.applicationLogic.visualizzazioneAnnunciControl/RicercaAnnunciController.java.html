@@ -46,12 +46,12 @@ import org.springframework.web.bind.annotation.RequestParam;
                     @RequestParam(defaultValue = &quot;&quot;, required = false) String provincia,
                     @RequestParam(defaultValue = &quot;0&quot;, required = false) Integer pagina,
                     Model model) {
-<span class="pc bpc" id="L49" title="1 of 4 branches missed.">    if (!nomeAttivita.isBlank() &amp;&amp; nomeAttivita.length() &gt; 40) {</span>
+<span class="fc bfc" id="L49" title="All 4 branches covered.">    if (!nomeAttivita.isBlank() &amp;&amp; nomeAttivita.length() &gt; 40) {</span>
 <span class="fc" id="L50">      throw new IllegalArgumentException(</span>
           &quot;La ricerca degli annunci non va a buon fine poiché&quot;
               + &quot; il nome inserito dall’utente è troppo lungo.&quot;);
     }
-<span class="pc bpc" id="L54" title="1 of 4 branches missed.">    if (!provincia.isBlank() &amp;&amp; !province.getProvince().contains(provincia)) {</span>
+<span class="fc bfc" id="L54" title="All 4 branches covered.">    if (!provincia.isBlank() &amp;&amp; !province.getProvince().contains(provincia)) {</span>
 <span class="fc" id="L55">      throw new IllegalArgumentException(&quot;Provincia non esistente&quot;);</span>
     }
 

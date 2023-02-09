@@ -70,8 +70,8 @@ import org.springframework.web.servlet.ModelAndView;
                      @RequestParam(defaultValue = &quot;0&quot;, required = false) Integer pagina,
                      Model model) {
 <span class="fc" id="L72">    Annuncio annuncio = annuncioDao.findById(idAnnuncio).orElseThrow(IllegalArgumentException::new);</span>
-<span class="pc bpc" id="L73" title="1 of 2 branches missed.">    if (!annuncio.getArtigiano().equals(sessionCliente.getCliente().get())) {</span>
-<span class="nc" id="L74">      throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">    if (!annuncio.getArtigiano().equals(sessionCliente.getCliente().get())) {</span>
+<span class="fc" id="L74">      throw new IllegalArgumentException();</span>
     }
 
 <span class="fc" id="L77">    Page&lt;Prenotazione&gt; prenotazionePage = prenotazioneDao.findByVisitaAnnuncioAndDataVisita(</span>

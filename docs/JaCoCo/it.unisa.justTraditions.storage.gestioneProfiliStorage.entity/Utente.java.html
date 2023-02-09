@@ -71,16 +71,16 @@ public abstract class Utente {
 
   @Override
   public boolean equals(Object o) {
-<span class="pc bpc" id="L74" title="1 of 2 branches missed.">    if (this == o) {</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">    if (this == o) {</span>
 <span class="fc" id="L75">      return true;</span>
     }
-<span class="nc bnc" id="L77" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="pc bpc" id="L77" title="2 of 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
 <span class="nc" id="L78">      return false;</span>
     }
 
-<span class="nc" id="L81">    Utente utente = (Utente) o;</span>
+<span class="fc" id="L81">    Utente utente = (Utente) o;</span>
 
-<span class="nc" id="L83">    return id.equals(utente.id);</span>
+<span class="fc" id="L83">    return id.equals(utente.id);</span>
   }
 
   @Override
