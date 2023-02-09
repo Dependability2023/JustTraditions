@@ -53,6 +53,12 @@ public class RicercaAnnunciTest {
     test("Cantine Santoro", "Avellino", status().isOk());
   }
 
+  @Test
+  public void nomeAttivitaAndProvinciaVuoti()
+      throws Exception {
+    test("", "", status().isOk());
+  }
+
   private void test(String nomeAttivita, String provincia, ResultMatcher resultMatcher)
       throws Exception {
     when(annuncioDao.findAll(any(), (Pageable) any())).thenReturn(Page.empty());

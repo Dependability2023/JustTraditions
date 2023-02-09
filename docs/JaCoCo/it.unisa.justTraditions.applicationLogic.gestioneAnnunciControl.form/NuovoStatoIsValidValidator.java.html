@@ -22,7 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 <span class="fc" id="L22">        annuncioDao.findById(modificaStatoAnnuncioForm.getIdAnnuncio())</span>
 <span class="fc" id="L23">            .orElseThrow(IllegalArgumentException::new).getStato();</span>
 <span class="fc" id="L24">    Annuncio.Stato nuovoStato = modificaStatoAnnuncioForm.getNuovoStato();</span>
-<span class="pc bpc" id="L25" title="9 of 16 branches missed.">    return !((stato == Annuncio.Stato.PROPOSTO</span>
+<span class="pc bpc" id="L25" title="8 of 16 branches missed.">    return !((stato == Annuncio.Stato.PROPOSTO</span>
         &amp;&amp; nuovoStato != Annuncio.Stato.IN_REVISIONE)
         ||
         (stato == Annuncio.Stato.IN_REVISIONE
