@@ -99,4 +99,28 @@ public class VisualizzazionePrenotazioniAnnuncioTest {
         )
     ).hasCause(new IllegalArgumentException());
   }
+
+  @Test
+  public void paginaNonValida()
+      throws Exception {
+    Artigiano artigiano = new Artigiano();
+    Field field = Utente.class.getDeclaredField("id");
+    field.setAccessible(true);
+    field.set(artigiano, 1L);
+    Annuncio annuncio = new Annuncio();
+    artigiano.addAnnuncio(annuncio);
+
+    when(annuncioDao.findById(any())).thenReturn(Optional.of(annuncio));
+    when(sessionCliente.getCliente()).thenReturn(Optional.of(artigiano));
+    when(prenotazioneDao.findByVisitaAnnuncioAndDataVisita(any(), any(), any())).thenReturn(
+        Page.empty());
+
+    assertThatThrownBy(
+        () -> mockMvc.perform(post("/visualizzazionePrenotazioniAnnuncio")
+            .param("idAnnuncio", String.valueOf(1L))
+            .param("dataVisita", "2023-02-13")
+            .param("pagina", "1")
+        )
+    ).hasCause(new IllegalArgumentException());
+  }
 }

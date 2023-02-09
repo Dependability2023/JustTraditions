@@ -101,4 +101,26 @@ public class ModificaStatoAnnuncioTest {
         .param("motivoDelRifiuto", motivoDelRifiuto)
     ).andExpect(resultMatcher);
   }
+
+  @Test
+  public void approvatoVersoInRevisione()
+      throws Exception {
+    Annuncio annuncio = new Annuncio();
+    annuncio.setStato(Annuncio.Stato.APPROVATO);
+    annuncio.addFoto(new Foto());
+    Artigiano artigiano = new Artigiano();
+    artigiano.addAnnuncio(annuncio);
+    Amministratore amministratore = new Amministratore();
+    amministratore.addAnnuncioApprovato(annuncio);
+
+    when(annuncioDao.findById(any())).thenReturn(Optional.of(annuncio));
+    when(sessionAmministratore.getAmministratore())
+        .thenReturn(Optional.of(new Amministratore()));
+
+    mockMvc.perform(post("/modificaStatoAnnuncio")
+        .param("idAnnuncio", String.valueOf(1L))
+        .param("nuovoStato", String.valueOf(Annuncio.Stato.IN_REVISIONE))
+        .param("motivoDelRifiuto", "")
+    ).andExpect(view().name(modificaAnnuncioSuccessView));
+  }
 }
