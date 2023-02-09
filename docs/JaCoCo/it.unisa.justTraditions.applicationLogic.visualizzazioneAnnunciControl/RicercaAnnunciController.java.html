@@ -75,10 +75,10 @@ import org.springframework.web.bind.annotation.RequestParam;
     List&lt;Annuncio&gt; annunci;
 
 <span class="fc" id="L77">    int totalPages = annuncioPage.getTotalPages();</span>
-<span class="pc bpc" id="L78" title="1 of 2 branches missed.">    if (totalPages == 0) {</span>
-<span class="nc" id="L79">      annunci = List.of();</span>
-<span class="pc bpc" id="L80" title="1 of 2 branches missed.">    } else if (totalPages &lt;= pagina) {</span>
-<span class="nc" id="L81">      throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">    if (totalPages == 0) {</span>
+<span class="fc" id="L79">      annunci = List.of();</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">    } else if (totalPages &lt;= pagina) {</span>
+<span class="fc" id="L81">      throw new IllegalArgumentException();</span>
     } else {
 <span class="fc" id="L83">      annunci = annuncioPage.getContent();</span>
     }
