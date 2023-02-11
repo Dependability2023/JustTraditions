@@ -24,7 +24,7 @@
                                 <label for="nomeAttivita">Nome Attività:</label>
                                 <input type="text" th:field="*{nomeAttivita}" id="nomeAttivita" class="form-control"
                                        placeholder="Nome dell'attività"
-                                       autofocus="autofocus">
+                                       autofocus="autofocus" required>
                                 <div class=" d-inline invalid-feedback " th:if="${#fields.hasErrors('nomeAttivita')}"
                                      th:errors="*{nomeAttivita}"></div>
                             </div>
