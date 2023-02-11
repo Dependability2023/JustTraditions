@@ -15,7 +15,7 @@ import jakarta.validation.ConstraintValidatorContext;
   public boolean isValid(ModificaStatoAnnuncioForm modificaStatoAnnuncioForm,
                          ConstraintValidatorContext constraintValidatorContext) {
 <span class="fc" id="L17">    Annuncio.Stato nuovoStato = modificaStatoAnnuncioForm.getNuovoStato();</span>
-<span class="pc bpc" id="L18" title="1 of 2 branches missed.">    boolean motivoDelRifiutoBlank = modificaStatoAnnuncioForm.getMotivoDelRifiuto() == null</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">    boolean motivoDelRifiutoBlank = modificaStatoAnnuncioForm.getMotivoDelRifiuto() == null</span>
 <span class="fc bfc" id="L19" title="All 2 branches covered.">        || modificaStatoAnnuncioForm.getMotivoDelRifiuto().isBlank();</span>
 
 <span class="fc bfc" id="L21" title="All 4 branches covered.">    return nuovoStato != Annuncio.Stato.RIFIUTATO || !motivoDelRifiutoBlank;</span>

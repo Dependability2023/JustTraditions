@@ -158,7 +158,7 @@ public class Annuncio {
 <span class="fc" id="L158">  }</span>
 
   public String getMotivoDelRifiuto() {
-<span class="nc" id="L161">    return motivoDelRifiuto;</span>
+<span class="fc" id="L161">    return motivoDelRifiuto;</span>
   }
 
   public void setMotivoDelRifiuto(String motivoDelRifiuto) {
@@ -166,13 +166,13 @@ public class Annuncio {
 <span class="fc" id="L166">  }</span>
 
   public Amministratore getAmministratore() {
-<span class="nc" id="L169">    return amministratore;</span>
+<span class="fc" id="L169">    return amministratore;</span>
   }
 
   public void setAmministratore(Amministratore amministratore) {
-<span class="nc" id="L173">    OnlyStorageCall.validateCall();</span>
-<span class="nc" id="L174">    this.amministratore = amministratore;</span>
-<span class="nc" id="L175">  }</span>
+<span class="fc" id="L173">    OnlyStorageCall.validateCall();</span>
+<span class="fc" id="L174">    this.amministratore = amministratore;</span>
+<span class="fc" id="L175">  }</span>
 
   public Artigiano getArtigiano() {
 <span class="fc" id="L178">    return artigiano;</span>
@@ -184,7 +184,7 @@ public class Annuncio {
 <span class="fc" id="L184">  }</span>
 
   public List&lt;Visita&gt; getVisite() {
-<span class="nc" id="L187">    return Collections.unmodifiableList(visite);</span>
+<span class="fc" id="L187">    return Collections.unmodifiableList(visite);</span>
   }
 
   public void addVisita(Visita visita) {
@@ -208,8 +208,8 @@ public class Annuncio {
 
   @Override
   public boolean equals(Object o) {
-<span class="nc bnc" id="L211" title="All 2 branches missed.">    if (this == o) {</span>
-<span class="nc" id="L212">      return true;</span>
+<span class="pc bpc" id="L211" title="1 of 2 branches missed.">    if (this == o) {</span>
+<span class="fc" id="L212">      return true;</span>
     }
 <span class="nc bnc" id="L214" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
 <span class="nc" id="L215">      return false;</span>

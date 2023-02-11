@@ -70,8 +70,8 @@ import org.springframework.web.servlet.ModelAndView;
                      @RequestParam(defaultValue = &quot;0&quot;, required = false) Integer pagina,
                      Model model) {
 <span class="fc" id="L72">    Annuncio annuncio = annuncioDao.findById(idAnnuncio).orElseThrow(IllegalArgumentException::new);</span>
-<span class="pc bpc" id="L73" title="1 of 2 branches missed.">    if (!annuncio.getArtigiano().equals(sessionCliente.getCliente().get())) {</span>
-<span class="nc" id="L74">      throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">    if (!annuncio.getArtigiano().equals(sessionCliente.getCliente().get())) {</span>
+<span class="fc" id="L74">      throw new IllegalArgumentException();</span>
     }
 
 <span class="fc" id="L77">    Page&lt;Prenotazione&gt; prenotazionePage = prenotazioneDao.findByVisitaAnnuncioAndDataVisita(</span>
@@ -87,10 +87,10 @@ import org.springframework.web.servlet.ModelAndView;
     List&lt;Prenotazione&gt; prenotazioni;
 
 <span class="fc" id="L89">    int totalPages = prenotazionePage.getTotalPages();</span>
-<span class="pc bpc" id="L90" title="1 of 2 branches missed.">    if (totalPages == 0) {</span>
-<span class="nc" id="L91">      prenotazioni = List.of();</span>
-<span class="pc bpc" id="L92" title="1 of 2 branches missed.">    } else if (totalPages &lt;= pagina) {</span>
-<span class="nc" id="L93">      throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">    if (totalPages == 0) {</span>
+<span class="fc" id="L91">      prenotazioni = List.of();</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">    } else if (totalPages &lt;= pagina) {</span>
+<span class="fc" id="L93">      throw new IllegalArgumentException();</span>
     } else {
 <span class="fc" id="L95">      prenotazioni = prenotazionePage.getContent();</span>
     }
