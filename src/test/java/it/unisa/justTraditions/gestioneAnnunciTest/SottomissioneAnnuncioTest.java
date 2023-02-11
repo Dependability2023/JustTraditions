@@ -1,12 +1,21 @@
 package it.unisa.justTraditions.gestioneAnnunciTest;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.util.AssertionErrors.assertEquals;
+import static org.springframework.test.util.AssertionErrors.assertNotNull;
+import static org.springframework.test.util.AssertionErrors.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import it.unisa.justTraditions.applicationLogic.autenticazioneControl.util.SessionCliente;
+import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
+import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Foto;
+import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Visita;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.dao.ArtigianoDao;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Artigiano;
+import java.math.BigDecimal;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -309,7 +318,9 @@ public class SottomissioneAnnuncioTest {
                     String giorno, String orarioInizio, String orarioFine,
                     Integer numMaxPersonePerVisita, byte[] foto, ResultMatcher resultMatcher)
       throws Exception {
-    when(sessionCliente.getCliente()).thenReturn(Optional.of(new Artigiano()));
+    Artigiano artigiano = new Artigiano();
+
+    when(sessionCliente.getCliente()).thenReturn(Optional.of(artigiano));
 
     mockMvc.perform(multipart("/sottomissioneAnnuncio")
         .file("foto", foto)
@@ -323,6 +334,39 @@ public class SottomissioneAnnuncioTest {
         .param("visite[0].orarioInizio", orarioInizio)
         .param("visite[0].orarioFine", orarioFine)
         .param("numMaxPersonePerVisita", String.valueOf(numMaxPersonePerVisita))
-    ).andExpect(resultMatcher);
+    ).andExpect(resultMatcher).andDo(result -> {
+      if (result.getModelAndView().getViewName().equals(sottomissioneAnnuncioView)) {
+        assertTrue("annuncio inserito", artigiano.getAnnunci().isEmpty());
+      } else if (result.getModelAndView().getViewName().equals(modificaAnnuncioSuccessView)) {
+        Annuncio annuncio = artigiano.getAnnunci().get(0);
+
+        assertNotNull("annuncio nullo", annuncio);
+        assertEquals("nomeAttivita non inserito", nomeAttivita, annuncio.getNomeAttivita());
+        assertEquals("descrizione non inserita", descrizione, annuncio.getDescrizione());
+        assertEquals("indirizzoAttivita non inserito", indirizzoAttivita,
+            annuncio.getIndirizzoAttivita());
+        assertEquals("provinciaAttivita non inserita", provinciaAttivita,
+            annuncio.getProvinciaAttivita());
+        assertEquals("serviziOfferti non inserito", serviziOfferti, annuncio.getServiziOfferti());
+        assertEquals("prezzoVisita non inserito", new BigDecimal(prezzoVisita),
+            annuncio.getPrezzoVisita());
+        assertEquals("numMaxPersonePerVisita non inserito", numMaxPersonePerVisita,
+            annuncio.getNumMaxPersonePerVisita());
+
+        Visita visita = annuncio.getVisite().get(0);
+
+        assertNotNull("visita nulla", visita);
+        assertEquals("giorno non inserito", DayOfWeek.valueOf(giorno), visita.getGiorno());
+        assertEquals("orarioInizio non inserito", LocalTime.parse(orarioInizio),
+            visita.getOrarioInizio());
+        assertEquals("orarioFine non inserito", LocalTime.parse(orarioFine),
+            visita.getOrarioFine());
+
+        Foto foto1 = annuncio.getFoto().get(0);
+
+        assertNotNull("foto nulla", foto1);
+        assertEquals("foto non inserita", foto, foto1.getDati());
+      }
+    });
   }
 }

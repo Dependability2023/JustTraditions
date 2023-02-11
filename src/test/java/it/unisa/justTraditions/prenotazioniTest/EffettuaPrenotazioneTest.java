@@ -3,6 +3,8 @@ package it.unisa.justTraditions.prenotazioniTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.util.AssertionErrors.assertEquals;
+import static org.springframework.test.util.AssertionErrors.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -12,6 +14,8 @@ import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Annuncio;
 import it.unisa.justTraditions.storage.gestioneAnnunciStorage.entity.Visita;
 import it.unisa.justTraditions.storage.gestioneProfiliStorage.entity.Cliente;
 import it.unisa.justTraditions.storage.prenotazioniStorage.dao.PrenotazioneDao;
+import it.unisa.justTraditions.storage.prenotazioniStorage.entity.Prenotazione;
+import jakarta.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -119,6 +123,16 @@ public class EffettuaPrenotazioneTest {
         .param("idVisita", String.valueOf(idVisita))
         .param("numeroPersone", String.valueOf(numeroPersone))
         .param("dataVisita", dataVisita)
-    ).andExpect(resultMatcher);
+    ).andExpect(resultMatcher).andDo(result -> {
+      if (result.getResponse().getStatus() == HttpServletResponse.SC_OK) {
+        Prenotazione prenotazione = visita.getPrenotazioni().get(0);
+
+        assertNotNull("prenotazione nulla", prenotazione);
+        assertEquals("dataVisita non inserita", LocalDate.parse(dataVisita),
+            prenotazione.getDataVisita());
+        assertEquals("numeroPersone non inserito", numeroPersone,
+            prenotazione.getNumPersonePrenotate());
+      }
+    });
   }
 }

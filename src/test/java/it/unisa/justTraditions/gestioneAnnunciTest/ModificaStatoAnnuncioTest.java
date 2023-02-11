@@ -2,6 +2,7 @@ package it.unisa.justTraditions.gestioneAnnunciTest;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -90,16 +91,38 @@ public class ModificaStatoAnnuncioTest {
     annuncio.addFoto(new Foto());
     Artigiano artigiano = new Artigiano();
     artigiano.addAnnuncio(annuncio);
+    Amministratore amministratore = new Amministratore();
 
     when(annuncioDao.findById(any())).thenReturn(Optional.of(annuncio));
     when(sessionAmministratore.getAmministratore())
-        .thenReturn(Optional.of(new Amministratore()));
+        .thenReturn(Optional.of(amministratore));
 
     mockMvc.perform(post("/modificaStatoAnnuncio")
         .param("idAnnuncio", String.valueOf(1L))
         .param("nuovoStato", String.valueOf(nuovoStato))
         .param("motivoDelRifiuto", motivoDelRifiuto)
-    ).andExpect(resultMatcher);
+    ).andExpect(resultMatcher).andDo(result -> {
+      if (result.getModelAndView().getViewName().equals(modificaStatoAnnuncioView)) {
+        assertEquals("stato modificato", Annuncio.Stato.IN_REVISIONE, annuncio.getStato());
+        assertEquals("motivo del rifiuto modificato", null, annuncio.getMotivoDelRifiuto());
+      } else if (result.getModelAndView().getViewName().equals(modificaAnnuncioSuccessView)) {
+        assertEquals("stato non modificato", nuovoStato, annuncio.getStato());
+
+        if (nuovoStato.equals(Annuncio.Stato.RIFIUTATO)) {
+          assertEquals("motivo del rifiuto non modificato", motivoDelRifiuto,
+              annuncio.getMotivoDelRifiuto());
+        } else {
+          assertEquals("motivo del rifiuto modificato", null,
+              annuncio.getMotivoDelRifiuto());
+        }
+
+        if (nuovoStato.equals(Annuncio.Stato.APPROVATO)) {
+          assertEquals("amministratore non aggiunto", amministratore, annuncio.getAmministratore());
+        } else {
+          assertEquals("amministratore aggiunto", null, annuncio.getAmministratore());
+        }
+      }
+    });
   }
 
   @Test
@@ -121,6 +144,9 @@ public class ModificaStatoAnnuncioTest {
         .param("idAnnuncio", String.valueOf(1L))
         .param("nuovoStato", String.valueOf(Annuncio.Stato.IN_REVISIONE))
     ).andExpect(view().name(modificaAnnuncioSuccessView));
+
+    assertEquals("stato non modificato", Annuncio.Stato.IN_REVISIONE, annuncio.getStato());
+    assertEquals("amministratore non rimosso", null, annuncio.getAmministratore());
   }
 
   @Test
@@ -140,5 +166,7 @@ public class ModificaStatoAnnuncioTest {
         .param("idAnnuncio", String.valueOf(1L))
         .param("nuovoStato", String.valueOf(Annuncio.Stato.IN_REVISIONE))
     ).andExpect(view().name(modificaAnnuncioSuccessView));
+
+    assertEquals("stato non modificato", Annuncio.Stato.IN_REVISIONE, annuncio.getStato());
   }
 }
