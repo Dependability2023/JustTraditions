@@ -22,8 +22,6 @@ public class ChiSiamoController {
    */
   @GetMapping
   public ModelAndView get() {
-
-
     return new ModelAndView(chisiamoView);
   }
 }
