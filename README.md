@@ -48,14 +48,15 @@ In this section we introduce technical information and installing guides!
 Follow these steps:
 
 1. Download and start MySQL 8.0.31;
-2. Clone this repo;
-3. Go into JustTraditions directory;
-4. Run `./mwnw (or .\mvnw.cmd if you're on windows) clean package` and wait for maven to build;
-5. Open and run configurationFiles/databaseInit.sql on MySQL workbench;
-6. Run `java -jar target/justTraditions-1.0.jar –spring.datasource.password="<password_database>"
+2. Download Java SE 17;
+3. Clone this repo;
+4. Go into JustTraditions directory;
+5. Run `./mwnw (or .\mvnw.cmd if you're on windows) clean package` and wait for maven to build;
+6. Open and run configurationFiles/databaseInit.sql on MySQL workbench;
+7. Run `java -jar target/justTraditions-1.0.jar –spring.datasource.password="<password_database>"
    –spring.datasource.username="<username_database>"`;
-7. Open and run configurationFiles/defaultadmin.sql on MySQL workbench;
-8. Open your browser at `localhost:8080`.
+8. Open and run configurationFiles/defaultadmin.sql on MySQL workbench;
+9. Open your browser at `localhost:8080`.
 
 ## Built With
 
@@ -69,5 +70,7 @@ Follow these steps:
 # Contributors
 
 <a href="https://github.com/GerardoBrescia/JustTraditions/graphs/contributors">
-  <img src="" alt="Rendere il repository pubblico e creare link con contrib.rocks" />
+  <img src="https://contrib.rocks/image?repo=GerardoBrescia/JustTraditions" />
 </a>
+
+Made with [contrib.rocks](https://contrib.rocks).
