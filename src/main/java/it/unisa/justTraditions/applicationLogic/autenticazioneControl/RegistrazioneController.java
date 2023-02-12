@@ -36,7 +36,7 @@ public class RegistrazioneController {
 
   /**
    * Implementa la funzionalità di smistare
-   * l'Amministratore sulla view di autenticazioneView/registrazione.
+   * il Cliente sulla view di autenticazioneView/registrazione.
    *
    * @param registrazioneForm Utilizzato per mappare il Form della view.
    * @return Restituisce la view da reindirizzare.

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * Implementa il controller per lq visualizzazione di un profilo di un artigiano.
+ * Implementa il controller per la visualizzazione di un profilo di un artigiano.
  */
 @Controller
 @RequestMapping("/visualizzazioneProfiloArtigiano")

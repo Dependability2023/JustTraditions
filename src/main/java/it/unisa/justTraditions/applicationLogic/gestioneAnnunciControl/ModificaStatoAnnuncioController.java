@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * Implementa il controller per la modifica di uno stato dell Annuncio.
+ * Implementa il controller per la modifica di uno stato dell'Annuncio.
  */
 @Controller
 @RequestMapping("/modificaStatoAnnuncio")
