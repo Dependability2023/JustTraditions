@@ -32,7 +32,7 @@ public class RicercaAnnunciController {
   private Province province;
 
   /**
-   * Implementa la funzionalita della ricerca di un annuncio con o senza filtro province.
+   * Implementa la funzionalità della ricerca di un annuncio con o senza filtro province.
    *
    * @param nomeAttivita Utilizzato per la ricerca degli annunci.
    * @param provincia    Utilizzato per il filtro per provincie per gli annunci.

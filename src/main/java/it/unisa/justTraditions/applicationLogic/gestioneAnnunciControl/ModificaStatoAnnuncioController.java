@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * Implementa il controller per la modifica di uno stato dell Annuncio.
+ * Implementa il controller per la modifica di uno stato del Annuncio.
  */
 @Controller
 @RequestMapping("/modificaStatoAnnuncio")
@@ -28,7 +28,7 @@ public class ModificaStatoAnnuncioController {
       "gestioneAnnunciView/modificaStatoAnnuncio";
 
   private static final String modificaAnnuncioSuccessView =
-      "gestioneAnnunciView/modificaAnnuncioSuccess";
+      "gestioneAnnunciView/modificaStatoAnnuncio";
 
   @Autowired
   private AnnuncioDao annuncioDao;
