@@ -94,8 +94,9 @@
                                 <td th:text="${admin.nome}"></td>
                                 <td class="d-none d-xl-table-cell" th:text="${admin.cognome}"></td>
                                 <td class="d-none d-xl-table-cell" th:text="${admin.email}"></td>
-                                <td><a th:href="@{/rimozioneAmministratore(id=${admin.id})}"
-                                       class="badge bg-danger"><img
+                                <td th:if="${!admin.equals(amministratore)}"><a
+                                        th:href="@{/rimozioneAmministratore(id=${admin.id})}"
+                                        class="badge bg-danger"><img
                                         src="https://img.icons8.com/ios/16/FFFFFF/delete--v1.png"/></a></td>
 
                             </tr>
