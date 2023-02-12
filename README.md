@@ -52,8 +52,8 @@ Follow these steps:
 3. Go into JustTraditions directory;
 4. Run `./mwnw (or .\mvnw.cmd if you're on windows) clean package` and wait for maven to build;
 5. Open and run configurationFiles/databaseInit.sql on MySQL workbench;
-6. Run `java -jar target/justTraditions-1.0.jar –spring.datasource.password=”<password_database>”
-   –spring.datasource.username=”<username_database>`;
+6. Run `java -jar target/justTraditions-1.0.jar –spring.datasource.password="<password_database>"
+   –spring.datasource.username="<username_database>"`;
 7. Open and run configurationFiles/defaultadmin.sql on MySQL workbench;
 8. Open your browser at `localhost:8080`.
 
