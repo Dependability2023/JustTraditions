@@ -10,7 +10,10 @@
 
 <br> <br>
 
-<center><h1>Login</h1></center>
+<center>
+    <h1 th:if="${nameLogin.equals('/login')}">Login</h1>
+    <h1 th:if="${nameLogin.equals('/loginAmministratore')}">Login Amministratore</h1>
+</center>
 
 <br> <br>
 <div class="container-fluid">

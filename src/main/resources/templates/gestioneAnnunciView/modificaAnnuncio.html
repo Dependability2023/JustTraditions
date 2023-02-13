@@ -120,7 +120,9 @@
                                                             <input class="form-control form-control-sm" type="file"
                                                                    multiple
                                                                    th:field="*{foto}">
-
+                                                            <div class=" d-inline invalid-feedback "
+                                                                 th:if="${nessunaFoto != null}">Inserire almeno una foto
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -162,11 +164,14 @@
                                 <div class="col-md-6">
                                     <div class="form-label-group">
                                         <label>Visite già inserite</label>
-                                        <div th:each="visita : ${annuncioForm.visite}">
+                                        <div th:each="visita, iStat : ${annuncioForm.visite}">
                                             <input type="text" class="inputGiorno" th:value="${visita.giorno}" disabled>
                                             <input type="time" th:value="${visita.orarioInizio}" disabled>
                                             <input type="time" th:value="${visita.orarioFine}" disabled>
                                             <a class="delete"> x</a>
+                                            <div class=" d-inline invalid-feedback "
+                                                 th:if="${#fields.hasErrors('visite[__${iStat.index}__]')}"
+                                                 th:errors="*{visite[__${iStat.index}__]}"></div>
                                         </div>
                                     </div>
                                 </div>
