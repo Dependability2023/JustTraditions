@@ -24,7 +24,7 @@ public @interface OrarioIsValidConstraint {
    *
    * @return Orario di fine antecedente a quello di inizio.
    */
-  String message() default "Orario di fine antecedente a quello di inizio";
+  String message() default "Formato orario errato o orario di fine antecedente a quello di inizio";
 
   /**
    * Permetti di specificare la gruppo di validazione.

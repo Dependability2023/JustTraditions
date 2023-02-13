@@ -24,7 +24,7 @@
             <form id="formdata" action="/visualizzazionePrenotazioniAnnuncio" method="post">
                 <input type="hidden" name="idAnnuncio" th:value="${idAnnuncio}">
                 <label class="active" for="dateStandard">Inserisci data</label>
-                <input type="date" id="dateStandard" name="dataVisita">
+                <input type="date" id="dateStandard" name="dataVisita" th:value="${dataVisita}">
             </form>
         </div>
 
@@ -61,9 +61,9 @@
 
         <div th:if="${pagina} != null" class="paging-wrapper d-flex flex-wrap justify-content-center mt-3">
             <form th:method="get" th:action="@{/visualizzazionePrenotazioniAnnuncio}">
-                <input type="hidden" th:name="stato" th:value="${dataVisita}">
-                <input type="hidden" th:name="stato" th:value="${idAnnuncio}">
-                <input type="hidden" th:name="pagina" th:value="${pagina -1}">
+                <input type="hidden" th:field="${dataVisita}">
+                <input type="hidden" th:field="${idAnnuncio}">
+                <input type="hidden" name="pagina" th:value="${pagina -1}">
 
 
                 <button th:if="${pagina > 0}" type="submit" value="Precedente" class="btn btn-primary">Precedente
@@ -78,9 +78,9 @@
                     th:text="'Pagina:'+${pagina+1}"></strong>
 
             <form th:method="get" th:action="@{/visualizzazioneListaAnnunci}">
-                <input type="hidden" th:name="stato" th:value="${dataVisita}">
-                <input type="hidden" th:name="stato" th:value="${idAnnuncio}">
-                <input type="hidden" th:name="pagina" th:value="${pagina +1}">
+                <input type="hidden" th:field="${dataVisita}">
+                <input type="hidden" th:field="${idAnnuncio}">
+                <input type="hidden" name="pagina" th:value="${pagina +1}">
 
                 <button th:if="${pagineTotali -1 > pagina}" type="submit" value="Precedente" class="btn btn-primary">
                     Successivo

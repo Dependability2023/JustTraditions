@@ -116,6 +116,8 @@ public class ModificaAnnuncioController {
   @PostMapping
   public String post(@ModelAttribute @Valid AnnuncioForm annuncioForm, BindingResult bindingResult,
                      @RequestParam(required = false) List<Long> idFoto, Model model) {
+    model.addAttribute("idFoto", idFoto);
+    
     if (bindingResult.hasFieldErrors("foto")) {
       if (bindingResult.getErrorCount() > 1) {
         return modificaAnnuncioView;
