@@ -66,7 +66,7 @@
                                     <button class="add_form_field0"><i class="fa fa-plus-square"></i></button>
                                     <br>
                                     <th:block th:each="visita, iStat : ${annuncioForm.visite}">
-                                        <div th:if="${visita.giorno.equals(visita.giorno.MONDAY)}">
+                                        <div th:if="${visita.giorno != null && visita.giorno == visita.giorno.MONDAY}">
                                             <input class="inputGiorno" type="hidden" value="MONDAY">
                                             <input type="time" th:value="${visita.orarioInizio}">
                                             <input type="time" th:value="${visita.orarioFine}">
@@ -82,7 +82,7 @@
                                     <button class="add_form_field1"><i class="fa fa-plus-square"></i></button>
                                     <br>
                                     <th:block th:each="visita, iStat : ${annuncioForm.visite}">
-                                        <div th:if="${visita.giorno.equals(visita.giorno.TUESDAY)}">
+                                        <div th:if="${visita.giorno != null && visita.giorno == visita.giorno.TUESDAY}">
                                             <input class="inputGiorno" type="hidden" value="TUESDAY">
                                             <input type="time" th:value="${visita.orarioInizio}">
                                             <input type="time" th:value="${visita.orarioFine}">
@@ -98,7 +98,7 @@
                                     <button class="add_form_field2"><i class="fa fa-plus-square"></i></button>
                                     <br>
                                     <th:block th:each="visita, iStat : ${annuncioForm.visite}">
-                                        <div th:if="${visita.giorno.equals(visita.giorno.WEDNESDAY)}">
+                                        <div th:if="${visita.giorno != null && visita.giorno == visita.giorno.WEDNESDAY}">
                                             <input class="inputGiorno" type="hidden" value="WEDNESDAY">
                                             <input type="time" th:value="${visita.orarioInizio}">
                                             <input type="time" th:value="${visita.orarioFine}">
@@ -114,7 +114,7 @@
                                     <button class="add_form_field3"><i class="fa fa-plus-square"></i></button>
                                     <br>
                                     <th:block th:each="visita, iStat : ${annuncioForm.visite}">
-                                        <div th:if="${visita.giorno.equals(visita.giorno.THURSDAY)}">
+                                        <div th:if="${visita.giorno != null && visita.giorno == visita.giorno.THURSDAY}">
                                             <input class="inputGiorno" type="hidden" value="THURSDAY">
                                             <input type="time" th:value="${visita.orarioInizio}">
                                             <input type="time" th:value="${visita.orarioFine}">
@@ -130,7 +130,7 @@
                                     <button class="add_form_field4"><i class="fa fa-plus-square"></i></button>
                                     <br>
                                     <th:block th:each="visita, iStat : ${annuncioForm.visite}">
-                                        <div th:if="${visita.giorno.equals(visita.giorno.FRIDAY)}">
+                                        <div th:if="${visita.giorno != null && visita.giorno == visita.giorno.FRIDAY}">
                                             <input class="inputGiorno" type="hidden" value="FRIDAY">
                                             <input type="time" th:value="${visita.orarioInizio}">
                                             <input type="time" th:value="${visita.orarioFine}">
@@ -146,7 +146,7 @@
                                     <button class="add_form_field5"><i class="fa fa-plus-square"></i></button>
                                     <br>
                                     <th:block th:each="visita, iStat : ${annuncioForm.visite}">
-                                        <div th:if="${visita.giorno.equals(visita.giorno.SATURDAY)}">
+                                        <div th:if="${visita.giorno != null && visita.giorno == visita.giorno.SATURDAY}">
                                             <input class="inputGiorno" type="hidden" value="SATURDAY">
                                             <input type="time" th:value="${visita.orarioInizio}">
                                             <input type="time" th:value="${visita.orarioFine}">
@@ -162,7 +162,7 @@
                                     <button class="add_form_field6"><i class="fa fa-plus-square"></i></button>
                                     <br>
                                     <th:block th:each="visita, iStat : ${annuncioForm.visite}">
-                                        <div th:if="${visita.giorno.equals(visita.giorno.SUNDAY)}">
+                                        <div th:if="${visita.giorno != null && visita.giorno == visita.giorno.SUNDAY}">
                                             <input class="inputGiorno" type="hidden" value="SUNDAY">
                                             <input type="time" th:value="${visita.orarioInizio}">
                                             <input type="time" th:value="${visita.orarioFine}">
